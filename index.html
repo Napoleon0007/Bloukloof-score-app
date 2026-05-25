@@ -487,23 +487,72 @@
   // ================================================================
   // SETUP INSTRUCTIONS (free, no backend needed):
   //
-  // 1. Create a new Google Sheet.
-  // 2. Go to Extensions → Apps Script.
-  // 3. Replace all code with the function below, then save:
-  //
-  //    function doPost(e) {
-  //      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  //      var data = JSON.parse(e.postData.contents);
-  //      var headers = Object.keys(data);
-  //      if (sheet.getLastRow() === 0) sheet.appendRow(headers);
-  //      sheet.appendRow(headers.map(function(h){ return data[h] || ''; }));
-  //      return ContentService.createTextOutput('OK');
-  //    }
-  //
-  // 4. Click Deploy → New Deployment → Web App
+  // 1. Open your Google Sheet → Extensions → Apps Script
+  // 2. Replace ALL existing code with the script below, then Save (Ctrl+S)
+  // 3. Click Deploy → New Deployment → Web App
   //    - Execute as: Me
   //    - Who has access: Anyone
-  // 5. Copy the deployment URL and paste it below.
+  // 4. Copy the deployment URL and paste it as SHEETS_WEBHOOK_URL below.
+  //
+  // ── ALREADY HAVE DATA IN THE SHEET? ──────────────────────────────
+  // After pasting and saving the script, run formatExistingSheet() once
+  // from the Apps Script editor (select it in the dropdown → Run).
+  // This will rewrite the header row and format all columns in place.
+  //
+  // ── APPS SCRIPT CODE (paste everything between the dashes) ───────
+  //
+  // ---------------------------------------------------------------
+  // var COLS = [
+  //   'Submitted At','Status','First Name','Surname','Phone','Email',
+  //   'Score','Questions Completed','Time (secs)',
+  //   'Q1 – Purchased before?','Q2 – Invest or home?',
+  //   'Q3 – Monthly debit orders','Q4 – Monthly salary',
+  //   'Q5 – Living situation','Q6 – Saving for deposit?',
+  //   'Q7 – Know credit score?','Q8 – Credit score range',
+  //   'Q9 – Agent callback?'
+  // ];
+  //
+  // function doPost(e) {
+  //   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  //   var d = JSON.parse(e.postData.contents);
+  //   if (sheet.getLastRow() === 0) _setupSheet(sheet);
+  //   var tz = Session.getScriptTimeZone();
+  //   var ts = d.submittedAt ? Utilities.formatDate(new Date(d.submittedAt), tz, 'yyyy-MM-dd HH:mm:ss') : '';
+  //   sheet.appendRow([
+  //     ts, d.completionStatus||'', d.firstName||'', d.surname||'',
+  //     d.phone||'', d.email||'', d.score||'',
+  //     d.questionsCompleted||'', d.timeTakenSeconds||'',
+  //     d.Q1_answer||'', d.Q2_answer||'', d.Q3_answer||'',
+  //     d.Q4_answer||'', d.Q5_answer||'', d.Q6_answer||'',
+  //     d.Q7_answer||'', d.Q8_answer||'', d.Q9_answer||''
+  //   ]);
+  //   return ContentService.createTextOutput('OK');
+  // }
+  //
+  // function formatExistingSheet() {
+  //   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  //   if (sheet.getLastRow() > 0) sheet.deleteRow(1);
+  //   sheet.insertRowBefore(1);
+  //   _setupSheet(sheet);
+  // }
+  //
+  // function _setupSheet(sheet) {
+  //   sheet.getRange(1,1,1,COLS.length).setValues([COLS]);
+  //   sheet.setFrozenRows(1);
+  //   var hdr = sheet.getRange(1,1,1,COLS.length);
+  //   hdr.setBackground('#1e3a5f');
+  //   hdr.setFontColor('#ffffff');
+  //   hdr.setFontWeight('bold');
+  //   hdr.setFontSize(10);
+  //   hdr.setHorizontalAlignment('center');
+  //   hdr.setVerticalAlignment('middle');
+  //   sheet.setRowHeight(1, 38);
+  //   var widths = [165,125,115,115,130,210,75,130,90,
+  //                 175,170,185,190,165,185,185,185,170];
+  //   widths.forEach(function(w,i){ sheet.setColumnWidth(i+1, w); });
+  //   SpreadsheetApp.flush();
+  // }
+  // ---------------------------------------------------------------
   // ================================================================
   const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbygMByl3nVeIcyq7agm9u9l3oCQWztnlCHiiLcYgHZSIlmPkR_mb9dIRDT8TVlSdnvl/exec';
 
