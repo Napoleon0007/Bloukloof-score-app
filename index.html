@@ -819,6 +819,8 @@
     document.getElementById('resultsPage').classList.remove('hidden');
     document.body.style.overflow = 'auto';
     document.getElementById('resultsPage').scrollTop = 0;
+    const bgVideo = document.querySelector('#resultsPage video');
+    if (bgVideo) { bgVideo.load(); bgVideo.play().catch(() => {}); }
 
     document.getElementById('resultName').textContent =
       `${leadData.firstName} ${leadData.surname} — here's your personalised result`;
