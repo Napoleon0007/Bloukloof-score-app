@@ -564,26 +564,27 @@
   // function _setupConditionalFormatting(sheet) {
   //   var rules = [];
   //   var statusRange = sheet.getRange('B2:B1000');
+  //   var scoreRange  = sheet.getRange('G2:G1000');
+  //   // LEAD HEAT — applied to BOTH Status (B) and Score (G) columns
+  //   // Hot lead: Completed + score ≥ 75 → bright green
   //   rules.push(SpreadsheetApp.newConditionalFormatRule()
-  //     .whenTextEqualTo('Completed').setBackground('#d4edda').setFontColor('#155724').setBold(true)
+  //     .whenFormulaSatisfied('=AND($B2="Completed",ISNUMBER(VALUE(SUBSTITUTE($G2,"%",""))),VALUE(SUBSTITUTE($G2,"%",""))>=75)')
+  //     .setBackground('#22c55e').setFontColor('#ffffff').setBold(true)
+  //     .setRanges([statusRange, scoreRange]).build());
+  //   // Warm lead: Completed + score 50–74 → orange
+  //   rules.push(SpreadsheetApp.newConditionalFormatRule()
+  //     .whenFormulaSatisfied('=AND($B2="Completed",ISNUMBER(VALUE(SUBSTITUTE($G2,"%",""))),VALUE(SUBSTITUTE($G2,"%",""))>=50)')
+  //     .setBackground('#f59e0b').setFontColor('#ffffff').setBold(true)
+  //     .setRanges([statusRange, scoreRange]).build());
+  //   // Cold lead: Completed + score < 50 → red
+  //   rules.push(SpreadsheetApp.newConditionalFormatRule()
+  //     .whenFormulaSatisfied('=AND($B2="Completed",ISNUMBER(VALUE(SUBSTITUTE($G2,"%",""))),VALUE(SUBSTITUTE($G2,"%",""))<50)')
+  //     .setBackground('#dc2626').setFontColor('#ffffff').setBold(true)
+  //     .setRanges([statusRange, scoreRange]).build());
+  //   // Abandoned: grey on status column only
+  //   rules.push(SpreadsheetApp.newConditionalFormatRule()
+  //     .whenTextStartsWith('Abandoned').setBackground('#9ca3af').setFontColor('#ffffff')
   //     .setRanges([statusRange]).build());
-  //   rules.push(SpreadsheetApp.newConditionalFormatRule()
-  //     .whenTextStartsWith('Abandoned').setBackground('#f8d7da').setFontColor('#721c24')
-  //     .setRanges([statusRange]).build());
-  //   // Score tiers (matches results page: green ≥75, blue ≥50, red <50)
-  //   var scoreRange = sheet.getRange('G2:G1000');
-  //   rules.push(SpreadsheetApp.newConditionalFormatRule()
-  //     .whenFormulaSatisfied('=AND(G2<>"",VALUE(SUBSTITUTE(G2,"%",""))>=75)')
-  //     .setBackground('#d4edda').setFontColor('#155724').setBold(true)
-  //     .setRanges([scoreRange]).build());
-  //   rules.push(SpreadsheetApp.newConditionalFormatRule()
-  //     .whenFormulaSatisfied('=AND(G2<>"",VALUE(SUBSTITUTE(G2,"%",""))>=50)')
-  //     .setBackground('#cce5ff').setFontColor('#004085').setBold(true)
-  //     .setRanges([scoreRange]).build());
-  //   rules.push(SpreadsheetApp.newConditionalFormatRule()
-  //     .whenFormulaSatisfied('=AND(G2<>"",VALUE(SUBSTITUTE(G2,"%",""))<50)')
-  //     .setBackground('#f8d7da').setFontColor('#721c24').setBold(true)
-  //     .setRanges([scoreRange]).build());
   //   // Subtle zebra striping for everything else
   //   var fullRange = sheet.getRange('A2:R1000');
   //   rules.push(SpreadsheetApp.newConditionalFormatRule()
