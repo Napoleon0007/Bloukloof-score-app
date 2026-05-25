@@ -265,6 +265,11 @@
             document.getElementById('bk_qIcon').textContent  = '✗';
             document.getElementById('bk_qTitle').textContent = tier.label + ' Credit Score';
             document.getElementById('bk_qSub').textContent   = tier.msg;
+            var b1 = document.getElementById('bk_statusBanner');
+            if (b1) {
+                b1.style.background = '#e74c3c'; b1.style.color = '#fff';
+                b1.textContent = '✗ Credit score too low — not qualifying yet';
+            }
             return;
         }
         var shortfall = 1095000 - prop;
