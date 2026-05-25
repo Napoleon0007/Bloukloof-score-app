@@ -14,7 +14,7 @@
     .progress-bar { transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
     .quiz-option { transition: all 0.15s ease; }
     .quiz-option:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-    .quiz-option.selected { border-color: rgba(255,255,255,0.9) !important; background: rgba(30,58,95,0.25) !important; }
+    .quiz-option.selected { border-color: rgba(255,255,255,0.9) !important; background: rgba(30,58,95,1) !important; }
     .fade-in { animation: fadeIn 0.35s ease forwards; }
     @keyframes fadeIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
     .gallery-item img { transition: transform 0.4s ease; }
@@ -333,7 +333,7 @@
   <!-- Slideshow background -->
   <div id="quizSlideshow" class="fixed inset-0 z-0"></div>
   <!-- Dark overlay -->
-  <div class="fixed inset-0 z-[1] bg-black/72"></div>
+  <div class="fixed inset-0 z-[1] bg-black/82"></div>
 
   <div class="min-h-screen flex flex-col relative z-[2]">
     <!-- Sticky header -->
@@ -755,7 +755,7 @@
     const optionsHTML = q.options.map((opt, i) => `
       <button
         onclick="selectOption(${i}, ${opt.score})"
-        class="quiz-option w-full text-left bg-[#1e3a5f]/10 backdrop-blur-sm border border-white/30 rounded-xl px-4 py-3 group hover:bg-[#1e3a5f]/25 hover:border-white/60"
+        class="quiz-option w-full text-left bg-[#1e3a5f]/80 backdrop-blur-sm border border-white/40 rounded-xl px-4 py-3 group hover:bg-[#1e3a5f] hover:border-white/80"
         data-idx="${i}">
         <div class="flex items-center gap-4">
           <div class="w-7 h-7 rounded-full border border-white/50 group-hover:border-white flex items-center justify-center text-xs font-bold text-white/70 group-hover:text-white flex-shrink-0 transition-colors">
