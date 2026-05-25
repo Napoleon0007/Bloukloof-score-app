@@ -30,17 +30,20 @@
 
 <!-- ===================== NAV ===================== -->
 <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <img src="./logo.png" alt="Bloukloof Properties" class="h-14 w-auto" />
+  <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+    <img src="./logo.png" alt="Bloukloof Properties" class="h-20 w-auto" />
+    <div class="flex items-center gap-6">
+      <span class="hidden sm:block text-[#1e3a5f] font-bold text-sm tracking-wide border border-[#1e3a5f]/30 rounded-lg px-4 py-2 bg-[#1e3a5f]/5">
+        🏠 <span class="font-black">34/52</span> units available
+      </span>
+      <button onclick="openLeadModal()"
+        class="hidden sm:inline-flex items-center gap-2 relative overflow-hidden bg-[#1e3a5f] text-white px-6 py-3 rounded-lg font-bold text-sm hover:bg-[#162d4a] transition-colors shadow-md">
+        <img src="./logo.png" alt="" class="absolute inset-0 w-full h-full object-contain opacity-20 pointer-events-none select-none" />
+        <span class="relative">Check If I Qualify</span>
+      </button>
       <div class="w-px h-8 bg-gray-200"></div>
-      <img src="./kiron-logo.png" alt="Kiron" class="h-7 w-auto opacity-80" />
+      <img src="./kiron-logo.png" alt="Kiron" class="h-9 w-auto" />
     </div>
-    <button onclick="openLeadModal()"
-      class="hidden sm:inline-flex items-center gap-2 relative overflow-hidden bg-[#1e3a5f] text-white px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#162d4a] transition-colors">
-      <img src="./logo.png" alt="" class="absolute inset-0 w-full h-full object-contain opacity-20 pointer-events-none select-none" />
-      <span class="relative">Check If I Qualify</span>
-    </button>
   </div>
 </nav>
 
@@ -83,18 +86,18 @@
       </a>
     </div>
 
-    <div class="mt-14 flex flex-wrap justify-center gap-6 sm:gap-10 text-white/55 text-sm">
-      <div class="flex items-center gap-2">
-        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-        0% Transfer Duty on Entry Units
+    <div class="mt-14 flex flex-wrap justify-center gap-4 sm:gap-6">
+      <div class="flex items-center gap-2.5 bg-white/10 border border-white/20 backdrop-blur-sm rounded-full px-5 py-2.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></span>
+        <span class="text-white font-semibold text-sm tracking-wide">0% Transfer Duty on Entry Units</span>
       </div>
-      <div class="flex items-center gap-2">
-        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-        From R1,095,000
+      <div class="flex items-center gap-2.5 bg-white/10 border border-white/20 backdrop-blur-sm rounded-full px-5 py-2.5">
+        <span class="w-2 h-2 rounded-full bg-sky-400 flex-shrink-0"></span>
+        <span class="text-white font-semibold text-sm tracking-wide">From <span class="text-sky-300 font-black">R1,095,000</span></span>
       </div>
-      <div class="flex items-center gap-2">
-        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-        52 Units Available
+      <div class="flex items-center gap-2.5 bg-white/10 border border-white/20 backdrop-blur-sm rounded-full px-5 py-2.5">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse flex-shrink-0"></span>
+        <span class="text-white font-semibold text-sm tracking-wide"><span class="text-amber-300 font-black">52 Units</span> Available</span>
       </div>
     </div>
   </div>
@@ -140,11 +143,11 @@
 </section>
 
 <!-- ===================== GALLERY ===================== -->
-<section id="gallery" class="py-20 bg-white">
+<section id="gallery" class="py-20 bg-white" style="border-top: 2px solid transparent; border-image: linear-gradient(to right, #1e3a5f, #d1d5db) 1;">
   <div class="max-w-6xl mx-auto px-4">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl sm:text-4xl font-black text-[#1e3a5f] mb-4">Life at Bloukloof</h2>
-      <p class="text-gray-500 text-lg">Modern finishes. Quality construction. A community you'll be proud to call home.</p>
+    <div class="flex items-center justify-center gap-4 mb-12">
+      <img src="./logo.png" alt="Bloukloof Properties" class="h-16 w-auto" />
+      <h2 class="text-3xl sm:text-4xl font-black text-[#1e3a5f]">Gallery</h2>
     </div>
 
     <!--
@@ -239,10 +242,12 @@
 <!-- ===================== FOOTER ===================== -->
 <footer class="bg-[#0f172a] text-white/50 py-10">
   <div class="max-w-6xl mx-auto px-4 text-center">
-    <div class="flex items-center justify-center gap-4 mb-4">
-      <img src="./logo.png" alt="Bloukloof Properties" class="h-10 w-auto opacity-80" />
-      <div class="w-px h-8 bg-white/20"></div>
-      <img src="./kiron-logo.png" alt="Kiron" class="h-7 w-auto opacity-60" />
+    <div class="flex items-center justify-center mb-4">
+      <div class="bg-white rounded-xl px-5 py-2.5 inline-flex items-center gap-3">
+        <img src="./logo.png" alt="Bloukloof Properties" class="h-9 w-auto" />
+        <div class="w-px h-7 bg-gray-200"></div>
+        <img src="./kiron-logo.png" alt="Kiron" class="h-6 w-auto" />
+      </div>
     </div>
     <p class="text-sm mb-1">All financial figures are indicative only and subject to standard bank credit approval criteria.</p>
     <p class="text-xs">© 2026 Bloukloof Properties. All rights reserved.</p>
@@ -255,9 +260,11 @@
 
     <!-- Left: Logo panel -->
     <div class="hidden sm:flex flex-col items-center justify-center bg-[#1e3a5f] px-8 py-10 min-w-[200px] gap-6">
-      <img src="./logo.png" alt="Bloukloof Properties" class="w-36 object-contain" />
-      <div class="w-16 h-px bg-white/20"></div>
-      <img src="./kiron-logo.png" alt="Kiron" class="w-24 object-contain opacity-70" />
+      <div class="bg-white rounded-xl px-4 py-3 flex flex-col items-center gap-3">
+        <img src="./logo.png" alt="Bloukloof Properties" class="w-32 object-contain" />
+        <div class="w-12 h-px bg-gray-200"></div>
+        <img src="./kiron-logo.png" alt="Kiron" class="w-20 object-contain" />
+      </div>
     </div>
 
     <!-- Right: Form -->
@@ -342,10 +349,10 @@
     <div class="sticky top-0 bg-[#1e3a5f]/80 backdrop-blur-md px-4 py-4 z-10">
       <div class="max-w-2xl mx-auto">
         <div class="flex items-center justify-between mb-3">
-          <div class="flex items-center gap-3">
-            <img src="./logo.png" alt="Bloukloof Properties" class="h-10 w-auto" />
-            <div class="w-px h-6 bg-white/30"></div>
-            <img src="./kiron-logo.png" alt="Kiron" class="h-6 w-auto opacity-70" />
+          <div class="bg-white rounded-lg px-3 py-1.5 inline-flex items-center gap-2">
+            <img src="./logo.png" alt="Bloukloof Properties" class="h-8 w-auto" />
+            <div class="w-px h-5 bg-gray-200"></div>
+            <img src="./kiron-logo.png" alt="Kiron" class="h-5 w-auto" />
           </div>
           <span class="text-xs text-white/70">Question <span id="questionNum">1</span> of 9</span>
         </div>
@@ -429,10 +436,12 @@
 
     <!-- Next step CTA -->
     <div class="bg-[#1e3a5f] rounded-2xl p-7 text-center mb-5">
-      <div class="flex items-center justify-center gap-3 mb-5">
-        <img src="./logo.png" alt="Bloukloof Properties" class="h-10 w-auto opacity-90" />
-        <div class="w-px h-7 bg-white/25"></div>
-        <img src="./kiron-logo.png" alt="Kiron" class="h-7 w-auto opacity-60" />
+      <div class="flex items-center justify-center mb-5">
+        <div class="bg-white rounded-xl px-5 py-2.5 inline-flex items-center gap-3">
+          <img src="./logo.png" alt="Bloukloof Properties" class="h-9 w-auto" />
+          <div class="w-px h-7 bg-gray-200"></div>
+          <img src="./kiron-logo.png" alt="Kiron" class="h-6 w-auto" />
+        </div>
       </div>
       <h4 class="text-xl font-black text-white mb-1.5">Ready to take the next step?</h4>
       <p class="text-white/80 text-sm mb-5">Our consultants are standing by to help you secure your unit.</p>
