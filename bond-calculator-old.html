@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloukloof Bond Calculator</title>
+    <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { margin: 0; padding: 0; }
+
+    .bk-wrap {
+        position: relative;
+        padding: 40px 16px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: white;
+        overflow: hidden;
+        min-height: 100vh;
+        background: #0f1928;
+    }
+    .bk-inner { max-width: 560px; margin: 0 auto; position: relative; }
+    .bk-title { text-align: center; font-size: 1.8rem; font-weight: 800; margin-bottom: 6px; }
+    .bk-subtitle { text-align: center; font-size: 0.9rem; opacity: 0.65; margin-bottom: 30px; line-height: 1.5; }
+    .bk-field { margin-bottom: 24px; }
+    .bk-label { display: block; font-size: 0.85rem; font-weight: 600; opacity: 0.8; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .bk-amount { display: block; font-size: 2rem; font-weight: 900; color: #e74c3c; margin-bottom: 10px; line-height: 1; }
+    .bk-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 4px; outline: none; cursor: pointer; touch-action: pan-y; }
+    .bk-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 30px; height: 30px; border-radius: 50%; background: #e74c3c; cursor: pointer; box-shadow: 0 2px 12px rgba(231,76,60,0.6); }
+    .bk-slider::-moz-range-thumb { width: 30px; height: 30px; border-radius: 50%; background: #e74c3c; border: none; cursor: pointer; }
+    .bk-range-labels { display: flex; justify-content: space-between; font-size: 0.7rem; opacity: 0.4; margin-top: 6px; }
+    .bk-result-box { background: white; border-radius: 16px; padding: 24px 20px; margin-top: 8px; color: #2c3e50; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+    .bk-result-main { text-align: center; margin-bottom: 16px; }
+    .bk-result-lbl { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 6px; }
+    .bk-result-num { font-size: 2.6rem; font-weight: 900; color: #e74c3c; line-height: 1; word-break: break-all; }
+    .bk-result-sub { font-size: 0.72rem; color: #aaa; margin-top: 6px; line-height: 1.5; }
+    .bk-divider { height: 1px; background: #f0f0f0; margin: 14px 0; }
+    .bk-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f5f5f5; gap: 12px; }
+    .bk-row:last-of-type { border-bottom: none; }
+    .bk-row-lbl { font-size: 0.82rem; color: #888; flex: 1; }
+    .bk-row-val { font-size: 0.95rem; font-weight: 800; color: #2c3e50; white-space: nowrap; }
+    .bk-qualifier { display: flex; align-items: flex-start; gap: 12px; padding: 14px; border-radius: 10px; margin-top: 16px; }
+    .bk-q-yes  { background: #e8f8f0; border: 2px solid #27ae60; }
+    .bk-q-close{ background: #fff8e8; border: 2px solid #f39c12; }
+    .bk-q-no   { background: #fdf0f0; border: 2px solid #e74c3c; }
+    .bk-q-icon { font-size: 1.2rem; font-weight: 900; flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+    .bk-q-yes  .bk-q-icon { color: #27ae60; background: rgba(39,174,96,0.15); }
+    .bk-q-close .bk-q-icon { color: #f39c12; background: rgba(243,156,18,0.15); }
+    .bk-q-no   .bk-q-icon { color: #e74c3c; background: rgba(231,76,60,0.15); }
+    .bk-q-text strong { display: block; font-size: 0.9rem; color: #2c3e50; margin-bottom: 3px; }
+    .bk-q-text span   { font-size: 0.78rem; color: #777; line-height: 1.4; }
+    .bk-note { text-align: center; font-size: 0.7rem; opacity: 0.4; margin-top: 18px; line-height: 1.7; padding: 0 8px; }
+    </style>
+</head>
+<body>
+
+<div class="bk-wrap">
+    <div class="bk-inner">
+
+        <div style="text-align:center;margin-bottom:28px;">
+            <img src="Bloukloof images/bloukloof-properties-logo-scaled-1.png" alt="Bloukloof Properties" style="height:130px;width:auto;max-width:100%;filter:brightness(0) invert(1);">
+        </div>
+        <h2 class="bk-title">Bond Calculator</h2>
+        <p class="bk-subtitle">Move the sliders — see instantly what the bank will give you</p>
+
+        <div class="bk-field">
+            <span class="bk-label">Combined Monthly Salary</span>
+            <span class="bk-amount">R <span id="bk_sal">40,000</span></span>
+            <input type="range" class="bk-slider" id="bk_salSlider" min="5000" max="150000" value="40000" step="500">
+            <div class="bk-range-labels"><span>R 5,000</span><span>R 150,000</span></div>
+        </div>
+
+        <div class="bk-field">
+            <span class="bk-label">Deposit You Can Put Down</span>
+            <span class="bk-amount">R <span id="bk_dep">50,000</span></span>
+            <input type="range" class="bk-slider" id="bk_depSlider" min="0" max="500000" value="50000" step="5000">
+            <div class="bk-range-labels"><span>R 0</span><span>R 500,000</span></div>
+        </div>
+
+        <div class="bk-field">
+            <span class="bk-label">Interest Rate</span>
+            <span class="bk-amount"><span id="bk_rate">11.75</span>%</span>
+            <input type="range" class="bk-slider" id="bk_rateSlider" min="8" max="16" value="11.75" step="0.25">
+            <div class="bk-range-labels"><span>8%</span><span>16%</span></div>
+        </div>
+
+        <div class="bk-result-box">
+            <div class="bk-result-main">
+                <div class="bk-result-lbl">Max Bond the Bank Could Offer</div>
+                <div class="bk-result-num">R <span id="bk_bond">960,000</span></div>
+                <div class="bk-result-sub">30% of income rule · 20 year term · SA standard</div>
+            </div>
+            <div class="bk-divider"></div>
+            <div class="bk-row">
+                <span class="bk-row-lbl">+ Your Deposit</span>
+                <span class="bk-row-val" id="bk_depShow">R 50,000</span>
+            </div>
+            <div class="bk-row">
+                <span class="bk-row-lbl">= Property You Can Afford</span>
+                <span class="bk-row-val" id="bk_propVal">R 1,010,000</span>
+            </div>
+            <div class="bk-row">
+                <span class="bk-row-lbl">Monthly Repayment</span>
+                <span class="bk-row-val" id="bk_monthly">R 9,600</span>
+            </div>
+            <div class="bk-qualifier bk-q-no" id="bk_qualifier">
+                <div class="bk-q-icon" id="bk_qIcon">✗</div>
+                <div class="bk-q-text">
+                    <strong id="bk_qTitle">Not quite yet</strong>
+                    <span id="bk_qSub">Bloukloof@69 starts at R1,095,000</span>
+                </div>
+            </div>
+        </div>
+
+        <p class="bk-note">Estimate only · Based on NCA 30% affordability rule · Actual approval subject to full credit assessment</p>
+    </div>
+</div>
+
+<script>
+(function(){
+    function fmt(n){ return Math.round(n).toLocaleString('en-ZA'); }
+    function fmtR(n){ return 'R ' + fmt(n); }
+    function setTrack(el){
+        var pct = ((parseFloat(el.value) - parseFloat(el.min)) / (parseFloat(el.max) - parseFloat(el.min))) * 100;
+        el.style.background = 'linear-gradient(to right,#e74c3c ' + pct + '%,rgba(255,255,255,0.2) ' + pct + '%)';
+    }
+    function calc(){
+        var sal  = parseFloat(document.getElementById('bk_salSlider').value) || 0;
+        var dep  = parseFloat(document.getElementById('bk_depSlider').value) || 0;
+        var rate = parseFloat(document.getElementById('bk_rateSlider').value) / 100 || 0.1175;
+        var term = 20;
+        document.getElementById('bk_sal').textContent  = fmt(sal);
+        document.getElementById('bk_dep').textContent  = fmt(dep);
+        document.getElementById('bk_rate').textContent = parseFloat(document.getElementById('bk_rateSlider').value).toFixed(2);
+        ['bk_salSlider','bk_depSlider','bk_rateSlider'].forEach(function(id){ setTrack(document.getElementById(id)); });
+        var maxMonthly = sal * 0.30;
+        var r = rate / 12, n = term * 12;
+        var bond = maxMonthly * (1 - Math.pow(1 + r, -n)) / r;
+        bond = Math.round(bond / 1000) * 1000;
+        var prop = bond + dep;
+        var monthly = bond * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+        document.getElementById('bk_bond').textContent    = fmt(bond);
+        document.getElementById('bk_depShow').textContent = fmtR(dep);
+        document.getElementById('bk_propVal').textContent = fmtR(prop);
+        document.getElementById('bk_monthly').textContent = fmtR(Math.round(monthly));
+        var q = document.getElementById('bk_qualifier');
+        var shortfall = 1095000 - prop;
+        if (prop >= 1095000) {
+            q.className = 'bk-qualifier bk-q-yes';
+            document.getElementById('bk_qIcon').textContent  = '✓';
+            document.getElementById('bk_qTitle').textContent = 'You qualify for Bloukloof@69!';
+            document.getElementById('bk_qSub').textContent   = 'Your budget of ' + fmtR(prop) + ' covers homes from R1,095,000';
+        } else if (shortfall <= 150000) {
+            q.className = 'bk-qualifier bk-q-close';
+            document.getElementById('bk_qIcon').textContent  = '~';
+            document.getElementById('bk_qTitle').textContent = 'Almost there!';
+            document.getElementById('bk_qSub').textContent   = 'Only ' + fmtR(shortfall) + ' short — a bigger deposit bridges the gap';
+        } else {
+            q.className = 'bk-qualifier bk-q-no';
+            document.getElementById('bk_qIcon').textContent  = '✗';
+            document.getElementById('bk_qTitle').textContent = 'Not quite yet';
+            document.getElementById('bk_qSub').textContent   = 'You need ' + fmtR(shortfall) + ' more — increase salary or deposit';
+        }
+    }
+    ['bk_salSlider','bk_depSlider','bk_rateSlider'].forEach(function(id){
+        var el = document.getElementById(id);
+        if (el) { el.addEventListener('input', calc); setTrack(el); }
+    });
+    calc();
+
+    // Force video play — browsers sometimes block autoplay silently
+    var vid = document.querySelector('.bk-video-bg');
+    if (vid) {
+        var tryPlay = function() {
+            vid.muted = true;
+            vid.play().catch(function() {});
+        };
+        tryPlay();
+        document.addEventListener('click', tryPlay, { once: true });
+        document.addEventListener('touchstart', tryPlay, { once: true });
+    }
+})();
+</script>
+
+</body>
+</html>

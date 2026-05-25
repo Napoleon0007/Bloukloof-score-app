@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloukloof Properties – Stop Paying Rent. Start Building Wealth.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    .hero-bg { background: linear-gradient(135deg, #0f172a 0%, #1a3558 50%, #0f172a 100%); }
+    .progress-bar { transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
+    .quiz-option { transition: all 0.15s ease; }
+    .quiz-option:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    .quiz-option.selected { border-color: #1e3a5f !important; background: #eff6ff !important; }
+    .fade-in { animation: fadeIn 0.35s ease forwards; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+    .gallery-item img { transition: transform 0.4s ease; }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .modal-backdrop { backdrop-filter: blur(6px); }
+    .pulse-cta { animation: pulse 2.5s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.4); } 50% { box-shadow: 0 0 0 18px rgba(245,158,11,0); } }
+  </style>
+</head>
+<body class="bg-white text-gray-900 overflow-x-hidden">
+
+<!-- ===================== NAV ===================== -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-[#1e3a5f] rounded-lg flex items-center justify-center">
+        <span class="text-white font-black text-base">B</span>
+      </div>
+      <span class="text-[#1e3a5f] font-black text-lg tracking-tight">Blowcliff Properties</span>
+    </div>
+    <button onclick="openLeadModal()"
+      class="hidden sm:inline-flex items-center gap-2 bg-[#1e3a5f] text-white px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#162d4a] transition-colors">
+      Check If I Qualify
+    </button>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+  <div class="absolute inset-0 opacity-[0.04]"
+    style="background-image:radial-gradient(circle at 2px 2px,white 1px,transparent 0);background-size:36px 36px;"></div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-4 text-center py-20">
+    <div class="inline-block bg-white/10 text-white/90 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 border border-white/20 uppercase tracking-wide">
+      Cape Town's Most Accessible New Development
+    </div>
+
+    <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.05] mb-6">
+      Stop Paying Rent.<br>
+      <span class="text-[#f59e0b]">Start Building Wealth.</span>
+    </h1>
+
+    <p class="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto mb-4 leading-relaxed">
+      Every month you rent, you're funding someone else's retirement. Blowcliff gives you a real path to ownership — at prices that make it possible right now.
+    </p>
+    <p class="text-base sm:text-lg text-[#f59e0b] font-bold mb-10">
+      Why rent when you can own in Blowcliff?
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <button onclick="openLeadModal()"
+        class="pulse-cta w-full sm:w-auto bg-[#f59e0b] hover:bg-[#d97706] text-white font-black text-lg px-10 py-4 rounded-xl shadow-xl transition-all transform hover:scale-105">
+        Check If I Qualify →
+      </button>
+      <a href="#gallery"
+        class="w-full sm:w-auto text-white/80 hover:text-white font-medium text-base px-8 py-4 rounded-xl border border-white/20 hover:border-white/50 transition-all text-center">
+        View the Development
+      </a>
+    </div>
+
+    <div class="mt-14 flex flex-wrap justify-center gap-6 sm:gap-10 text-white/55 text-sm">
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-[#f59e0b]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        0% Transfer Duty on Entry Units
+      </div>
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-[#f59e0b]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        From R1,095,000
+      </div>
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-[#f59e0b]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        52 Units Available
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/30">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ===================== WHY ===================== -->
+<section class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-14">
+      <h2 class="text-3xl sm:text-4xl font-black text-[#1e3a5f] mb-4">Your Future Starts Here</h2>
+      <p class="text-gray-500 text-lg max-w-xl mx-auto">Blowcliff isn't just a property — it's a decision to own something that grows with you.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow text-center">
+        <div class="w-13 h-13 bg-amber-50 rounded-xl flex items-center justify-center mx-auto mb-5 w-14 h-14">
+          <svg class="w-7 h-7 text-[#f59e0b]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-[#1e3a5f] mb-3">Build Real Wealth</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Property appreciates. Rent disappears. Every bond payment is an investment in your own net worth — not your landlord's.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow text-center">
+        <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-5">
+          <svg class="w-7 h-7 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-[#1e3a5f] mb-3">Stability for Your Family</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">No more lease renewals. No more landlords. A home that's truly yours — where your family can put down roots.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow text-center">
+        <div class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center mx-auto mb-5">
+          <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-[#1e3a5f] mb-3">Affordable Entry Point</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">0% transfer duty on entry units. From R1,095,000. Your bond repayment could be less than what you're paying in rent today.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section id="gallery" class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-black text-[#1e3a5f] mb-4">Life at Blowcliff</h2>
+      <p class="text-gray-500 text-lg">Modern finishes. Quality construction. A community you'll be proud to call home.</p>
+    </div>
+
+    <!--
+      GALLERY IMAGES
+      Replace the src URLs below with your actual hosted image URLs.
+      Recommended size: 800x600px or 400x400px for smaller tiles.
+      You can host images on Cloudinary (free), Vercel public folder, or any CDN.
+    -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <!-- Feature tile: spans 2 cols + 2 rows -->
+      <div class="gallery-item col-span-2 row-span-2 rounded-2xl overflow-hidden h-64 sm:h-auto">
+        <img src="https://picsum.photos/seed/blowcliff-main/800/600" alt="Blowcliff exterior view" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+      <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
+        <img src="https://picsum.photos/seed/blowcliff-lounge/400/300" alt="Open plan lounge" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+      <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
+        <img src="https://picsum.photos/seed/blowcliff-kitchen/400/300" alt="Modern kitchen" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+      <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
+        <img src="https://picsum.photos/seed/blowcliff-bedroom/400/300" alt="Master bedroom" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+      <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
+        <img src="https://picsum.photos/seed/blowcliff-bath/400/300" alt="Bathroom" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+      <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
+        <img src="https://picsum.photos/seed/blowcliff-balcony/400/300" alt="Balcony & views" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+      <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
+        <img src="https://picsum.photos/seed/blowcliff-facade/400/300" alt="Building facade" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+      <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
+        <img src="https://picsum.photos/seed/blowcliff-pool/400/300" alt="Complex amenities" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+      <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
+        <img src="https://picsum.photos/seed/blowcliff-garden/400/300" alt="Garden & landscaping" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+      <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
+        <img src="https://picsum.photos/seed/blowcliff-street/400/300" alt="Street view" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+    </div>
+
+    <!-- CTA after gallery -->
+    <div class="mt-14 bg-[#1e3a5f] rounded-3xl px-8 py-12 sm:p-14 text-center">
+      <h3 class="text-2xl sm:text-3xl font-black text-white mb-3">Ready to make one of these yours?</h3>
+      <p class="text-white/65 text-lg mb-8 max-w-lg mx-auto">Find out in 60 seconds if you qualify for a bond on your dream home at Blowcliff.</p>
+      <button onclick="openLeadModal()"
+        class="inline-block bg-[#f59e0b] hover:bg-[#d97706] text-white font-black text-lg px-12 py-4 rounded-xl transition-all transform hover:scale-105 shadow-2xl">
+        Check If I Qualify →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="py-16 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <p class="text-gray-400 text-xs font-bold uppercase tracking-widest mb-2">Real Owners. Real Results.</p>
+      <h2 class="text-3xl font-black text-[#1e3a5f]">People just like you made the move</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div class="bg-white rounded-2xl p-7 shadow-sm">
+        <p class="text-[#f59e0b] text-lg mb-4">★★★★★</p>
+        <p class="text-gray-600 leading-relaxed mb-6 text-sm">"I never thought I could afford my own place at 28. The team guided me through the whole process and I moved in 4 months later. Best decision I ever made."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-[#1e3a5f] rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0">TM</div>
+          <div><p class="font-semibold text-sm">Thandi M.</p><p class="text-gray-400 text-xs">First-time buyer</p></div>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl p-7 shadow-sm">
+        <p class="text-[#f59e0b] text-lg mb-4">★★★★★</p>
+        <p class="text-gray-600 leading-relaxed mb-6 text-sm">"Our bond repayment is actually R400 less than what we were paying in rent. We own something now. It still blows my mind every time I walk through the door."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0">SN</div>
+          <div><p class="font-semibold text-sm">Sipho & Naledi</p><p class="text-gray-400 text-xs">Family buyers</p></div>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl p-7 shadow-sm">
+        <p class="text-[#f59e0b] text-lg mb-4">★★★★★</p>
+        <p class="text-gray-600 leading-relaxed mb-6 text-sm">"The qualifier quiz on the website told me exactly where I stood before I even spoke to anyone. No pressure, no surprises — just clear, honest info."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0">JP</div>
+          <div><p class="font-semibold text-sm">Johan P.</p><p class="text-gray-400 text-xs">Property investor</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-[#0f172a] text-white/50 py-10">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <div class="flex items-center justify-center gap-3 mb-4">
+      <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center">
+        <span class="text-white font-black text-sm">B</span>
+      </div>
+      <span class="text-white font-bold">Blowcliff Properties</span>
+    </div>
+    <p class="text-sm mb-1">All financial figures are indicative only and subject to standard bank credit approval criteria.</p>
+    <p class="text-xs">© 2026 Blowcliff Properties. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ===================== LEAD MODAL ===================== -->
+<div id="leadModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-backdrop bg-black/60">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative fade-in">
+    <button onclick="closeLeadModal()" class="absolute top-4 right-4 text-gray-300 hover:text-gray-500 transition-colors">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+
+    <div class="text-center mb-6">
+      <div class="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+        <svg class="w-7 h-7 text-[#f59e0b]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      </div>
+      <h2 class="text-2xl font-black text-[#1e3a5f]">Let's Check Your Qualification</h2>
+      <p class="text-gray-400 text-sm mt-1.5">60-second quiz. No credit check. Zero obligation.</p>
+    </div>
+
+    <form onsubmit="submitLead(event)" class="space-y-4">
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wide">First Name</label>
+          <input id="leadFirstName" type="text" required autocomplete="given-name" placeholder="Thandi"
+            class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/30 focus:border-[#1e3a5f] transition-all" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wide">Surname</label>
+          <input id="leadSurname" type="text" required autocomplete="family-name" placeholder="Mokoena"
+            class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/30 focus:border-[#1e3a5f] transition-all" />
+        </div>
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wide">Phone Number</label>
+        <input id="leadPhone" type="tel" required autocomplete="tel" placeholder="082 555 1234"
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/30 focus:border-[#1e3a5f] transition-all" />
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wide">Email Address</label>
+        <input id="leadEmail" type="email" required autocomplete="email" placeholder="thandi@email.com"
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/30 focus:border-[#1e3a5f] transition-all" />
+      </div>
+      <button type="submit"
+        class="w-full bg-[#f59e0b] hover:bg-[#d97706] text-white font-black text-base py-4 rounded-xl transition-all transform hover:scale-[1.02] mt-2">
+        Start My Free Quiz →
+      </button>
+      <p class="text-center text-xs text-gray-400">🔒 Your details are private and never shared or sold.</p>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== QUIZ OVERLAY ===================== -->
+<div id="quizOverlay" class="fixed inset-0 z-[200] hidden bg-white overflow-y-auto">
+  <div class="min-h-screen flex flex-col">
+    <!-- Sticky header -->
+    <div class="sticky top-0 bg-white border-b border-gray-100 px-4 py-4 z-10">
+      <div class="max-w-2xl mx-auto">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 bg-[#1e3a5f] rounded-md flex items-center justify-center">
+              <span class="text-white font-black text-xs">B</span>
+            </div>
+            <span class="font-bold text-[#1e3a5f] text-sm">Blowcliff Qualifier</span>
+          </div>
+          <span class="text-xs text-gray-400">Question <span id="questionNum">1</span> of 9</span>
+        </div>
+        <div class="bg-gray-100 rounded-full h-2 overflow-hidden">
+          <div id="quizProgress" class="progress-bar h-2 bg-[#f59e0b] rounded-full" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Question body -->
+    <div class="flex-1 px-4 py-10 flex items-start justify-center">
+      <div id="questionContainer" class="w-full max-w-2xl"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== RESULTS PAGE ===================== -->
+<div id="resultsPage" class="fixed inset-0 z-[300] hidden bg-gray-50 overflow-y-auto">
+  <div class="max-w-2xl mx-auto px-4 py-12 pb-20">
+
+    <div class="text-center mb-8">
+      <div class="w-14 h-14 bg-[#1e3a5f] rounded-2xl flex items-center justify-center mx-auto mb-4">
+        <span class="text-white font-black text-lg">B</span>
+      </div>
+      <h2 class="text-2xl font-black text-[#1e3a5f]">Your Results Are Ready</h2>
+      <p id="resultName" class="text-gray-400 text-sm mt-1"></p>
+    </div>
+
+    <!-- Score card — colour set by JS -->
+    <div id="scoreCard" class="rounded-3xl p-8 text-center mb-5">
+      <p class="text-xs font-bold uppercase tracking-widest mb-5 opacity-60">Qualification Score</p>
+      <div id="scoreBadge" class="w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white">
+        <div>
+          <div id="scorePercent" class="text-4xl font-black leading-none"></div>
+          <div class="text-xs opacity-75 mt-1">score</div>
+        </div>
+      </div>
+      <h3 id="scoreTitle" class="text-2xl font-black mb-2"></h3>
+      <p id="scoreMessage" class="text-sm leading-relaxed max-w-sm mx-auto opacity-80"></p>
+    </div>
+
+    <!-- Detail bullets -->
+    <div id="scoreDetails" class="bg-white rounded-2xl p-6 mb-5 shadow-sm">
+      <h4 class="font-bold text-gray-900 mb-4 text-sm uppercase tracking-wide">What This Means For You</h4>
+      <div id="scoreDetailsList" class="space-y-3"></div>
+    </div>
+
+    <!--
+      ================================================================
+      BOND CALCULATOR EMBED SECTION
+      ================================================================
+      Option A — Paste your bond-calculator-embed.html code block
+                  directly inside the div below (remove the placeholder).
+
+      Option B — Use an iframe:
+                  <iframe src="./bond-calculator-embed.html"
+                          width="100%" height="700"
+                          style="border:none;border-radius:16px;">
+                  </iframe>
+
+      Option C — If hosted separately:
+                  <iframe src="https://your-domain.com/bond-calculator"
+                          width="100%" height="700"
+                          style="border:none;border-radius:16px;">
+                  </iframe>
+      ================================================================
+    -->
+    <div class="mb-5">
+      <div class="bg-[#1e3a5f] rounded-2xl p-6 text-white text-center">
+        <h4 class="text-lg font-black mb-1">Calculate Your Exact Bond Repayment</h4>
+        <p class="text-white/60 text-sm mb-5">See exactly what you'd pay monthly — based on your income and deposit.</p>
+        <!-- ▼ PASTE OR EMBED YOUR BOND CALCULATOR HERE ▼ -->
+        <div id="bondCalculatorContainer" class="bg-white/10 rounded-xl p-10 border-2 border-dashed border-white/25 text-white/40 text-sm">
+          [ Bond Calculator Embed Goes Here ]<br>
+          See comments above for embed options
+        </div>
+        <!-- ▲ END BOND CALCULATOR ▲ -->
+      </div>
+    </div>
+
+    <!-- Next step CTA -->
+    <div class="bg-[#f59e0b] rounded-2xl p-7 text-center mb-5">
+      <h4 class="text-xl font-black text-white mb-1.5">Ready to take the next step?</h4>
+      <p class="text-white/80 text-sm mb-5">Our consultants are standing by to help you secure your unit.</p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <!--
+          Replace 27XXXXXXXXXX with your WhatsApp number (no spaces, include country code).
+          Example: 27821234567
+        -->
+        <a href="https://wa.me/27XXXXXXXXXX?text=Hi%2C%20I%20just%20completed%20the%20Blowcliff%20qualifier%20quiz%20and%20want%20to%20find%20out%20more."
+          target="_blank" rel="noopener"
+          class="bg-white text-[#f59e0b] font-black px-8 py-3.5 rounded-xl hover:bg-white/90 transition-colors text-sm">
+          WhatsApp Us Now
+        </a>
+        <!-- Replace 27XXXXXXXXXX with your phone number -->
+        <a href="tel:+27XXXXXXXXXX"
+          class="bg-white/20 text-white font-semibold px-8 py-3.5 rounded-xl hover:bg-white/30 transition-colors border border-white/25 text-sm">
+          Call Us Directly
+        </a>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button onclick="restartApp()" class="text-gray-400 hover:text-gray-500 text-xs underline transition-colors">
+        Start over
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+  // ================================================================
+  // GOOGLE SHEETS WEBHOOK
+  // ================================================================
+  // SETUP INSTRUCTIONS (free, no backend needed):
+  //
+  // 1. Create a new Google Sheet.
+  // 2. Go to Extensions → Apps Script.
+  // 3. Replace all code with the function below, then save:
+  //
+  //    function doPost(e) {
+  //      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  //      var data = JSON.parse(e.postData.contents);
+  //      var headers = Object.keys(data);
+  //      if (sheet.getLastRow() === 0) sheet.appendRow(headers);
+  //      sheet.appendRow(headers.map(function(h){ return data[h] || ''; }));
+  //      return ContentService.createTextOutput('OK');
+  //    }
+  //
+  // 4. Click Deploy → New Deployment → Web App
+  //    - Execute as: Me
+  //    - Who has access: Anyone
+  // 5. Copy the deployment URL and paste it below.
+  // ================================================================
+  const SHEETS_WEBHOOK_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+  // ================================================================
+  // STATE
+  // ================================================================
+  let leadData        = {};
+  let quizAnswers     = [];
+  let currentQ        = 0;
+  let quizStartTime   = null;
+  let quizDone        = false;
+  let abandonSent     = false;
+
+  // ================================================================
+  // QUESTIONS  (order: warm → lifestyle → employment → financial)
+  // ================================================================
+  const QUESTIONS = [
+    {
+      text: "How long have you been renting or living with family?",
+      sub:  "This helps us understand where you are in your journey — no judgement at all.",
+      options: [
+        { label: "Less than 1 year",     score: 3 },
+        { label: "1 to 3 years",          score: 6 },
+        { label: "3 to 5 years",          score: 8 },
+        { label: "More than 5 years",     score: 8 }
+      ]
+    },
+    {
+      text: "What's the main reason you want to own your own home?",
+      sub:  "There's no wrong answer. We just want to understand what matters most to you.",
+      options: [
+        { label: "Build long-term wealth",                score: 8 },
+        { label: "Stability and security for my family",  score: 8 },
+        { label: "Stop wasting money on rent",            score: 8 },
+        { label: "Property as an investment / rental",    score: 8 }
+      ]
+    },
+    {
+      text: "How many people will be living in the property?",
+      sub:  "This helps us point you to the right unit size.",
+      options: [
+        { label: "Just myself",               score: 6  },
+        { label: "Myself and a partner",       score: 8  },
+        { label: "Small family (3–4 people)",  score: 10 },
+        { label: "Larger family (5+ people)",  score: 8  }
+      ]
+    },
+    {
+      text: "What best describes your current employment situation?",
+      sub:  "Banks look at income stability above almost everything else.",
+      options: [
+        { label: "Permanently employed (full-time)",  score: 10 },
+        { label: "Self-employed for 2+ years",        score: 9  },
+        { label: "Contract or part-time work",        score: 4  },
+        { label: "Currently not working",             score: 0  }
+      ]
+    },
+    {
+      text: "How long have you been in your current job or running your business?",
+      sub:  "Consistent income history is one of the biggest green flags for any bank.",
+      options: [
+        { label: "Less than 6 months",   score: 2  },
+        { label: "6 months to 1 year",   score: 5  },
+        { label: "1 to 2 years",          score: 8  },
+        { label: "More than 2 years",     score: 10 }
+      ]
+    },
+    {
+      text: "What is your approximate gross monthly income before tax?",
+      sub:  "This is kept completely confidential — it just helps us estimate your bond range.",
+      options: [
+        { label: "Under R15,000",         score: 0  },
+        { label: "R15,000 – R25,000",     score: 5  },
+        { label: "R25,000 – R40,000",     score: 9  },
+        { label: "R40,000 or more",       score: 10 }
+      ]
+    },
+    {
+      text: "Do you currently have monthly debt repayments? (car, personal loans, store accounts, etc.)",
+      sub:  "Your total debt affects how much you can borrow — but it doesn't always mean you won't qualify.",
+      options: [
+        { label: "None at all",               score: 10 },
+        { label: "Under R3,000 per month",    score: 7  },
+        { label: "R3,000 – R7,000 per month", score: 3  },
+        { label: "Over R7,000 per month",     score: 0  }
+      ]
+    },
+    {
+      text: "How much deposit do you have saved or available?",
+      sub:  "A deposit isn't always required, but it can significantly improve your approval odds.",
+      options: [
+        { label: "No deposit right now",  score: 2  },
+        { label: "Up to R50,000",         score: 5  },
+        { label: "R50,000 – R150,000",    score: 8  },
+        { label: "R150,000 or more",      score: 10 }
+      ]
+    },
+    {
+      text: "Is your credit record currently in good standing?",
+      sub:  "Be honest — this just helps us give you the most accurate result. We don't run a credit check here.",
+      options: [
+        { label: "Yes, my record is clean",                score: 10 },
+        { label: "Mostly good with minor blips",           score: 6  },
+        { label: "I've missed a few payments before",      score: 2  },
+        { label: "I'm not 100% sure of my current status", score: 4  }
+      ]
+    }
+  ];
+
+  const MAX_SCORE = QUESTIONS.reduce((s, q) => s + Math.max(...q.options.map(o => o.score)), 0);
+
+  // ================================================================
+  // MODAL
+  // ================================================================
+  function openLeadModal() {
+    document.getElementById('leadModal').classList.remove('hidden');
+    document.getElementById('leadModal').classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLeadModal() {
+    document.getElementById('leadModal').classList.remove('flex');
+    document.getElementById('leadModal').classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('leadModal').addEventListener('click', function(e) {
+    if (e.target === this) closeLeadModal();
+  });
+
+  function submitLead(e) {
+    e.preventDefault();
+    leadData = {
+      firstName: document.getElementById('leadFirstName').value.trim(),
+      surname:   document.getElementById('leadSurname').value.trim(),
+      phone:     document.getElementById('leadPhone').value.trim(),
+      email:     document.getElementById('leadEmail').value.trim()
+    };
+    closeLeadModal();
+    startQuiz();
+  }
+
+  // ================================================================
+  // QUIZ ENGINE
+  // ================================================================
+  function startQuiz() {
+    currentQ      = 0;
+    quizAnswers   = [];
+    quizDone      = false;
+    abandonSent   = false;
+    quizStartTime = Date.now();
+
+    document.getElementById('quizOverlay').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q        = QUESTIONS[currentQ];
+    const progress = (currentQ / QUESTIONS.length) * 100;
+
+    document.getElementById('questionNum').textContent      = currentQ + 1;
+    document.getElementById('quizProgress').style.width    = progress + '%';
+
+    const optionsHTML = q.options.map((opt, i) => `
+      <button
+        onclick="selectOption(${i}, ${opt.score})"
+        class="quiz-option w-full text-left bg-white border-2 border-gray-100 rounded-2xl px-6 py-4 group hover:border-[#1e3a5f] hover:bg-blue-50"
+        data-idx="${i}">
+        <div class="flex items-center gap-4">
+          <div class="w-8 h-8 rounded-full border-2 border-gray-200 group-hover:border-[#1e3a5f] flex items-center justify-center text-sm font-bold text-gray-400 group-hover:text-[#1e3a5f] flex-shrink-0 transition-colors">
+            ${String.fromCharCode(65 + i)}
+          </div>
+          <span class="font-medium text-gray-800 group-hover:text-[#1e3a5f] transition-colors text-sm sm:text-base">${opt.label}</span>
+        </div>
+      </button>`).join('');
+
+    document.getElementById('questionContainer').innerHTML = `
+      <div class="fade-in">
+        <div class="mb-8">
+          <span class="inline-block bg-amber-50 text-[#f59e0b] text-xs font-bold px-3 py-1 rounded-full mb-5 uppercase tracking-wide">
+            Question ${currentQ + 1} of ${QUESTIONS.length}
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-[#1e3a5f] leading-snug mb-3">${q.text}</h2>
+          <p class="text-gray-400 text-sm">${q.sub}</p>
+        </div>
+        <div class="space-y-3">${optionsHTML}</div>
+        ${currentQ > 0
+          ? `<button onclick="goBack()" class="mt-6 flex items-center gap-2 text-gray-400 hover:text-gray-600 text-sm transition-colors">
+               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+               </svg> Back
+             </button>`
+          : ''}
+      </div>`;
+  }
+
+  function selectOption(idx, score) {
+    // Highlight selection briefly
+    document.querySelectorAll('.quiz-option').forEach((btn, i) => {
+      if (i === idx) btn.classList.add('selected');
+    });
+
+    quizAnswers[currentQ] = {
+      question:   QUESTIONS[currentQ].text,
+      answer:     QUESTIONS[currentQ].options[idx].label,
+      score:      score
+    };
+
+    setTimeout(() => {
+      currentQ++;
+      if (currentQ >= QUESTIONS.length) finishQuiz();
+      else renderQuestion();
+    }, 280);
+  }
+
+  function goBack() {
+    if (currentQ > 0) { currentQ--; renderQuestion(); }
+  }
+
+  function finishQuiz() {
+    quizDone = true;
+    const raw      = quizAnswers.reduce((s, a) => s + (a ? a.score : 0), 0);
+    const pct      = Math.round((raw / MAX_SCORE) * 100);
+    const seconds  = Math.round((Date.now() - quizStartTime) / 1000);
+
+    pushToSheets({
+      ...leadData,
+      score:              pct + '%',
+      questionsCompleted: quizAnswers.filter(Boolean).length,
+      timeTakenSeconds:   seconds,
+      completionStatus:   'Completed',
+      submittedAt:        new Date().toISOString(),
+      ...flattenAnswers(quizAnswers)
+    });
+
+    showResults(pct);
+  }
+
+  // ================================================================
+  // RESULTS
+  // ================================================================
+  function showResults(pct) {
+    document.getElementById('quizOverlay').classList.add('hidden');
+    document.getElementById('resultsPage').classList.remove('hidden');
+    document.body.style.overflow = 'auto';
+    document.getElementById('resultsPage').scrollTop = 0;
+
+    document.getElementById('resultName').textContent =
+      `${leadData.firstName} ${leadData.surname} — here's your personalised result`;
+
+    const card    = document.getElementById('scoreCard');
+    const badge   = document.getElementById('scoreBadge');
+    const title   = document.getElementById('scoreTitle');
+    const msg     = document.getElementById('scoreMessage');
+    const list    = document.getElementById('scoreDetailsList');
+
+    document.getElementById('scorePercent').textContent = pct + '%';
+
+    if (pct >= 75) {
+      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-green-50';
+      badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-green-500 shadow-xl shadow-green-100';
+      title.className = 'text-2xl font-black mb-2 text-green-700';
+      title.textContent = 'Excellent — Very Likely to Qualify';
+      msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-80 text-green-700';
+      msg.textContent = `${leadData.firstName}, your profile looks strong! Based on your answers, you have a very high likelihood of bond approval. Our consultants are ready to move fast.`;
+      list.innerHTML  = `
+        <div class="flex gap-3 p-3 bg-green-50 rounded-xl"><span class="text-green-500 mt-0.5">✓</span><p class="text-sm text-gray-700">Your income and employment profile looks well-suited for a bond application.</p></div>
+        <div class="flex gap-3 p-3 bg-green-50 rounded-xl"><span class="text-green-500 mt-0.5">✓</span><p class="text-sm text-gray-700">Entry units from R1,095,000 with 0% transfer duty may fall comfortably within your budget.</p></div>
+        <div class="flex gap-3 p-3 bg-green-50 rounded-xl"><span class="text-green-500 mt-0.5">✓</span><p class="text-sm text-gray-700">We recommend contacting a consultant this week — units are limited and selling fast.</p></div>`;
+    } else if (pct >= 50) {
+      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-amber-50';
+      badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-amber-500 shadow-xl shadow-amber-100';
+      title.className = 'text-2xl font-black mb-2 text-amber-700';
+      title.textContent = 'Good Potential — We Can Likely Get You Approved';
+      msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-80 text-amber-700';
+      msg.textContent = `${leadData.firstName}, you're on the right track. There are a couple of areas to strengthen, but with the right guidance, approval is very achievable.`;
+      list.innerHTML  = `
+        <div class="flex gap-3 p-3 bg-amber-50 rounded-xl"><span class="text-amber-500 mt-0.5">◉</span><p class="text-sm text-gray-700">Some aspects of your profile need attention — nothing that can't be addressed with guidance.</p></div>
+        <div class="flex gap-3 p-3 bg-amber-50 rounded-xl"><span class="text-amber-500 mt-0.5">◉</span><p class="text-sm text-gray-700">A larger deposit or reducing existing monthly debt could significantly boost your approval odds.</p></div>
+        <div class="flex gap-3 p-3 bg-amber-50 rounded-xl"><span class="text-amber-500 mt-0.5">◉</span><p class="text-sm text-gray-700">Our consultants specialise in getting borderline applications over the line. Let's talk.</p></div>`;
+    } else {
+      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-red-50';
+      badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-red-500 shadow-xl shadow-red-100';
+      title.className = 'text-2xl font-black mb-2 text-red-700';
+      title.textContent = "Needs Work — Here's How to Improve";
+      msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-80 text-red-700';
+      msg.textContent = `Don't be discouraged, ${leadData.firstName}. Owning is still absolutely possible — it just needs a bit more preparation. Focus on these areas:`;
+      list.innerHTML  = `
+        <div class="flex gap-3 p-3 bg-red-50 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-gray-700"><strong>Credit health:</strong> Check your score at TransUnion or Experian. Dispute errors and start clearing overdue accounts.</p></div>
+        <div class="flex gap-3 p-3 bg-red-50 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-gray-700"><strong>Reduce debt:</strong> Pay down store accounts and personal loans to improve your debt-to-income ratio before applying.</p></div>
+        <div class="flex gap-3 p-3 bg-red-50 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-gray-700"><strong>Build a deposit:</strong> Even R30,000–R50,000 saved can shift a declined application to an approved one.</p></div>
+        <div class="flex gap-3 p-3 bg-red-50 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-gray-700"><strong>Stay in touch:</strong> Register your interest now so we contact you when you're ready. Units will still be available.</p></div>`;
+    }
+  }
+
+  // ================================================================
+  // ABANDONMENT TRACKING
+  // ================================================================
+  function sendAbandon() {
+    if (!quizStartTime || quizDone || abandonSent) return;
+    abandonSent = true;
+    const payload = buildPayload(`Abandoned at Q${currentQ + 1}`);
+
+    // sendBeacon works even as the page unloads
+    if (navigator.sendBeacon && SHEETS_WEBHOOK_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+      navigator.sendBeacon(SHEETS_WEBHOOK_URL, JSON.stringify(payload));
+    } else {
+      pushToSheets(payload);
+    }
+  }
+
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') sendAbandon();
+  });
+
+  window.addEventListener('beforeunload', sendAbandon);
+
+  function buildPayload(status) {
+    return {
+      ...leadData,
+      score:              null,
+      questionsCompleted: quizAnswers.filter(Boolean).length,
+      timeTakenSeconds:   Math.round((Date.now() - quizStartTime) / 1000),
+      completionStatus:   status,
+      submittedAt:        new Date().toISOString(),
+      ...flattenAnswers(quizAnswers)
+    };
+  }
+
+  // ================================================================
+  // GOOGLE SHEETS SUBMIT
+  // ================================================================
+  function pushToSheets(data) {
+    if (SHEETS_WEBHOOK_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+      console.log('[Blowcliff] Sheets webhook not set. Payload:', data);
+      return;
+    }
+    fetch(SHEETS_WEBHOOK_URL, {
+      method:  'POST',
+      mode:    'no-cors', // required for Google Apps Script endpoints
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(data)
+    }).catch(err => console.error('[Blowcliff] Sheets error:', err));
+  }
+
+  function flattenAnswers(answers) {
+    const flat = {};
+    QUESTIONS.forEach((q, i) => {
+      const a = answers[i];
+      flat[`Q${i + 1}_question`] = q.text;
+      flat[`Q${i + 1}_answer`]   = a ? a.answer : 'Not answered';
+      flat[`Q${i + 1}_score`]    = a ? a.score  : 0;
+    });
+    return flat;
+  }
+
+  // ================================================================
+  // UTILITY
+  // ================================================================
+  function restartApp() {
+    document.getElementById('resultsPage').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+    leadData = {}; quizAnswers = []; currentQ = 0;
+    quizStartTime = null; quizDone = false; abandonSent = false;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+
+</body>
+</html>
