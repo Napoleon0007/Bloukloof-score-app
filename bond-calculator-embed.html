@@ -12,21 +12,7 @@
     overflow: hidden;
     background: #0f1928;
 }
-.bk-video-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-    pointer-events: none;
-}
-.bk-video-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(10, 20, 35, 0.72);
-    z-index: 1;
-}
+
 .bk-wrap * { box-sizing: border-box; margin: 0; padding: 0; }
 .bk-inner { max-width: 560px; margin: 0 auto; position: relative; z-index: 2; }
 .bk-title { text-align: center; font-size: 1.8rem; font-weight: 800; margin-bottom: 6px; }
@@ -82,10 +68,6 @@
 </style>
 
 <div class="bk-wrap">
-    <video class="bk-video-bg" autoplay muted loop playsinline>
-        <source src="./nikki-walkthrough.mp4" type="video/mp4">
-    </video>
-    <div class="bk-video-overlay"></div>
     <div class="bk-inner">
 
         <div style="text-align:center;margin-bottom:28px;">
@@ -167,12 +149,15 @@
             </div>
         </div>
 
+        <div id="bk_statusBanner" style="margin-top:20px;padding:18px 20px;border-radius:14px;text-align:center;font-weight:900;font-size:1.1rem;transition:background 0.4s,color 0.4s;background:#e74c3c;color:#fff;">
+            ✗ You don't qualify yet — adjust your inputs
+        </div>
+
         <p class="bk-note">Estimate only · Based on NCA 30% affordability rule · Actual approval subject to full credit assessment</p>
     </div>
 </div>
 
 <script>
-(function(){
     function fmt(n){ return Math.round(n).toLocaleString('en-ZA'); }
     function fmtR(n){ return 'R ' + fmt(n); }
     function setTrack(el){
@@ -269,6 +254,26 @@
             document.getElementById('bk_qTitle').textContent = 'Not quite yet';
             document.getElementById('bk_qSub').textContent   = 'You need ' + fmtR(shortfall) + ' more — increase salary or deposit';
         }
+        // Update bottom status banner
+        var banner = document.getElementById('bk_statusBanner');
+        if (banner) {
+            if (tier && !tier.qualify) {
+                banner.style.background = '#e74c3c'; banner.style.color = '#fff';
+                banner.textContent = '✗ Credit score too low — not qualifying yet';
+            } else if (prop >= 1095000 && (!tier || !tier.risk)) {
+                banner.style.background = '#27ae60'; banner.style.color = '#fff';
+                banner.textContent = '✓ You qualify! Congratulations — Bloukloof@69 is within your reach!';
+            } else if (prop >= 1095000 && tier && tier.risk) {
+                banner.style.background = '#f39c12'; banner.style.color = '#fff';
+                banner.textContent = '~ Financials qualify — improve your credit score to lock it in';
+            } else if (shortfall <= 150000) {
+                banner.style.background = '#27ae60'; banner.style.color = '#fff';
+                banner.textContent = '✓ Almost there! You're ' + fmtR(shortfall) + ' away — a bigger deposit gets you in!';
+            } else {
+                banner.style.background = '#e74c3c'; banner.style.color = '#fff';
+                banner.textContent = '✗ You don't qualify yet — adjust your salary or deposit';
+            }
+        }
     }
     ['bk_salSlider','bk_depSlider','bk_rateSlider','bk_creditSlider'].forEach(function(id){
         var el = document.getElementById(id);
@@ -276,18 +281,7 @@
     });
     calc();
 
-    // Force video play — browsers sometimes block autoplay silently
-    var vid = document.querySelector('.bk-video-bg');
-    if (vid) {
-        var tryPlay = function() {
-            vid.muted = true;
-            vid.play().catch(function() {});
-        };
-        tryPlay();
-        document.addEventListener('click', tryPlay, { once: true });
-        document.addEventListener('touchstart', tryPlay, { once: true });
-    }
-})();
+
 </script>
 
 <!-- ============================================================
