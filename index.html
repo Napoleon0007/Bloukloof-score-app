@@ -491,13 +491,10 @@
   //
   // ---------------------------------------------------------------
   // var COLS = [
-  //   'Submitted At','Status','First Name','Surname','Phone','Email',
-  //   'Score','Questions Completed','Time (secs)',
-  //   'Q1 – Purchased before?','Q2 – Invest or home?',
-  //   'Q3 – Monthly debit orders','Q4 – Monthly salary',
-  //   'Q5 – Living situation','Q6 – Saving for deposit?',
-  //   'Q7 – Know credit score?','Q8 – Credit score range',
-  //   'Q9 – Agent callback?'
+  //   'Submitted','Status','First Name','Surname','Phone','Email',
+  //   'Score','Qs','Time',
+  //   'Q1 Purchased?','Q2 Invest/Home','Q3 Debit Orders','Q4 Salary',
+  //   'Q5 Living','Q6 Saving?','Q7 Credit?','Q8 Score Range','Q9 Callback?'
   // ];
   //
   // function doPost(e) {
@@ -505,40 +502,100 @@
   //   var d = JSON.parse(e.postData.contents);
   //   if (sheet.getLastRow() === 0) _setupSheet(sheet);
   //   var tz = Session.getScriptTimeZone();
-  //   var ts = d.submittedAt ? Utilities.formatDate(new Date(d.submittedAt), tz, 'yyyy-MM-dd HH:mm:ss') : '';
-  //   sheet.appendRow([
+  //   var ts = d.submittedAt ? Utilities.formatDate(new Date(d.submittedAt), tz, 'yyyy-MM-dd HH:mm') : '';
+  //   sheet.insertRowAfter(1);                     // newest row goes on top
+  //   sheet.getRange(2, 1, 1, COLS.length).setValues([[
   //     ts, d.completionStatus||'', d.firstName||'', d.surname||'',
   //     d.phone||'', d.email||'', d.score||'',
   //     d.questionsCompleted||'', d.timeTakenSeconds||'',
   //     d.Q1_answer||'', d.Q2_answer||'', d.Q3_answer||'',
   //     d.Q4_answer||'', d.Q5_answer||'', d.Q6_answer||'',
   //     d.Q7_answer||'', d.Q8_answer||'', d.Q9_answer||''
-  //   ]);
+  //   ]]);
+  //   _styleRow(sheet, 2);
   //   return ContentService.createTextOutput('OK');
   // }
   //
+  // // Run this once from the Apps Script editor to re-style an existing sheet
   // function formatExistingSheet() {
   //   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  //   if (sheet.getLastRow() > 0) sheet.deleteRow(1);
-  //   sheet.insertRowBefore(1);
+  //   sheet.clearConditionalFormatRules();
+  //   var lastRow = Math.max(sheet.getLastRow(), 1);
+  //   sheet.getRange(1, 1, lastRow, COLS.length).clearFormat();
   //   _setupSheet(sheet);
+  //   for (var i = 2; i <= lastRow; i++) _styleRow(sheet, i);
   // }
   //
   // function _setupSheet(sheet) {
   //   sheet.getRange(1,1,1,COLS.length).setValues([COLS]);
   //   sheet.setFrozenRows(1);
+  //   sheet.setFrozenColumns(2);                   // freeze Submitted + Status
   //   var hdr = sheet.getRange(1,1,1,COLS.length);
-  //   hdr.setBackground('#1e3a5f');
-  //   hdr.setFontColor('#ffffff');
-  //   hdr.setFontWeight('bold');
-  //   hdr.setFontSize(10);
-  //   hdr.setHorizontalAlignment('center');
-  //   hdr.setVerticalAlignment('middle');
-  //   sheet.setRowHeight(1, 38);
-  //   var widths = [165,125,115,115,130,210,75,130,90,
-  //                 175,170,185,190,165,185,185,185,170];
+  //   hdr.setBackground('#1e3a5f')
+  //      .setFontColor('#ffffff')
+  //      .setFontWeight('bold')
+  //      .setFontSize(10)
+  //      .setHorizontalAlignment('center')
+  //      .setVerticalAlignment('middle');
+  //   sheet.setRowHeight(1, 36);
+  //   // Tighter, proportional widths — short answers get narrow cols
+  //   var widths = [120, 115, 95, 95, 115, 195, 70, 45, 55,
+  //                 125, 130, 140, 145, 125, 125, 125, 140, 125];
   //   widths.forEach(function(w,i){ sheet.setColumnWidth(i+1, w); });
+  //   // Group separator borders: after Email (col 6) and after Time (col 9)
+  //   sheet.getRange(1, 6, 1000, 1).setBorder(null, null, null, true, null, null,
+  //     '#94a3b8', SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
+  //   sheet.getRange(1, 9, 1000, 1).setBorder(null, null, null, true, null, null,
+  //     '#94a3b8', SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
+  //   _setupConditionalFormatting(sheet);
   //   SpreadsheetApp.flush();
+  // }
+  //
+  // function _styleRow(sheet, row) {
+  //   sheet.getRange(row, 1, 1, COLS.length).setFontSize(10).setVerticalAlignment('middle');
+  //   sheet.getRange(row, 1).setHorizontalAlignment('center');        // Submitted
+  //   sheet.getRange(row, 2).setHorizontalAlignment('center');        // Status
+  //   sheet.getRange(row, 7, 1, 3).setHorizontalAlignment('center');  // Score / Qs / Time
+  //   sheet.getRange(row, 9).setNumberFormat('0"s"');                 // Time → 78s
+  //   sheet.setRowHeight(row, 28);
+  // }
+  //
+  // function _setupConditionalFormatting(sheet) {
+  //   var rules = [];
+  //   var statusRange = sheet.getRange('B2:B1000');
+  //   rules.push(SpreadsheetApp.newConditionalFormatRule()
+  //     .whenTextEqualTo('Quiz Completed').setBackground('#d4edda').setFontColor('#155724').setBold(true)
+  //     .setRanges([statusRange]).build());
+  //   rules.push(SpreadsheetApp.newConditionalFormatRule()
+  //     .whenTextEqualTo('Quiz Started').setBackground('#cce5ff').setFontColor('#004085')
+  //     .setRanges([statusRange]).build());
+  //   rules.push(SpreadsheetApp.newConditionalFormatRule()
+  //     .whenTextEqualTo('Lead Captured').setBackground('#fff3cd').setFontColor('#856404')
+  //     .setRanges([statusRange]).build());
+  //   rules.push(SpreadsheetApp.newConditionalFormatRule()
+  //     .whenTextEqualTo('Abandoned').setBackground('#f8d7da').setFontColor('#721c24')
+  //     .setRanges([statusRange]).build());
+  //   // Score tiers (matches results page: green ≥75, blue ≥50, red <50)
+  //   var scoreRange = sheet.getRange('G2:G1000');
+  //   rules.push(SpreadsheetApp.newConditionalFormatRule()
+  //     .whenFormulaSatisfied('=AND(G2<>"",VALUE(SUBSTITUTE(G2,"%",""))>=75)')
+  //     .setBackground('#d4edda').setFontColor('#155724').setBold(true)
+  //     .setRanges([scoreRange]).build());
+  //   rules.push(SpreadsheetApp.newConditionalFormatRule()
+  //     .whenFormulaSatisfied('=AND(G2<>"",VALUE(SUBSTITUTE(G2,"%",""))>=50)')
+  //     .setBackground('#cce5ff').setFontColor('#004085').setBold(true)
+  //     .setRanges([scoreRange]).build());
+  //   rules.push(SpreadsheetApp.newConditionalFormatRule()
+  //     .whenFormulaSatisfied('=AND(G2<>"",VALUE(SUBSTITUTE(G2,"%",""))<50)')
+  //     .setBackground('#f8d7da').setFontColor('#721c24').setBold(true)
+  //     .setRanges([scoreRange]).build());
+  //   // Subtle zebra striping for everything else
+  //   var fullRange = sheet.getRange('A2:R1000');
+  //   rules.push(SpreadsheetApp.newConditionalFormatRule()
+  //     .whenFormulaSatisfied('=ISEVEN(ROW())')
+  //     .setBackground('#f8fafc')
+  //     .setRanges([fullRange]).build());
+  //   sheet.setConditionalFormatRules(rules);
   // }
   // ---------------------------------------------------------------
   // ================================================================

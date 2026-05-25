@@ -144,6 +144,10 @@
                 <span class="bk-row-lbl">= Property You Can Afford</span>
                 <span class="bk-row-val" id="bk_propVal">R 1,010,000</span>
             </div>
+            <div class="bk-row" id="bk_credRow" style="display:none;">
+                <span class="bk-row-lbl">Your Effective Rate</span>
+                <span class="bk-row-val" id="bk_credRate">11.75%</span>
+            </div>
             <div class="bk-row">
                 <span class="bk-row-lbl">Monthly Repayment</span>
                 <span class="bk-row-val" id="bk_monthly">R 9,600</span>
@@ -190,14 +194,17 @@
         }
         calc();
     }
+    // SA bank lending standards (Experian SA 300-850 scale):
+    // rateAdjust: % points added to prime (SA banks: marginal +2%, top-tier −0.5%)
+    // affordFactor: multiplier on NCA 30% rule (banks tighten to ~25% for high risk)
     var CREDIT_TIERS = [
-        { min:300, max:499, label:'Poor',       cls:'bk-credit-poor',      qualify: false, msg: 'Credit score too low — banks require a minimum of 580 to consider a bond application. Focus on credit repair first.' },
-        { min:500, max:579, label:'Below Avg',  cls:'bk-credit-below',     qualify: false, msg: 'Credit score below 580 — most banks will decline. Work on settling debt and reducing credit utilisation before applying.' },
-        { min:580, max:619, label:'Fair',        cls:'bk-credit-fair',      qualify: true,  risk: true,  msg: 'Credit score is low — approval is possible but rates will be higher and some banks may decline. Consider improving your score.' },
-        { min:620, max:649, label:'Average',     cls:'bk-credit-average',   qualify: true,  risk: false, msg: 'Decent credit score — standard approval possible at most banks.' },
-        { min:650, max:699, label:'Good',        cls:'bk-credit-good',      qualify: true,  risk: false, msg: null },
-        { min:700, max:749, label:'Very Good',   cls:'bk-credit-verygood',  qualify: true,  risk: false, msg: null },
-        { min:750, max:850, label:'Excellent',   cls:'bk-credit-excellent', qualify: true,  risk: false, msg: null }
+        { min:300, max:499, label:'Poor',       cls:'bk-credit-poor',      qualify: false, rateAdjust: 3.00, affordFactor: 0.00, msg: 'Credit score too low — SA banks require a minimum of ~600 to consider a bond application. Focus on credit repair first.' },
+        { min:500, max:599, label:'Below Avg',  cls:'bk-credit-below',     qualify: false, rateAdjust: 2.50, affordFactor: 0.00, msg: 'Score below 600 — Standard Bank, FNB, Absa and Nedbank will almost certainly decline. Settle debt and reduce credit utilisation first.' },
+        { min:600, max:660, label:'Fair',        cls:'bk-credit-fair',      qualify: true,  risk: true,  rateAdjust: 2.00, affordFactor: 0.83, msg: 'Marginal score — banks add a ~2% risk premium and tighten affordability to ~25%. Approval is borderline, often requires a larger deposit.' },
+        { min:661, max:700, label:'Average',     cls:'bk-credit-average',   qualify: true,  risk: false, rateAdjust: 1.00, affordFactor: 0.90, msg: 'Acceptable score — expect ~prime + 1% and a slightly tighter affordability ratio. Standard approval likely.' },
+        { min:701, max:720, label:'Good',        cls:'bk-credit-good',      qualify: true,  risk: false, rateAdjust: 0.25, affordFactor: 0.97, msg: null },
+        { min:721, max:780, label:'Very Good',   cls:'bk-credit-verygood',  qualify: true,  risk: false, rateAdjust: 0.00, affordFactor: 1.00, msg: null },
+        { min:781, max:850, label:'Excellent',   cls:'bk-credit-excellent', qualify: true,  risk: false, rateAdjust:-0.50, affordFactor: 1.00, msg: null }
     ];
     function getCreditTier(score) {
         for (var i = 0; i < CREDIT_TIERS.length; i++) {
@@ -222,16 +229,36 @@
             badge.className   = 'bk-credit-badge ' + tier.cls;
         }
         ['bk_salSlider','bk_depSlider','bk_rateSlider','bk_creditSlider'].forEach(function(id){ setTrack(document.getElementById(id)); });
-        var maxMonthly = sal * 0.30;
-        var r = rate / 12, n = term * 12;
-        var bond = maxMonthly * (1 - Math.pow(1 + r, -n)) / r;
+
+        // Apply credit-tier modifiers to interest rate and affordability ratio
+        var effectiveRate = rate;
+        var affordRatio   = 0.30;
+        if (creditActive && tier) {
+            effectiveRate = rate + (tier.rateAdjust / 100);
+            affordRatio   = 0.30 * tier.affordFactor;
+        }
+
+        var maxMonthly = sal * affordRatio;
+        var r = effectiveRate / 12, n = term * 12;
+        var bond = affordRatio > 0 ? (maxMonthly * (1 - Math.pow(1 + r, -n)) / r) : 0;
         bond = Math.round(bond / 1000) * 1000;
         var prop    = bond + dep;
-        var monthly = bond * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+        var monthly = bond > 0 ? (bond * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1)) : 0;
         document.getElementById('bk_bond').textContent    = fmt(bond);
         document.getElementById('bk_depShow').textContent = fmtR(dep);
         document.getElementById('bk_propVal').textContent = fmtR(prop);
         document.getElementById('bk_monthly').textContent = fmtR(Math.round(monthly));
+
+        // Show the credit-adjusted rate row only when credit is active
+        var credRow = document.getElementById('bk_credRow');
+        if (creditActive && tier && tier.qualify) {
+            credRow.style.display = 'flex';
+            var sign = tier.rateAdjust >= 0 ? '+' : '';
+            document.getElementById('bk_credRate').textContent =
+                effectiveRate.toFixed(2) + '%  (' + sign + tier.rateAdjust.toFixed(2) + '% credit)';
+        } else {
+            credRow.style.display = 'none';
+        }
         var q = document.getElementById('bk_qualifier');
         if (tier && !tier.qualify) {
             q.className = 'bk-qualifier bk-q-no';
