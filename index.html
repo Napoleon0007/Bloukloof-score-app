@@ -14,14 +14,16 @@
     .progress-bar { transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
     .quiz-option { transition: all 0.15s ease; }
     .quiz-option:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-    .quiz-option.selected { border-color: #1e3a5f !important; background: #eff6ff !important; }
+    .quiz-option.selected { border-color: rgba(255,255,255,0.9) !important; background: rgba(30,58,95,0.25) !important; }
     .fade-in { animation: fadeIn 0.35s ease forwards; }
     @keyframes fadeIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
     .gallery-item img { transition: transform 0.4s ease; }
     .gallery-item:hover img { transform: scale(1.06); }
     .modal-backdrop { backdrop-filter: blur(6px); }
     .pulse-cta { animation: pulse 2.5s ease-in-out infinite; }
-    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.4); } 50% { box-shadow: 0 0 0 18px rgba(245,158,11,0); } }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(30,58,95,0.5); } 50% { box-shadow: 0 0 0 18px rgba(30,58,95,0); } }
+    .quiz-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.8s ease; }
+    .quiz-slide.active { opacity: 1; }
   </style>
 </head>
 <body class="bg-white text-gray-900 overflow-x-hidden">
@@ -30,14 +32,14 @@
 <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
   <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-3">
-      <div class="w-9 h-9 bg-[#1e3a5f] rounded-lg flex items-center justify-center">
-        <span class="text-white font-black text-base">B</span>
-      </div>
-      <span class="text-[#1e3a5f] font-black text-lg tracking-tight">Bloukloof Properties</span>
+      <img src="./logo.png" alt="Bloukloof Properties" class="h-14 w-auto" />
+      <div class="w-px h-8 bg-gray-200"></div>
+      <img src="./kiron-logo.png" alt="Kiron" class="h-7 w-auto opacity-80" />
     </div>
     <button onclick="openLeadModal()"
-      class="hidden sm:inline-flex items-center gap-2 bg-[#1e3a5f] text-white px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#162d4a] transition-colors">
-      Check If I Qualify
+      class="hidden sm:inline-flex items-center gap-2 relative overflow-hidden bg-[#1e3a5f] text-white px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#162d4a] transition-colors">
+      <img src="./logo.png" alt="" class="absolute inset-0 w-full h-full object-contain opacity-20 pointer-events-none select-none" />
+      <span class="relative">Check If I Qualify</span>
     </button>
   </div>
 </nav>
@@ -59,20 +61,21 @@
 
     <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.05] mb-6">
       Stop Paying Rent.<br>
-      <span class="text-[#f59e0b]">Start Building Wealth.</span>
+      <span class="text-white">Start Building Wealth.</span>
     </h1>
 
     <p class="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto mb-4 leading-relaxed">
       Every month you rent, you're funding someone else's retirement. Bloukloof gives you a real path to ownership — at prices that make it possible right now.
     </p>
-    <p class="text-base sm:text-lg text-[#f59e0b] font-bold mb-10">
+    <p class="text-base sm:text-lg text-white/80 font-bold mb-10">
       Why rent when you can own in Bloukloof?
     </p>
 
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <button onclick="openLeadModal()"
-        class="pulse-cta w-full sm:w-auto bg-[#f59e0b] hover:bg-[#d97706] text-white font-black text-lg px-10 py-4 rounded-xl shadow-xl transition-all transform hover:scale-105">
-        Check If I Qualify →
+        class="pulse-cta relative overflow-hidden w-full sm:w-auto bg-white hover:bg-gray-100 text-[#1e3a5f] font-black text-lg px-10 py-4 rounded-xl shadow-xl transition-all transform hover:scale-105">
+        <img src="./logo.png" alt="" class="absolute inset-0 w-full h-full object-contain opacity-20 pointer-events-none select-none" />
+        <span class="relative">Check If I Qualify →</span>
       </button>
       <a href="#gallery"
         class="w-full sm:w-auto text-white/80 hover:text-white font-medium text-base px-8 py-4 rounded-xl border border-white/20 hover:border-white/50 transition-all text-center">
@@ -82,15 +85,15 @@
 
     <div class="mt-14 flex flex-wrap justify-center gap-6 sm:gap-10 text-white/55 text-sm">
       <div class="flex items-center gap-2">
-        <svg class="w-4 h-4 text-[#f59e0b]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
         0% Transfer Duty on Entry Units
       </div>
       <div class="flex items-center gap-2">
-        <svg class="w-4 h-4 text-[#f59e0b]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
         From R1,095,000
       </div>
       <div class="flex items-center gap-2">
-        <svg class="w-4 h-4 text-[#f59e0b]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
         52 Units Available
       </div>
     </div>
@@ -112,8 +115,8 @@
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
       <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow text-center">
-        <div class="w-13 h-13 bg-amber-50 rounded-xl flex items-center justify-center mx-auto mb-5 w-14 h-14">
-          <svg class="w-7 h-7 text-[#f59e0b]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div class="w-13 h-13 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-5 w-14 h-14">
+          <svg class="w-7 h-7 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         </div>
         <h3 class="text-lg font-bold text-[#1e3a5f] mb-3">Build Real Wealth</h3>
         <p class="text-gray-500 text-sm leading-relaxed">Property appreciates. Rent disappears. Every bond payment is an investment in your own net worth — not your landlord's.</p>
@@ -153,34 +156,34 @@
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
       <!-- Feature tile: spans 2 cols + 2 rows -->
       <div class="gallery-item col-span-2 row-span-2 rounded-2xl overflow-hidden h-64 sm:h-auto">
-        <img src="https://picsum.photos/seed/bloukloof-main/800/600" alt="Bloukloof exterior view" class="w-full h-full object-cover" loading="lazy" />
+        <img src="./IMG-20250922-WA0006.jpg" alt="Bloukloof Properties" class="w-full h-full object-cover" loading="lazy" />
       </div>
       <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
-        <img src="https://picsum.photos/seed/bloukloof-lounge/400/300" alt="Open plan lounge" class="w-full h-full object-cover" loading="lazy" />
+        <img src="./1000000382.jpg" alt="Bloukloof Properties" class="w-full h-full object-cover" loading="lazy" />
       </div>
       <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
-        <img src="https://picsum.photos/seed/bloukloof-kitchen/400/300" alt="Modern kitchen" class="w-full h-full object-cover" loading="lazy" />
+        <img src="./1000000406.jpg" alt="Bloukloof Properties" class="w-full h-full object-cover" loading="lazy" />
       </div>
       <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
-        <img src="https://picsum.photos/seed/bloukloof-bedroom/400/300" alt="Master bedroom" class="w-full h-full object-cover" loading="lazy" />
+        <img src="./1000000482.jpg" alt="Bloukloof Properties" class="w-full h-full object-cover" loading="lazy" />
       </div>
       <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
-        <img src="https://picsum.photos/seed/bloukloof-bath/400/300" alt="Bathroom" class="w-full h-full object-cover" loading="lazy" />
+        <img src="./1000001160.jpg" alt="Bloukloof Properties" class="w-full h-full object-cover" loading="lazy" />
       </div>
       <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
-        <img src="https://picsum.photos/seed/bloukloof-balcony/400/300" alt="Balcony & views" class="w-full h-full object-cover" loading="lazy" />
+        <img src="./1000002126.jpg" alt="Bloukloof Properties" class="w-full h-full object-cover" loading="lazy" />
       </div>
       <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
-        <img src="https://picsum.photos/seed/bloukloof-facade/400/300" alt="Building facade" class="w-full h-full object-cover" loading="lazy" />
+        <img src="./1000002144.jpg" alt="Bloukloof Properties" class="w-full h-full object-cover" loading="lazy" />
       </div>
       <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
-        <img src="https://picsum.photos/seed/bloukloof-pool/400/300" alt="Complex amenities" class="w-full h-full object-cover" loading="lazy" />
+        <img src="./1000002150.jpg" alt="Bloukloof Properties" class="w-full h-full object-cover" loading="lazy" />
       </div>
       <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
-        <img src="https://picsum.photos/seed/bloukloof-garden/400/300" alt="Garden & landscaping" class="w-full h-full object-cover" loading="lazy" />
+        <img src="./1000007979.png" alt="Bloukloof Properties" class="w-full h-full object-cover" loading="lazy" />
       </div>
       <div class="gallery-item rounded-2xl overflow-hidden h-40 sm:h-48">
-        <img src="https://picsum.photos/seed/bloukloof-street/400/300" alt="Street view" class="w-full h-full object-cover" loading="lazy" />
+        <img src="./1000007980.jpg" alt="Bloukloof Properties" class="w-full h-full object-cover" loading="lazy" />
       </div>
     </div>
 
@@ -189,8 +192,9 @@
       <h3 class="text-2xl sm:text-3xl font-black text-white mb-3">Ready to make one of these yours?</h3>
       <p class="text-white/65 text-lg mb-8 max-w-lg mx-auto">Find out in 60 seconds if you qualify for a bond on your dream home at Bloukloof.</p>
       <button onclick="openLeadModal()"
-        class="inline-block bg-[#f59e0b] hover:bg-[#d97706] text-white font-black text-lg px-12 py-4 rounded-xl transition-all transform hover:scale-105 shadow-2xl">
-        Check If I Qualify →
+        class="relative overflow-hidden inline-block bg-white hover:bg-gray-100 text-[#1e3a5f] font-black text-lg px-12 py-4 rounded-xl transition-all transform hover:scale-105 shadow-2xl">
+        <img src="./logo.png" alt="" class="absolute inset-0 w-full h-full object-contain opacity-20 pointer-events-none select-none" />
+        <span class="relative">Check If I Qualify →</span>
       </button>
     </div>
   </div>
@@ -205,7 +209,7 @@
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
       <div class="bg-white rounded-2xl p-7 shadow-sm">
-        <p class="text-[#f59e0b] text-lg mb-4">★★★★★</p>
+        <p class="text-[#1e3a5f] text-lg mb-4">★★★★★</p>
         <p class="text-gray-600 leading-relaxed mb-6 text-sm">"I never thought I could afford my own place at 28. The team guided me through the whole process and I moved in 4 months later. Best decision I ever made."</p>
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 bg-[#1e3a5f] rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0">TM</div>
@@ -213,15 +217,15 @@
         </div>
       </div>
       <div class="bg-white rounded-2xl p-7 shadow-sm">
-        <p class="text-[#f59e0b] text-lg mb-4">★★★★★</p>
+        <p class="text-[#1e3a5f] text-lg mb-4">★★★★★</p>
         <p class="text-gray-600 leading-relaxed mb-6 text-sm">"Our bond repayment is actually R400 less than what we were paying in rent. We own something now. It still blows my mind every time I walk through the door."</p>
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0">SN</div>
+          <div class="w-10 h-10 bg-[#1e3a5f] rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0">SN</div>
           <div><p class="font-semibold text-sm">Sipho & Naledi</p><p class="text-gray-400 text-xs">Family buyers</p></div>
         </div>
       </div>
       <div class="bg-white rounded-2xl p-7 shadow-sm">
-        <p class="text-[#f59e0b] text-lg mb-4">★★★★★</p>
+        <p class="text-[#1e3a5f] text-lg mb-4">★★★★★</p>
         <p class="text-gray-600 leading-relaxed mb-6 text-sm">"The qualifier quiz on the website told me exactly where I stood before I even spoke to anyone. No pressure, no surprises — just clear, honest info."</p>
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0">JP</div>
@@ -235,11 +239,10 @@
 <!-- ===================== FOOTER ===================== -->
 <footer class="bg-[#0f172a] text-white/50 py-10">
   <div class="max-w-6xl mx-auto px-4 text-center">
-    <div class="flex items-center justify-center gap-3 mb-4">
-      <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center">
-        <span class="text-white font-black text-sm">B</span>
-      </div>
-      <span class="text-white font-bold">Bloukloof Properties</span>
+    <div class="flex items-center justify-center gap-4 mb-4">
+      <img src="./logo.png" alt="Bloukloof Properties" class="h-10 w-auto opacity-80" />
+      <div class="w-px h-8 bg-white/20"></div>
+      <img src="./kiron-logo.png" alt="Kiron" class="h-7 w-auto opacity-60" />
     </div>
     <p class="text-sm mb-1">All financial figures are indicative only and subject to standard bank credit approval criteria.</p>
     <p class="text-xs">© 2026 Bloukloof Properties. All rights reserved.</p>
@@ -248,68 +251,106 @@
 
 <!-- ===================== LEAD MODAL ===================== -->
 <div id="leadModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-backdrop bg-black/60">
-  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative fade-in">
-    <button onclick="closeLeadModal()" class="absolute top-4 right-4 text-gray-300 hover:text-gray-500 transition-colors">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-    </button>
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl relative fade-in flex overflow-hidden">
 
-    <div class="text-center mb-6">
-      <div class="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-        <svg class="w-7 h-7 text-[#f59e0b]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-      </div>
-      <h2 class="text-2xl font-black text-[#1e3a5f]">Let's Check Your Qualification</h2>
-      <p class="text-gray-400 text-sm mt-1.5">60-second quiz. No credit check. Zero obligation.</p>
+    <!-- Left: Logo panel -->
+    <div class="hidden sm:flex flex-col items-center justify-center bg-[#1e3a5f] px-8 py-10 min-w-[200px] gap-6">
+      <img src="./logo.png" alt="Bloukloof Properties" class="w-36 object-contain" />
+      <div class="w-16 h-px bg-white/20"></div>
+      <img src="./kiron-logo.png" alt="Kiron" class="w-24 object-contain opacity-70" />
     </div>
 
-    <form onsubmit="submitLead(event)" class="space-y-4">
-      <div class="grid grid-cols-2 gap-3">
-        <div>
-          <label class="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wide">First Name</label>
-          <input id="leadFirstName" type="text" required autocomplete="given-name" placeholder="Thandi"
-            class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/30 focus:border-[#1e3a5f] transition-all" />
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wide">Surname</label>
-          <input id="leadSurname" type="text" required autocomplete="family-name" placeholder="Mokoena"
-            class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/30 focus:border-[#1e3a5f] transition-all" />
-        </div>
-      </div>
-      <div>
-        <label class="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wide">Phone Number</label>
-        <input id="leadPhone" type="tel" required autocomplete="tel" placeholder="082 555 1234"
-          class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/30 focus:border-[#1e3a5f] transition-all" />
-      </div>
-      <div>
-        <label class="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wide">Email Address</label>
-        <input id="leadEmail" type="email" required autocomplete="email" placeholder="thandi@email.com"
-          class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/30 focus:border-[#1e3a5f] transition-all" />
-      </div>
-      <button type="submit"
-        class="w-full bg-[#f59e0b] hover:bg-[#d97706] text-white font-black text-base py-4 rounded-xl transition-all transform hover:scale-[1.02] mt-2">
-        Start My Free Quiz →
+    <!-- Right: Form -->
+    <div class="flex-1 p-8 relative">
+      <button onclick="closeLeadModal()" class="absolute top-4 right-4 text-gray-300 hover:text-gray-500 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
-      <p class="text-center text-xs text-gray-400">🔒 Your details are private and never shared or sold.</p>
-    </form>
+
+      <h2 class="text-xl font-bold text-[#1e3a5f] text-center mb-6">Enter your details below to start the scorecard</h2>
+
+      <form onsubmit="submitLead(event)" class="space-y-4" autocomplete="on">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <input id="leadFirstName" name="given-name" type="text" required autocomplete="given-name" placeholder="First name *"
+              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/30 focus:border-[#1e3a5f] transition-all" />
+          </div>
+          <div>
+            <input id="leadSurname" name="family-name" type="text" required autocomplete="family-name" placeholder="Last name *"
+              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/30 focus:border-[#1e3a5f] transition-all" />
+          </div>
+        </div>
+        <div>
+          <input id="leadEmail" name="email" type="email" required autocomplete="email" inputmode="email" placeholder="Email *"
+            class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/30 focus:border-[#1e3a5f] transition-all" />
+        </div>
+        <div>
+          <div class="flex items-center border border-[#1e3a5f] rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-[#1e3a5f]/30 transition-all">
+            <div class="flex items-center gap-1.5 px-3 py-3 border-r border-gray-200 bg-white select-none">
+              <span class="text-lg leading-none">🇿🇦</span>
+              <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </div>
+            <input id="leadPhone" name="tel" type="tel" required autocomplete="tel" inputmode="tel" placeholder="071 123 4567"
+              class="flex-1 px-4 py-3 text-sm outline-none bg-white" />
+          </div>
+          <p class="text-xs text-[#1e3a5f] font-semibold mt-1 ml-1">Phone *</p>
+        </div>
+        <button type="submit"
+          class="w-full bg-[#1e3a5f] hover:bg-[#162d4a] text-white font-bold text-base py-4 rounded-xl transition-all mt-2">
+          Start
+        </button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== EXPERIAN MODAL ===================== -->
+<div id="experianModal" class="fixed inset-0 z-[300] hidden items-center justify-center p-4 modal-backdrop bg-black/70">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative fade-in">
+    <div class="flex items-center gap-3 mb-5">
+      <div class="w-10 h-10 rounded-xl bg-[#1e3a5f] flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      </div>
+      <div>
+        <h3 class="text-lg font-black text-[#1e3a5f]">Check Your Credit Score</h3>
+        <p class="text-xs text-gray-500">Free check — no impact on your score</p>
+      </div>
+    </div>
+    <p class="text-sm text-gray-600 leading-relaxed mb-6">
+      Knowing your credit score is the single most important step before applying for a bond. You can check yours for free via <strong>Experian South Africa</strong> — it takes under 2 minutes and won't affect your score.
+    </p>
+    <a href="https://www.mycreditcheck.co.za" target="_blank" rel="noopener"
+      class="block w-full text-center bg-[#1e3a5f] hover:bg-[#162d4a] text-white font-bold py-3.5 rounded-xl mb-3 transition-all">
+      Check My Score on Experian →
+    </a>
+    <button onclick="continueAfterExperian()"
+      class="w-full text-center border-2 border-gray-200 hover:border-[#1e3a5f] text-gray-600 hover:text-[#1e3a5f] font-semibold py-3.5 rounded-xl transition-all text-sm">
+      I'll check later — Continue
+    </button>
   </div>
 </div>
 
 <!-- ===================== QUIZ OVERLAY ===================== -->
-<div id="quizOverlay" class="fixed inset-0 z-[200] hidden bg-white overflow-y-auto">
-  <div class="min-h-screen flex flex-col">
+<div id="quizOverlay" class="fixed inset-0 z-[200] hidden overflow-y-auto">
+  <!-- Slideshow background -->
+  <div id="quizSlideshow" class="fixed inset-0 z-0"></div>
+  <!-- Dark overlay -->
+  <div class="fixed inset-0 z-[1] bg-black/55"></div>
+
+  <div class="min-h-screen flex flex-col relative z-[2]">
     <!-- Sticky header -->
-    <div class="sticky top-0 bg-white border-b border-gray-100 px-4 py-4 z-10">
+    <div class="sticky top-0 bg-[#1e3a5f]/80 backdrop-blur-md px-4 py-4 z-10">
       <div class="max-w-2xl mx-auto">
         <div class="flex items-center justify-between mb-3">
-          <div class="flex items-center gap-2">
-            <div class="w-7 h-7 bg-[#1e3a5f] rounded-md flex items-center justify-center">
-              <span class="text-white font-black text-xs">B</span>
-            </div>
-            <span class="font-bold text-[#1e3a5f] text-sm">Bloukloof Qualifier</span>
+          <div class="flex items-center gap-3">
+            <img src="./logo.png" alt="Bloukloof Properties" class="h-10 w-auto" />
+            <div class="w-px h-6 bg-white/30"></div>
+            <img src="./kiron-logo.png" alt="Kiron" class="h-6 w-auto opacity-70" />
           </div>
-          <span class="text-xs text-gray-400">Question <span id="questionNum">1</span> of 9</span>
+          <span class="text-xs text-white/70">Question <span id="questionNum">1</span> of 9</span>
         </div>
-        <div class="bg-gray-100 rounded-full h-2 overflow-hidden">
-          <div id="quizProgress" class="progress-bar h-2 bg-[#f59e0b] rounded-full" style="width:0%"></div>
+        <div class="bg-white/20 rounded-full h-2 overflow-hidden">
+          <div id="quizProgress" class="progress-bar h-2 bg-white rounded-full" style="width:0%"></div>
         </div>
       </div>
     </div>
@@ -325,8 +366,10 @@
   <div class="max-w-2xl mx-auto px-4 py-12 pb-20">
 
     <div class="text-center mb-8">
-      <div class="w-14 h-14 bg-[#1e3a5f] rounded-2xl flex items-center justify-center mx-auto mb-4">
-        <span class="text-white font-black text-lg">B</span>
+      <div class="flex items-center justify-center gap-4 mb-4">
+        <img src="./logo.png" alt="Bloukloof Properties" class="h-14 w-auto" />
+        <div class="w-px h-10 bg-gray-200"></div>
+        <img src="./kiron-logo.png" alt="Kiron" class="h-8 w-auto opacity-75" />
       </div>
       <h2 class="text-2xl font-black text-[#1e3a5f]">Your Results Are Ready</h2>
       <p id="resultName" class="text-gray-400 text-sm mt-1"></p>
@@ -376,16 +419,21 @@
         <h4 class="text-lg font-black mb-1">Calculate Your Exact Bond Repayment</h4>
         <p class="text-white/60 text-sm mb-5">See exactly what you'd pay monthly — based on your income and deposit.</p>
         <!-- ▼ PASTE OR EMBED YOUR BOND CALCULATOR HERE ▼ -->
-        <div id="bondCalculatorContainer" class="bg-white/10 rounded-xl p-10 border-2 border-dashed border-white/25 text-white/40 text-sm">
-          [ Bond Calculator Embed Goes Here ]<br>
-          See comments above for embed options
-        </div>
+        <iframe src="./bond-calculator-embed.html"
+                width="100%" height="700"
+                style="border:none;border-radius:16px;display:block;">
+        </iframe>
         <!-- ▲ END BOND CALCULATOR ▲ -->
       </div>
     </div>
 
     <!-- Next step CTA -->
-    <div class="bg-[#f59e0b] rounded-2xl p-7 text-center mb-5">
+    <div class="bg-[#1e3a5f] rounded-2xl p-7 text-center mb-5">
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <img src="./logo.png" alt="Bloukloof Properties" class="h-10 w-auto opacity-90" />
+        <div class="w-px h-7 bg-white/25"></div>
+        <img src="./kiron-logo.png" alt="Kiron" class="h-7 w-auto opacity-60" />
+      </div>
       <h4 class="text-xl font-black text-white mb-1.5">Ready to take the next step?</h4>
       <p class="text-white/80 text-sm mb-5">Our consultants are standing by to help you secure your unit.</p>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
@@ -393,13 +441,13 @@
           Replace 27XXXXXXXXXX with your WhatsApp number (no spaces, include country code).
           Example: 27821234567
         -->
-        <a href="https://wa.me/27XXXXXXXXXX?text=Hi%2C%20I%20just%20completed%20the%20Bloukloof%20qualifier%20quiz%20and%20want%20to%20find%20out%20more."
+        <a href="https://wa.me/27609845300?text=Hi%2C%20I%20just%20completed%20the%20Bloukloof%20qualifier%20quiz%20and%20want%20to%20find%20out%20more."
           target="_blank" rel="noopener"
-          class="bg-white text-[#f59e0b] font-black px-8 py-3.5 rounded-xl hover:bg-white/90 transition-colors text-sm">
+          class="bg-white text-[#1e3a5f] font-black px-8 py-3.5 rounded-xl hover:bg-white/90 transition-colors text-sm">
           WhatsApp Us Now
         </a>
         <!-- Replace 27XXXXXXXXXX with your phone number -->
-        <a href="tel:+27XXXXXXXXXX"
+        <a href="tel:+27609845300"
           class="bg-white/20 text-white font-semibold px-8 py-3.5 rounded-xl hover:bg-white/30 transition-colors border border-white/25 text-sm">
           Call Us Directly
         </a>
@@ -440,7 +488,7 @@
   //    - Who has access: Anyone
   // 5. Copy the deployment URL and paste it below.
   // ================================================================
-  const SHEETS_WEBHOOK_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+  const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbygMByl3nVeIcyq7agm9u9l3oCQWztnlCHiiLcYgHZSIlmPkR_mb9dIRDT8TVlSdnvl/exec';
 
   // ================================================================
   // STATE
@@ -448,102 +496,141 @@
   let leadData        = {};
   let quizAnswers     = [];
   let currentQ        = 0;
+  let skipQ8          = false;
   let quizStartTime   = null;
   let quizDone        = false;
   let abandonSent     = false;
 
   // ================================================================
-  // QUESTIONS  (order: warm → lifestyle → employment → financial)
+  // SLIDESHOW
+  // ================================================================
+  const QUIZ_IMAGES = [
+    './IMG-20250922-WA0006.jpg',
+    './1000000382.jpg',
+    './1000000406.jpg',
+    './1000000482.jpg',
+    './1000001160.jpg',
+    './1000002126.jpg',
+    './1000002144.jpg',
+    './1000002150.jpg',
+    './1000007980.jpg'
+  ];
+
+  let slideshowTimer  = null;
+  let currentSlide    = 0;
+
+  function initSlideshow() {
+    const container = document.getElementById('quizSlideshow');
+    container.innerHTML = '';
+    QUIZ_IMAGES.forEach((src, i) => {
+      const div = document.createElement('div');
+      div.className = 'quiz-slide';
+      div.style.backgroundImage = `url('${src}')`;
+      if (i === 0) div.classList.add('active');
+      container.appendChild(div);
+    });
+    currentSlide = 0;
+    if (slideshowTimer) clearInterval(slideshowTimer);
+    slideshowTimer = setInterval(advanceSlide, 4500);
+  }
+
+  function advanceSlide() {
+    const slides = document.querySelectorAll('.quiz-slide');
+    if (!slides.length) return;
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }
+
+  function stopSlideshow() {
+    if (slideshowTimer) { clearInterval(slideshowTimer); slideshowTimer = null; }
+  }
+
+  // ================================================================
+  // QUESTIONS
   // ================================================================
   const QUESTIONS = [
     {
-      text: "How long have you been renting or living with family?",
-      sub:  "This helps us understand where you are in your journey — no judgement at all.",
+      text: "Have you ever purchased property before?",
+      sub:  "This helps us understand where you are on your property journey.",
       options: [
-        { label: "Less than 1 year",     score: 3 },
-        { label: "1 to 3 years",          score: 6 },
-        { label: "3 to 5 years",          score: 8 },
-        { label: "More than 5 years",     score: 8 }
+        { label: "Yes",                score: 8 },
+        { label: "No",                 score: 5 },
+        { label: "Let's change that",  score: 5 }
       ]
     },
     {
-      text: "What's the main reason you want to own your own home?",
-      sub:  "There's no wrong answer. We just want to understand what matters most to you.",
+      text: "Looking to invest or to make it your home?",
+      sub:  "This helps us match you to the right unit and financing strategy.",
       options: [
-        { label: "Build long-term wealth",                score: 8 },
-        { label: "Stability and security for my family",  score: 8 },
-        { label: "Stop wasting money on rent",            score: 8 },
-        { label: "Property as an investment / rental",    score: 8 }
+        { label: "Invest",        score: 7 },
+        { label: "Make it home",  score: 9 }
       ]
     },
     {
-      text: "How many people will be living in the property?",
-      sub:  "This helps us point you to the right unit size.",
+      text: "How much are you paying in monthly debit orders?",
+      sub:  "Banks assess your total monthly obligations against your income — this is one of the biggest approval factors.",
       options: [
-        { label: "Just myself",               score: 6  },
-        { label: "Myself and a partner",       score: 8  },
-        { label: "Small family (3–4 people)",  score: 10 },
-        { label: "Larger family (5+ people)",  score: 8  }
+        { label: "Low",      score: 10 },
+        { label: "Medium",   score: 6  },
+        { label: "High",     score: 2  },
+        { label: "Stressed", score: 0  }
       ]
     },
     {
-      text: "What best describes your current employment situation?",
-      sub:  "Banks look at income stability above almost everything else.",
+      text: "What is your combined monthly salary before deductions?",
+      sub:  "To qualify for a Bloukloof unit, banks typically require a minimum household income of around R35,000 per month.",
       options: [
-        { label: "Permanently employed (full-time)",  score: 10 },
-        { label: "Self-employed for 2+ years",        score: 9  },
-        { label: "Contract or part-time work",        score: 4  },
-        { label: "Currently not working",             score: 0  }
+        { label: "R0 – R15,000",       score: 0  },
+        { label: "R15,000 – R25,000",  score: 2  },
+        { label: "R25,000 – R35,000",  score: 5  },
+        { label: "R35,000 – R45,000",  score: 7  },
+        { label: "R45,000+",           score: 10 }
       ]
     },
     {
-      text: "How long have you been in your current job or running your business?",
-      sub:  "Consistent income history is one of the biggest green flags for any bank.",
+      text: "What is your living situation at the moment?",
+      sub:  "Understanding your current situation helps us personalise your result.",
       options: [
-        { label: "Less than 6 months",   score: 2  },
-        { label: "6 months to 1 year",   score: 5  },
-        { label: "1 to 2 years",          score: 8  },
-        { label: "More than 2 years",     score: 10 }
+        { label: "Renting",              score: 7  },
+        { label: "Staying with family",  score: 5  },
+        { label: "Homeowner",            score: 10 }
       ]
     },
     {
-      text: "What is your approximate gross monthly income before tax?",
-      sub:  "This is kept completely confidential — it just helps us estimate your bond range.",
+      text: "Have you been saving towards a deposit?",
+      sub:  "A deposit isn't required, but it dramatically improves your approval odds and your monthly repayment amount.",
       options: [
-        { label: "Under R15,000",         score: 0  },
-        { label: "R15,000 – R25,000",     score: 5  },
-        { label: "R25,000 – R40,000",     score: 9  },
-        { label: "R40,000 or more",       score: 10 }
+        { label: "Yes",  score: 10 },
+        { label: "No",   score: 4  }
       ]
     },
     {
-      text: "Do you currently have monthly debt repayments? (car, personal loans, store accounts, etc.)",
-      sub:  "Your total debt affects how much you can borrow — but it doesn't always mean you won't qualify.",
+      text: "Do you know your credit score?",
+      sub:  "Your credit score is one of the most important factors in any bond application.",
       options: [
-        { label: "None at all",               score: 10 },
-        { label: "Under R3,000 per month",    score: 7  },
-        { label: "R3,000 – R7,000 per month", score: 3  },
-        { label: "Over R7,000 per month",     score: 0  }
+        { label: "Yes",       score: 7 },
+        { label: "No",        score: 3 },
+        { label: "Not sure",  score: 4 }
       ]
     },
     {
-      text: "How much deposit do you have saved or available?",
-      sub:  "A deposit isn't always required, but it can significantly improve your approval odds.",
+      text: "Please confirm your credit score",
+      sub:  "South African banks typically require a score of 640+ for bond approval. 700+ gives you the best rates.",
       options: [
-        { label: "No deposit right now",  score: 2  },
-        { label: "Up to R50,000",         score: 5  },
-        { label: "R50,000 – R150,000",    score: 8  },
-        { label: "R150,000 or more",      score: 10 }
+        { label: "300 – 600",  score: 0  },
+        { label: "600 – 640",  score: 4  },
+        { label: "640 – 700",  score: 7  },
+        { label: "700+",       score: 10 }
       ]
     },
     {
-      text: "Is your credit record currently in good standing?",
-      sub:  "Be honest — this just helps us give you the most accurate result. We don't run a credit check here.",
+      text: "Would you like one of our agents to give you a call?",
+      sub:  "Our consultants specialise in getting bond applications approved — no obligation, just expert advice.",
       options: [
-        { label: "Yes, my record is clean",                score: 10 },
-        { label: "Mostly good with minor blips",           score: 6  },
-        { label: "I've missed a few payments before",      score: 2  },
-        { label: "I'm not 100% sure of my current status", score: 4  }
+        { label: "Yes",          score: 5 },
+        { label: "No",           score: 3 },
+        { label: "Maybe later",  score: 4 }
       ]
     }
   ];
@@ -586,6 +673,7 @@
   // ================================================================
   function startQuiz() {
     currentQ      = 0;
+    skipQ8        = false;
     quizAnswers   = [];
     quizDone      = false;
     abandonSent   = false;
@@ -593,6 +681,7 @@
 
     document.getElementById('quizOverlay').classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+    initSlideshow();
     renderQuestion();
   }
 
@@ -606,28 +695,28 @@
     const optionsHTML = q.options.map((opt, i) => `
       <button
         onclick="selectOption(${i}, ${opt.score})"
-        class="quiz-option w-full text-left bg-white border-2 border-gray-100 rounded-2xl px-6 py-4 group hover:border-[#1e3a5f] hover:bg-blue-50"
+        class="quiz-option w-full text-left bg-[#1e3a5f]/10 backdrop-blur-sm border border-white/30 rounded-xl px-4 py-3 group hover:bg-[#1e3a5f]/25 hover:border-white/60"
         data-idx="${i}">
         <div class="flex items-center gap-4">
-          <div class="w-8 h-8 rounded-full border-2 border-gray-200 group-hover:border-[#1e3a5f] flex items-center justify-center text-sm font-bold text-gray-400 group-hover:text-[#1e3a5f] flex-shrink-0 transition-colors">
+          <div class="w-7 h-7 rounded-full border border-white/50 group-hover:border-white flex items-center justify-center text-xs font-bold text-white/70 group-hover:text-white flex-shrink-0 transition-colors">
             ${String.fromCharCode(65 + i)}
           </div>
-          <span class="font-medium text-gray-800 group-hover:text-[#1e3a5f] transition-colors text-sm sm:text-base">${opt.label}</span>
+          <span class="font-medium text-white/90 group-hover:text-white transition-colors text-sm">${opt.label}</span>
         </div>
       </button>`).join('');
 
     document.getElementById('questionContainer').innerHTML = `
       <div class="fade-in">
         <div class="mb-8">
-          <span class="inline-block bg-amber-50 text-[#f59e0b] text-xs font-bold px-3 py-1 rounded-full mb-5 uppercase tracking-wide">
+          <span class="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full mb-5 uppercase tracking-wide border border-white/30">
             Question ${currentQ + 1} of ${QUESTIONS.length}
           </span>
-          <h2 class="text-2xl sm:text-3xl font-black text-[#1e3a5f] leading-snug mb-3">${q.text}</h2>
-          <p class="text-gray-400 text-sm">${q.sub}</p>
+          <h2 class="text-2xl sm:text-3xl font-black text-white leading-snug mb-3 drop-shadow-lg">${q.text}</h2>
+          <p class="text-white/70 text-sm">${q.sub}</p>
         </div>
         <div class="space-y-3">${optionsHTML}</div>
         ${currentQ > 0
-          ? `<button onclick="goBack()" class="mt-6 flex items-center gap-2 text-gray-400 hover:text-gray-600 text-sm transition-colors">
+          ? `<button onclick="goBack()" class="mt-6 flex items-center gap-2 text-white/60 hover:text-white text-sm transition-colors">
                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                </svg> Back
@@ -648,6 +737,17 @@
       score:      score
     };
 
+    // Q7 (index 6): if "No" or "Not sure" → skip Q8, show Experian modal
+    if (currentQ === 6 && (idx === 1 || idx === 2)) {
+      skipQ8 = true;
+      setTimeout(() => {
+        currentQ = 8;
+        document.getElementById('experianModal').classList.remove('hidden');
+        document.getElementById('experianModal').classList.add('flex');
+      }, 280);
+      return;
+    }
+
     setTimeout(() => {
       currentQ++;
       if (currentQ >= QUESTIONS.length) finishQuiz();
@@ -655,8 +755,22 @@
     }, 280);
   }
 
+  function continueAfterExperian() {
+    document.getElementById('experianModal').classList.remove('flex');
+    document.getElementById('experianModal').classList.add('hidden');
+    renderQuestion();
+  }
+
   function goBack() {
-    if (currentQ > 0) { currentQ--; renderQuestion(); }
+    if (currentQ > 0) {
+      if (currentQ === 8 && skipQ8) {
+        currentQ = 6;
+        skipQ8 = false;
+      } else {
+        currentQ--;
+      }
+      renderQuestion();
+    }
   }
 
   function finishQuiz() {
@@ -675,6 +789,7 @@
       ...flattenAnswers(quizAnswers)
     });
 
+    stopSlideshow();
     showResults(pct);
   }
 
@@ -710,16 +825,16 @@
         <div class="flex gap-3 p-3 bg-green-50 rounded-xl"><span class="text-green-500 mt-0.5">✓</span><p class="text-sm text-gray-700">Entry units from R1,095,000 with 0% transfer duty may fall comfortably within your budget.</p></div>
         <div class="flex gap-3 p-3 bg-green-50 rounded-xl"><span class="text-green-500 mt-0.5">✓</span><p class="text-sm text-gray-700">We recommend contacting a consultant this week — units are limited and selling fast.</p></div>`;
     } else if (pct >= 50) {
-      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-amber-50';
-      badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-amber-500 shadow-xl shadow-amber-100';
-      title.className = 'text-2xl font-black mb-2 text-amber-700';
+      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-blue-50';
+      badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-[#1e3a5f] shadow-xl shadow-blue-100';
+      title.className = 'text-2xl font-black mb-2 text-[#1e3a5f]';
       title.textContent = 'Good Potential — We Can Likely Get You Approved';
-      msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-80 text-amber-700';
+      msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-80 text-[#1e3a5f]';
       msg.textContent = `${leadData.firstName}, you're on the right track. There are a couple of areas to strengthen, but with the right guidance, approval is very achievable.`;
       list.innerHTML  = `
-        <div class="flex gap-3 p-3 bg-amber-50 rounded-xl"><span class="text-amber-500 mt-0.5">◉</span><p class="text-sm text-gray-700">Some aspects of your profile need attention — nothing that can't be addressed with guidance.</p></div>
-        <div class="flex gap-3 p-3 bg-amber-50 rounded-xl"><span class="text-amber-500 mt-0.5">◉</span><p class="text-sm text-gray-700">A larger deposit or reducing existing monthly debt could significantly boost your approval odds.</p></div>
-        <div class="flex gap-3 p-3 bg-amber-50 rounded-xl"><span class="text-amber-500 mt-0.5">◉</span><p class="text-sm text-gray-700">Our consultants specialise in getting borderline applications over the line. Let's talk.</p></div>`;
+        <div class="flex gap-3 p-3 bg-blue-50 rounded-xl"><span class="text-[#1e3a5f] mt-0.5">◉</span><p class="text-sm text-gray-700">Some aspects of your profile need attention — nothing that can't be addressed with guidance.</p></div>
+        <div class="flex gap-3 p-3 bg-blue-50 rounded-xl"><span class="text-[#1e3a5f] mt-0.5">◉</span><p class="text-sm text-gray-700">A larger deposit or reducing existing monthly debt could significantly boost your approval odds.</p></div>
+        <div class="flex gap-3 p-3 bg-blue-50 rounded-xl"><span class="text-[#1e3a5f] mt-0.5">◉</span><p class="text-sm text-gray-700">Our consultants specialise in getting borderline applications over the line. Let's talk.</p></div>`;
     } else {
       card.className  = 'rounded-3xl p-8 text-center mb-5 bg-red-50';
       badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-red-500 shadow-xl shadow-red-100';
@@ -802,7 +917,7 @@
   function restartApp() {
     document.getElementById('resultsPage').classList.add('hidden');
     document.body.style.overflow = 'auto';
-    leadData = {}; quizAnswers = []; currentQ = 0;
+    leadData = {}; quizAnswers = []; currentQ = 0; skipQ8 = false;
     quizStartTime = null; quizDone = false; abandonSent = false;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
