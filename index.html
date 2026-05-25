@@ -366,8 +366,14 @@
 </div>
 
 <!-- ===================== RESULTS PAGE ===================== -->
-<div id="resultsPage" class="fixed inset-0 z-[300] hidden bg-gray-50 overflow-y-auto">
-  <div class="max-w-2xl mx-auto px-4 py-12 pb-20">
+<div id="resultsPage" class="fixed inset-0 z-[300] hidden overflow-y-auto">
+  <!-- Video background -->
+  <video autoplay muted loop playsinline class="fixed inset-0 w-full h-full object-cover z-0">
+    <source src="./bloukloof-view.mp4" type="video/mp4">
+  </video>
+  <!-- Dark overlay -->
+  <div class="fixed inset-0 z-[1] bg-black/60"></div>
+  <div class="max-w-2xl mx-auto px-4 py-12 pb-20 relative z-[2]">
 
     <div class="text-center mb-8">
       <div class="flex items-center justify-center gap-4 mb-4">
@@ -375,8 +381,8 @@
         <div class="w-px h-10 bg-gray-200"></div>
         <img src="./kiron-logo.png" alt="Kiron" class="h-8 w-auto opacity-75" />
       </div>
-      <h2 class="text-2xl font-black text-[#1e3a5f]">Your Results Are Ready</h2>
-      <p id="resultName" class="text-gray-400 text-sm mt-1"></p>
+      <h2 class="text-2xl font-black text-white">Your Results Are Ready</h2>
+      <p id="resultName" class="text-white/60 text-sm mt-1"></p>
     </div>
 
     <!-- Score card — colour set by JS -->
