@@ -44,10 +44,15 @@
 
 <!-- ===================== HERO ===================== -->
 <section class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
-  <div class="absolute inset-0 opacity-[0.04]"
-    style="background-image:radial-gradient(circle at 2px 2px,white 1px,transparent 0);background-size:36px 36px;"></div>
+  <!-- Video background -->
+  <video autoplay muted loop playsinline
+    class="absolute inset-0 w-full h-full object-cover z-0">
+    <source src="./nikki-walkthrough.mp4" type="video/mp4" />
+  </video>
+  <!-- 20% dark overlay so text stays readable -->
+  <div class="absolute inset-0 bg-black/20 z-[1]"></div>
 
-  <div class="relative z-10 max-w-4xl mx-auto px-4 text-center py-20">
+  <div class="relative z-[2] max-w-4xl mx-auto px-4 text-center py-20">
     <div class="inline-block bg-white/10 text-white/90 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 border border-white/20 uppercase tracking-wide">
       Cape Town's Most Accessible New Development
     </div>
@@ -91,7 +96,7 @@
     </div>
   </div>
 
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/30">
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/30 z-[2]">
     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
     </svg>
