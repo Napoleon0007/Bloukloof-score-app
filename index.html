@@ -29,20 +29,24 @@
 <body class="bg-white text-gray-900 overflow-x-hidden">
 
 <!-- ===================== NAV ===================== -->
-<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-  <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-    <a href="https://bloukloof.co.za/" target="_blank" rel="noopener noreferrer"><img src="./logo.png" alt="Bloukloof Properties" class="h-20 w-auto" /></a>
-    <div class="flex items-center gap-6">
-      <span class="hidden sm:block text-[#1e3a5f] font-bold text-sm tracking-wide border border-[#1e3a5f]/30 rounded-lg px-4 py-2 bg-[#1e3a5f]/5">
-        🏠 <span class="font-black">34/52</span> units available
-      </span>
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100">
+  <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between relative">
+    <!-- Left -->
+    <div></div>
+    <!-- Centre logo -->
+    <a href="https://bloukloof.co.za/" target="_blank" rel="noopener noreferrer" class="absolute left-1/2 -translate-x-1/2">
+      <video autoplay muted loop playsinline class="h-14 w-auto"><source src="./Bloukloof living logo.mov" type="video/mp4"></video>
+    </a>
+    <!-- Right -->
+    <div class="flex items-center gap-4">
       <button onclick="openLeadModal()"
-        class="hidden sm:inline-flex items-center gap-2 relative overflow-hidden bg-[#1e3a5f] text-white px-6 py-3 rounded-lg font-bold text-sm hover:bg-[#162d4a] transition-colors shadow-md">
-        <img src="./logo.png" alt="" class="absolute inset-0 w-full h-full object-contain opacity-20 pointer-events-none select-none" />
-        <span class="relative">Check If I Qualify</span>
+        class="hidden sm:inline-flex items-center gap-2 bg-[#1e3a5f] text-white px-6 py-3 rounded-lg font-bold text-sm hover:bg-[#162d4a] transition-colors shadow-md">
+        Check If I Qualify
       </button>
       <div class="w-px h-8 bg-gray-200"></div>
-      <a href="https://www.kironprop.co.za/" target="_blank" rel="noopener noreferrer"><img src="./kiron-logo.png" alt="Kiron" class="h-9 w-auto" /></a>
+      <a href="https://www.kironprop.co.za/" target="_blank" rel="noopener noreferrer">
+        <video autoplay muted loop playsinline class="h-9 w-auto"><source src="./Kiron living logo.mp4" type="video/mp4"></video>
+      </a>
     </div>
   </div>
 </nav>
@@ -58,9 +62,10 @@
   <div class="absolute inset-0 bg-black/20 z-[1]"></div>
 
   <div class="relative z-[2] max-w-4xl mx-auto px-4 text-center py-20">
-    <div class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 uppercase tracking-wide" style="background: rgba(30,58,95,0.55); color: white; border: 1px solid rgba(30,58,95,0.55);">
-      <video autoplay muted loop playsinline class="h-6 w-auto" style="display:inline-block;vertical-align:middle;"><source src="./bloukloof-living-logo.webm" type="video/webm"></video>
-      Bloukloof, George's Smartest Investment
+    <div class="flex justify-center mb-8">
+      <div class="inline-flex items-center gap-1 text-[9px] font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wide" style="background: rgba(30,58,95,0.55); color: white; border: 1px solid rgba(30,58,95,0.55);">
+        Bloukloof, George's Smartest Investment
+      </div>
     </div>
 
     <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.05] mb-6">
