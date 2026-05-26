@@ -468,7 +468,7 @@
     -->
     <div class="mb-5">
       <iframe id="bondCalcFrame" src="./bond-calculator-embed.html"
-              width="100%" height="1100"
+              width="100%" height="800" scrolling="no"
               style="border:none;border-radius:16px;display:block;overflow:hidden;">
       </iframe>
     </div>
@@ -1173,7 +1173,7 @@
   window.addEventListener('message', function(e) {
     if (e.data && e.data.type === 'bk_resize') {
       var frame = document.getElementById('bondCalcFrame');
-      if (frame) { frame.style.height = (e.data.height + 20) + 'px'; }
+      if (frame) { frame.style.height = e.data.height + 'px'; }
     }
   });
 </script>

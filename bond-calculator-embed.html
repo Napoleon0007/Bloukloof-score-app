@@ -197,7 +197,7 @@
         postHeight();
     }
     function postHeight() {
-        var h = document.documentElement.scrollHeight || document.body.scrollHeight;
+        var h = Math.ceil(document.querySelector('.bk-wrap').getBoundingClientRect().height);
         window.parent.postMessage({ type: 'bk_resize', height: h }, '*');
     }
     ['bk_salSlider','bk_depSlider','bk_rateSlider'].forEach(function(id){
@@ -207,6 +207,11 @@
     calc();
     postHeight();
     window.addEventListener('load', postHeight);
+    window.addEventListener('resize', postHeight);
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(postHeight); }
+    if (window.ResizeObserver) {
+        new ResizeObserver(postHeight).observe(document.querySelector('.bk-wrap'));
+    }
 
 
 </script>
