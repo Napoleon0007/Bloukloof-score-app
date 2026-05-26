@@ -190,7 +190,6 @@
         <div class="gallery-slide"><img src="./1000000382.jpg" class="w-full h-full object-cover" /></div>
         <div class="gallery-slide"><img src="./1000000406.jpg" class="w-full h-full object-cover" /></div>
         <div class="gallery-slide"><img src="./1000000482.jpg" class="w-full h-full object-cover" /></div>
-        <div class="gallery-slide"><img src="./1000001160.jpg" class="w-full h-full object-cover" /></div>
         <div class="gallery-slide"><img src="./1000002126.jpg" class="w-full h-full object-cover" /></div>
         <div class="gallery-slide"><img src="./1000002144.jpg" class="w-full h-full object-cover" /></div>
         <div class="gallery-slide"><img src="./1000002150.jpg" class="w-full h-full object-cover" /></div>
@@ -410,6 +409,16 @@
   <div class="fixed inset-0 z-[1] bg-black/60"></div>
   <div class="max-w-2xl mx-auto px-4 pt-12 pb-4 relative z-[2]">
 
+    <div class="text-center mb-6">
+      <div class="flex items-center justify-center gap-4 mb-4">
+        <video autoplay muted loop playsinline class="h-14 w-auto"><source src="./bloukloof-living-logo.webm" type="video/webm"><source src="./Bloukloof living logo.mov" type="video/mp4"></video>
+        <div class="w-px h-10 bg-white/30"></div>
+        <video autoplay muted loop playsinline class="h-8 w-auto opacity-75"><source src="./kiron-living-logo.webm" type="video/webm"><source src="./Kiron living logo.mp4" type="video/mp4"></video>
+      </div>
+      <h2 class="text-2xl font-black text-white">Your Results Are Ready</h2>
+      <p id="resultName" class="text-white/60 text-sm mt-1"></p>
+    </div>
+
     <!-- Submission confirmation -->
     <div class="bg-green-500/95 border border-green-400 rounded-2xl p-4 mb-6 flex items-start gap-3 shadow-xl">
       <div class="flex-shrink-0 w-9 h-9 rounded-full bg-white flex items-center justify-center mt-0.5">
@@ -421,19 +430,9 @@
       </div>
     </div>
 
-    <div class="text-center mb-8">
-      <div class="flex items-center justify-center gap-4 mb-4">
-        <video autoplay muted loop playsinline class="h-14 w-auto"><source src="./bloukloof-living-logo.webm" type="video/webm"><source src="./Bloukloof living logo.mov" type="video/mp4"></video>
-        <div class="w-px h-10 bg-white/30"></div>
-        <video autoplay muted loop playsinline class="h-8 w-auto opacity-75"><source src="./kiron-living-logo.webm" type="video/webm"><source src="./Kiron living logo.mp4" type="video/mp4"></video>
-      </div>
-      <h2 class="text-2xl font-black text-white">Your Results Are Ready</h2>
-      <p id="resultName" class="text-white/60 text-sm mt-1"></p>
-    </div>
-
     <!-- Score card — colour set by JS -->
     <div id="scoreCard" class="rounded-3xl p-8 text-center mb-5">
-      <p class="text-xs font-bold uppercase tracking-widest mb-5 opacity-60">Qualification Score</p>
+      <p class="text-xs font-bold uppercase tracking-widest mb-5 text-white">Qualification Score</p>
       <div id="scoreBadge" class="w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white">
         <div>
           <div id="scorePercent" class="text-4xl font-black leading-none"></div>
@@ -659,12 +658,15 @@
     './IMG-20250922-WA0006.jpg',
     './1000000382.jpg',
     './1000000406.jpg',
-    './1000000482.jpg',
-    './1000001160.jpg',
     './1000002126.jpg',
     './1000002144.jpg',
     './1000002150.jpg',
-    './1000007980.jpg'
+    './1000007980.jpg',
+    './bk-living-room.jpg',
+    './bk-kitchen.jpg',
+    './bk-bedroom.jpg',
+    './bk-house.jpg',
+    './bk-unit-11.jpg'
   ];
 
   let slideshowTimer  = null;
@@ -1160,7 +1162,7 @@
 
   // Testimonials background slideshow
   (function() {
-    const imgs = ['./IMG-20250922-WA0006.jpg','./1000000382.jpg','./1000000406.jpg','./1000000482.jpg','./1000001160.jpg','./1000002126.jpg','./1000002144.jpg','./1000002150.jpg'];
+    const imgs = ['./IMG-20250922-WA0006.jpg','./1000000382.jpg','./1000000406.jpg','./1000000482.jpg','./1000002126.jpg','./1000002144.jpg','./1000002150.jpg'];
     const container = document.getElementById('testimonialsSlideshow');
     imgs.forEach((src, i) => {
       const div = document.createElement('div');
