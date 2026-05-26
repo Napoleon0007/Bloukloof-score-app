@@ -14,7 +14,7 @@
 <style>
 .bk-wrap {
     position: relative;
-    padding: 28px 16px 40px;
+    padding: 28px 16px 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
     overflow: hidden;
@@ -115,7 +115,7 @@
             </div>
         </div>
 
-        <div id="bk_statusBanner" style="margin-top:20px;padding:18px 20px;border-radius:14px;text-align:center;font-weight:900;font-size:1.1rem;transition:background 0.4s,color 0.4s;background:#e74c3c;color:#fff;">
+        <div id="bk_statusBanner" style="margin-top:16px;padding:10px 14px;border-radius:12px;text-align:center;font-weight:900;font-size:0.9rem;line-height:1.4;transition:background 0.4s,color 0.4s;background:#e74c3c;color:#fff;">
             ✗ You don't qualify yet — adjust your inputs
         </div>
 
@@ -194,6 +194,7 @@
                 banner.textContent = '✗ You don\'t qualify yet — increase salary or grow your deposit';
             }
         }
+        postHeight();
     }
     function postHeight() {
         var h = document.documentElement.scrollHeight || document.body.scrollHeight;
