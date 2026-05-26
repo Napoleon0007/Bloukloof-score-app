@@ -183,18 +183,13 @@
         <div class="gallery-slide"><img src="./bk-bedroom.jpg" class="w-full h-full object-cover" /></div>
         <div class="gallery-slide"><img src="./bk-spare-bedroom.jpg" class="w-full h-full object-cover" /></div>
         <div class="gallery-slide"><img src="./bk-house.jpg" class="w-full h-full object-cover" /></div>
-        <div class="gallery-slide"><img src="./bk-unit-11.jpg" class="w-full h-full object-cover" /></div>
-        <div class="gallery-slide"><img src="./bk-unit-39.jpg" class="w-full h-full object-cover" /></div>
         <div class="gallery-slide"><img src="./bk-unit-45.jpg" class="w-full h-full object-cover" /></div>
         <div class="gallery-slide"><img src="./IMG-20250922-WA0006.jpg" class="w-full h-full object-cover" /></div>
         <div class="gallery-slide"><img src="./1000000382.jpg" class="w-full h-full object-cover" /></div>
         <div class="gallery-slide"><img src="./1000000406.jpg" class="w-full h-full object-cover" /></div>
-        <div class="gallery-slide"><img src="./1000000482.jpg" class="w-full h-full object-cover" /></div>
         <div class="gallery-slide"><img src="./1000002126.jpg" class="w-full h-full object-cover" /></div>
         <div class="gallery-slide"><img src="./1000002144.jpg" class="w-full h-full object-cover" /></div>
         <div class="gallery-slide"><img src="./1000002150.jpg" class="w-full h-full object-cover" /></div>
-        <div class="gallery-slide"><img src="./1000007979.png" class="w-full h-full object-cover" /></div>
-        <div class="gallery-slide"><img src="./1000007980.jpg" class="w-full h-full object-cover" /></div>
       </div>
       <button onclick="moveGallery(-1)" class="absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-black/40 hover:bg-black/65 text-white rounded-full w-11 h-11 flex items-center justify-center text-2xl transition-all">‹</button>
       <button onclick="moveGallery(1)" class="absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-black/40 hover:bg-black/65 text-white rounded-full w-11 h-11 flex items-center justify-center text-2xl transition-all">›</button>
@@ -664,12 +659,10 @@
     './1000002126.jpg',
     './1000002144.jpg',
     './1000002150.jpg',
-    './1000007980.jpg',
     './bk-living-room.jpg',
     './bk-kitchen.jpg',
     './bk-bedroom.jpg',
-    './bk-house.jpg',
-    './bk-unit-11.jpg'
+    './bk-house.jpg'
   ];
 
   let slideshowTimer  = null;
@@ -1157,7 +1150,7 @@
 
   // Testimonials background slideshow
   (function() {
-    const imgs = ['./IMG-20250922-WA0006.jpg','./1000000382.jpg','./1000000406.jpg','./1000000482.jpg','./1000002126.jpg','./1000002144.jpg','./1000002150.jpg'];
+    const imgs = ['./IMG-20250922-WA0006.jpg','./1000000382.jpg','./1000000406.jpg','./1000002126.jpg','./1000002144.jpg','./1000002150.jpg'];
     const container = document.getElementById('testimonialsSlideshow');
     imgs.forEach((src, i) => {
       const div = document.createElement('div');
