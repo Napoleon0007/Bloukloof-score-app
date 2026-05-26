@@ -42,11 +42,11 @@
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2 sm:py-3 flex items-center justify-between">
     <!-- Left: Bloukloof -->
     <a href="https://bloukloof.co.za/" target="_blank" rel="noopener noreferrer" class="flex items-center">
-      <video autoplay muted loop playsinline class="h-20 sm:h-24 w-auto"><source src="./Bloukloof living logo.mov" type="video/mp4"></video>
+      <video autoplay muted loop playsinline class="logo-vid h-20 sm:h-24 w-auto" style="opacity:0;transition:opacity 0.5s"><source src="./Bloukloof living logo.mov" type="video/mp4"></video>
     </a>
     <!-- Right: Kiron -->
     <a href="https://www.kironprop.co.za/" target="_blank" rel="noopener noreferrer" class="flex items-center">
-      <video autoplay muted loop playsinline class="h-16 sm:h-20 w-auto"><source src="./Kiron living logo.mp4" type="video/mp4"></video>
+      <video autoplay muted loop playsinline class="logo-vid h-16 sm:h-20 w-auto" style="opacity:0;transition:opacity 0.5s"><source src="./Kiron living logo.mp4" type="video/mp4"></video>
     </a>
   </div>
 </nav>
@@ -413,9 +413,9 @@
 
     <div class="text-center mb-6">
       <div class="flex items-center justify-center gap-4 mb-4">
-        <video autoplay muted loop playsinline class="h-14 w-auto"><source src="./bloukloof-living-logo.webm" type="video/webm"><source src="./Bloukloof living logo.mov" type="video/mp4"></video>
+        <video autoplay muted loop playsinline class="logo-vid h-14 w-auto" style="opacity:0;transition:opacity 0.5s"><source src="./bloukloof-living-logo.webm" type="video/webm"><source src="./Bloukloof living logo.mov" type="video/mp4"></video>
         <div class="w-px h-10 bg-white/30"></div>
-        <video autoplay muted loop playsinline class="h-8 w-auto opacity-75"><source src="./kiron-living-logo.webm" type="video/webm"><source src="./Kiron living logo.mp4" type="video/mp4"></video>
+        <video autoplay muted loop playsinline class="logo-vid h-8 w-auto" data-target-opacity="0.75" style="opacity:0;transition:opacity 0.5s"><source src="./kiron-living-logo.webm" type="video/webm"><source src="./Kiron living logo.mp4" type="video/mp4"></video>
       </div>
       <h2 class="text-2xl font-black text-white">Your Results Are Ready</h2>
       <p id="resultName" class="text-white/60 text-sm mt-1"></p>
@@ -1179,6 +1179,13 @@
       var frame = document.getElementById('bondCalcFrame');
       if (frame) { frame.style.height = e.data.height + 'px'; }
     }
+  });
+
+  // Fade logo videos in only after they can play — hides the native play-button flash on mobile
+  document.querySelectorAll('.logo-vid').forEach(function(v) {
+    var target = v.dataset.targetOpacity || '1';
+    function show() { v.style.opacity = target; }
+    if (v.readyState >= 3) { show(); } else { v.addEventListener('canplay', show, { once: true }); }
   });
 </script>
 
