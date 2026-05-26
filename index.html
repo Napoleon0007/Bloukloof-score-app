@@ -29,6 +29,10 @@
     .testimonials-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease; }
     .testimonials-slide.active { opacity: 1; }
     #quizOverlay, #resultsPage { -webkit-overflow-scrolling: touch; }
+    /* Prevent iOS Safari auto-zoom on input focus (triggers when font-size < 16px) */
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+      select, textarea, input { font-size: 16px !important; }
+    }
   </style>
 </head>
 <body class="bg-white text-gray-900 overflow-x-hidden">
