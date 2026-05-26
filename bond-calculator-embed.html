@@ -12,37 +12,62 @@
      ============================================================ -->
 
 <style>
+html, body { -webkit-text-size-adjust: 100%; }
 .bk-wrap {
     position: relative;
-    padding: 28px 16px 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 22px 14px 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, sans-serif;
     color: white;
     overflow: hidden;
     background: #0f1928;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .bk-wrap * { box-sizing: border-box; margin: 0; padding: 0; }
 .bk-inner { max-width: 560px; margin: 0 auto; position: relative; z-index: 2; }
-.bk-title { text-align: center; font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; }
-.bk-subtitle { text-align: center; font-size: 0.82rem; opacity: 0.65; margin-bottom: 20px; line-height: 1.4; }
-.bk-field { margin-bottom: 24px; }
-.bk-label { display: block; font-size: 0.85rem; font-weight: 600; opacity: 0.8; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
-.bk-amount { display: block; font-size: 2rem; font-weight: 900; color: #e74c3c; margin-bottom: 10px; line-height: 1; }
-.bk-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 4px; outline: none; cursor: pointer; touch-action: none; }
-.bk-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 30px; height: 30px; border-radius: 50%; background: #e74c3c; cursor: pointer; box-shadow: 0 2px 12px rgba(231,76,60,0.6); }
-.bk-slider::-moz-range-thumb { width: 30px; height: 30px; border-radius: 50%; background: #e74c3c; border: none; cursor: pointer; }
-.bk-range-labels { display: flex; justify-content: space-between; font-size: 0.7rem; opacity: 0.4; margin-top: 6px; }
-.bk-result-box { background: white; border-radius: 16px; padding: 24px 20px; margin-top: 8px; color: #2c3e50; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-.bk-result-main { text-align: center; margin-bottom: 16px; }
-.bk-result-lbl { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 6px; }
-.bk-result-num { font-size: 2.6rem; font-weight: 900; color: #e74c3c; line-height: 1; word-break: break-all; }
-.bk-result-sub { font-size: 0.72rem; color: #aaa; margin-top: 6px; line-height: 1.5; }
-.bk-divider { height: 1px; background: #f0f0f0; margin: 14px 0; }
-.bk-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f5f5f5; gap: 12px; }
+.bk-title { text-align: center; font-size: 1.35rem; font-weight: 800; margin-bottom: 4px; }
+.bk-subtitle { text-align: center; font-size: 0.78rem; opacity: 0.7; margin-bottom: 18px; line-height: 1.4; }
+.bk-field { margin-bottom: 22px; touch-action: pan-y; }
+.bk-label { display: block; font-size: 0.78rem; font-weight: 600; opacity: 0.8; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.bk-amount { display: block; font-size: 1.75rem; font-weight: 900; color: #e74c3c; margin-bottom: 12px; line-height: 1; }
+
+/* Slider — mobile-first, large touch target */
+.bk-slider {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 40px;
+    background: transparent;
+    outline: none; cursor: pointer;
+    touch-action: pan-y;
+    padding: 0; margin: 0;
+}
+.bk-slider::-webkit-slider-runnable-track { height: 10px; border-radius: 5px; border: none; background: linear-gradient(to right, #e74c3c var(--pct,0%), rgba(255,255,255,0.18) var(--pct,0%)); }
+.bk-slider::-moz-range-track              { height: 10px; border-radius: 5px; border: none; background: linear-gradient(to right, #e74c3c var(--pct,0%), rgba(255,255,255,0.18) var(--pct,0%)); }
+.bk-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: #e74c3c; border: 3px solid #fff;
+    box-shadow: 0 3px 12px rgba(231,76,60,0.55);
+    cursor: pointer;
+    margin-top: -11px;
+}
+.bk-slider::-moz-range-thumb {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: #e74c3c; border: 3px solid #fff;
+    box-shadow: 0 3px 12px rgba(231,76,60,0.55);
+    cursor: pointer;
+}
+.bk-range-labels { display: flex; justify-content: space-between; font-size: 0.68rem; opacity: 0.5; margin-top: 2px; }
+.bk-result-box { background: white; border-radius: 14px; padding: 18px 14px; margin-top: 8px; color: #2c3e50; box-shadow: 0 14px 36px rgba(0,0,0,0.28); }
+.bk-result-main { text-align: center; margin-bottom: 14px; }
+.bk-result-lbl { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 6px; }
+.bk-result-num { font-size: 2rem; font-weight: 900; color: #e74c3c; line-height: 1; }
+.bk-result-sub { font-size: 0.68rem; color: #aaa; margin-top: 6px; line-height: 1.5; }
+.bk-divider { height: 1px; background: #f0f0f0; margin: 12px 0; }
+.bk-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid #f5f5f5; gap: 10px; }
 .bk-row:last-of-type { border-bottom: none; }
-.bk-row-lbl { font-size: 0.82rem; color: #888; flex: 1; }
-.bk-row-val { font-size: 0.95rem; font-weight: 800; color: #2c3e50; white-space: nowrap; }
-.bk-qualifier { display: flex; align-items: flex-start; gap: 12px; padding: 14px; border-radius: 10px; margin-top: 16px; }
+.bk-row-lbl { font-size: 0.78rem; color: #888; flex: 1; }
+.bk-row-val { font-size: 0.9rem; font-weight: 800; color: #2c3e50; white-space: nowrap; }
+.bk-qualifier { display: flex; align-items: flex-start; gap: 10px; padding: 12px; border-radius: 10px; margin-top: 14px; }
 .bk-q-yes  { background: #e8f8f0; border: 2px solid #27ae60; }
 .bk-q-close{ background: #fff8e8; border: 2px solid #f39c12; }
 .bk-q-no   { background: #fdf0f0; border: 2px solid #e74c3c; }
@@ -128,7 +153,7 @@
     function fmtR(n){ return 'R ' + fmt(n); }
     function setTrack(el){
         var pct = ((parseFloat(el.value) - parseFloat(el.min)) / (parseFloat(el.max) - parseFloat(el.min))) * 100;
-        el.style.background = 'linear-gradient(to right,#e74c3c ' + pct + '%,rgba(255,255,255,0.2) ' + pct + '%)';
+        el.style.setProperty('--pct', pct + '%');
     }
     function calc(){
         var sal  = parseFloat(document.getElementById('bk_salSlider').value)  || 0;
