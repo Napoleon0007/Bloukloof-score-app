@@ -1012,31 +1012,31 @@
       card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#1e3a5f] border border-green-400/30 shadow-xl';
       badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-green-500 shadow-xl shadow-green-500/40 ring-4 ring-green-400/30';
       title.className = 'text-2xl font-black mb-2 text-green-400';
-      title.textContent = 'Excellent — Very Likely to Qualify';
+      title.textContent = 'Great — You Qualify for a Bond!';
       msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-90 text-white';
-      msg.textContent = `${leadData.firstName}, your profile looks strong! Based on your answers, you have a very high likelihood of bond approval. Our consultants are ready to move fast.`;
+      msg.textContent = `Congratulations ${leadData.firstName}! One of our team members will be in touch within the next 24 hours to walk you through the next steps and help you secure your unit.`;
       list.innerHTML  = `
         <div class="flex gap-3 p-3 bg-white/5 border border-green-400/20 rounded-xl"><span class="text-green-400 mt-0.5">✓</span><p class="text-sm text-white/90">Your income and employment profile looks well-suited for a bond application.</p></div>
         <div class="flex gap-3 p-3 bg-white/5 border border-green-400/20 rounded-xl"><span class="text-green-400 mt-0.5">✓</span><p class="text-sm text-white/90">Entry units from R1,095,000 with 0% transfer duty may fall comfortably within your budget.</p></div>
-        <div class="flex gap-3 p-3 bg-white/5 border border-green-400/20 rounded-xl"><span class="text-green-400 mt-0.5">✓</span><p class="text-sm text-white/90">We recommend contacting a consultant this week — units are limited and selling fast.</p></div>`;
+        <div class="flex gap-3 p-3 bg-white/5 border border-green-400/20 rounded-xl"><span class="text-green-400 mt-0.5">✓</span><p class="text-sm text-white/90">Expect a call within 24 hours — in the meantime, feel free to WhatsApp or download the brochure below.</p></div>`;
     } else if (pct >= 50) {
       card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#1e3a5f] border border-yellow-400/30 shadow-xl';
       badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-yellow-500 shadow-xl shadow-yellow-500/40 ring-4 ring-yellow-400/30';
       title.className = 'text-2xl font-black mb-2 text-yellow-400';
-      title.textContent = 'Good Potential — We Can Likely Get You Approved';
+      title.textContent = "You're Nearly There";
       msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-90 text-white';
-      msg.textContent = `${leadData.firstName}, you're on the right track. There are a couple of areas to strengthen, but with the right guidance, approval is very achievable.`;
+      msg.textContent = `${leadData.firstName}, with a few small adjustments everything should fall into place. Our team can guide you through what to tweak so you're ready when you apply.`;
       list.innerHTML  = `
-        <div class="flex gap-3 p-3 bg-white/5 border border-yellow-400/20 rounded-xl"><span class="text-yellow-400 mt-0.5">◉</span><p class="text-sm text-white/90">Some aspects of your profile need attention — nothing that can't be addressed with guidance.</p></div>
-        <div class="flex gap-3 p-3 bg-white/5 border border-yellow-400/20 rounded-xl"><span class="text-yellow-400 mt-0.5">◉</span><p class="text-sm text-white/90">A larger deposit or reducing existing monthly debt could significantly boost your approval odds.</p></div>
-        <div class="flex gap-3 p-3 bg-white/5 border border-yellow-400/20 rounded-xl"><span class="text-yellow-400 mt-0.5">◉</span><p class="text-sm text-white/90">Our consultants specialise in getting borderline applications over the line. Let's talk.</p></div>`;
+        <div class="flex gap-3 p-3 bg-white/5 border border-yellow-400/20 rounded-xl"><span class="text-yellow-400 mt-0.5">◉</span><p class="text-sm text-white/90">A couple of areas in your profile need attention — small changes can make a meaningful difference.</p></div>
+        <div class="flex gap-3 p-3 bg-white/5 border border-yellow-400/20 rounded-xl"><span class="text-yellow-400 mt-0.5">◉</span><p class="text-sm text-white/90">A larger deposit or trimming existing monthly debt is usually the quickest way to improve your position.</p></div>
+        <div class="flex gap-3 p-3 bg-white/5 border border-yellow-400/20 rounded-xl"><span class="text-yellow-400 mt-0.5">◉</span><p class="text-sm text-white/90">Reach out and we'll talk you through the adjustments that will get you ready.</p></div>`;
     } else {
       card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#1e3a5f] border border-red-400/30 shadow-xl';
       badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-red-500 shadow-xl shadow-red-500/40 ring-4 ring-red-400/30';
       title.className = 'text-2xl font-black mb-2 text-red-400';
-      title.textContent = "Needs Work — Here's How to Improve";
+      title.textContent = "You've Got a Way to Go";
       msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-90 text-white';
-      msg.textContent = `Don't be discouraged, ${leadData.firstName}. Owning is still absolutely possible — it just needs a bit more preparation. Focus on these areas:`;
+      msg.textContent = `Don't be discouraged, ${leadData.firstName} — owning your home is still absolutely possible, it just needs a bit more preparation. Focus on these areas, and we'll be here when you're ready:`;
       list.innerHTML  = `
         <div class="flex gap-3 p-3 bg-white/5 border border-red-400/20 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-white/90"><strong>Credit health:</strong> Check your score at TransUnion or Experian. Dispute errors and start clearing overdue accounts.</p></div>
         <div class="flex gap-3 p-3 bg-white/5 border border-red-400/20 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-white/90"><strong>Reduce debt:</strong> Pay down store accounts and personal loans to improve your debt-to-income ratio before applying.</p></div>
