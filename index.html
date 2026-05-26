@@ -191,6 +191,112 @@
   </div>
 </section>
 
+<!-- ===================== TAP TO REVEAL ===================== -->
+<section class="py-12 sm:py-20 px-4" style="background:linear-gradient(180deg,#0f2340 0%,#1e3a5f 100%);">
+  <div class="max-w-2xl mx-auto text-center">
+    <p class="text-xs font-bold uppercase tracking-widest text-[#ff6a00] mb-3">The honest number</p>
+    <h2 class="text-2xl sm:text-4xl font-black text-white mb-6 leading-tight">What does R1,095,000 actually cost per month?</h2>
+    <button id="revealCard" type="button" class="relative w-full max-w-md mx-auto bg-white rounded-3xl p-8 shadow-2xl overflow-hidden focus:outline-none transition-transform active:scale-[0.97] block">
+      <div id="revealFog" class="absolute inset-0 z-[2] flex items-center justify-center transition-all duration-700" style="backdrop-filter:blur(14px); background:rgba(255,255,255,0.85);">
+        <div class="text-center">
+          <div class="text-5xl mb-2 select-none">👆</div>
+          <p class="text-sm font-black text-[#1e3a5f] uppercase tracking-widest">Tap to reveal</p>
+        </div>
+      </div>
+      <div class="relative z-[1] text-center py-2">
+        <p class="text-[10px] font-bold uppercase tracking-widest text-[#1e3a5f]/60 mb-1">At today's rates, around</p>
+        <p class="text-5xl sm:text-6xl font-black text-[#1e3a5f] leading-none">R11,300</p>
+        <p class="text-sm text-[#1e3a5f]/70 mt-2">per month · 20-year bond at 11%</p>
+        <p class="text-xs text-[#ff6a00] font-bold mt-3">Less than most George rentals on the same size unit.</p>
+      </div>
+    </button>
+    <p class="text-white/50 text-xs mt-4">Estimate based on R1,095,000 entry price at current prime rate.</p>
+  </div>
+</section>
+
+<!-- ===================== TILT-VIEW ===================== -->
+<section class="py-12 sm:py-20 px-4" style="background:#0a1830;">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-6">
+      <p class="text-xs font-bold uppercase tracking-widest text-[#ff6a00] mb-3">From your future window</p>
+      <h2 class="text-2xl sm:text-4xl font-black text-white mb-4 leading-tight">Tilt your phone to look around.</h2>
+      <p class="text-white/70 text-sm max-w-xl mx-auto">This is the view from Bloukloof@69. Move your phone left and right to scan the horizon.</p>
+    </div>
+    <div id="tiltStage" class="relative w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10" style="aspect-ratio:16/9; background:#000;">
+      <video id="tiltVideo" muted playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover">
+        <source src="./bloukloof-view.mp4" type="video/mp4">
+      </video>
+      <div id="tiltOverlay" class="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+        <button id="tiltStart" type="button" class="bg-[#ff6a00] hover:bg-[#e55f00] text-white font-black px-6 py-3.5 rounded-xl uppercase tracking-wide text-sm shadow-xl">
+          📱 Tap to enable tilt view
+        </button>
+      </div>
+      <div id="tiltHint" class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full hidden">
+        ← Tilt your phone →
+      </div>
+    </div>
+    <p id="tiltFallback" class="text-white/40 text-xs text-center mt-4 hidden">Tilt control needs a phone. Tap and drag the image to scan instead.</p>
+  </div>
+</section>
+
+<!-- ===================== RENT vs OWN ===================== -->
+<section class="py-12 sm:py-20 px-4" style="background:#0f2340;">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-8">
+      <p class="text-xs font-bold uppercase tracking-widest text-[#ff6a00] mb-3">The 30-year truth</p>
+      <h2 class="text-2xl sm:text-4xl font-black text-white mb-4 leading-tight">Where will your rent money end up in 30 years?</h2>
+      <p class="text-white/70 text-sm max-w-xl mx-auto">Set your current monthly rent below, then watch where the money ends up.</p>
+    </div>
+
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-5 mb-6">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-white/70 text-xs font-bold uppercase tracking-wide">Your current rent</span>
+        <span class="text-[#ff6a00] font-black text-xl">R<span id="rvoRent">12,000</span>/mo</span>
+      </div>
+      <input id="rvoSlider" type="range" min="3000" max="30000" step="500" value="12000"
+        class="w-full" style="accent-color:#ff6a00; height:36px; touch-action:pan-y;" />
+    </div>
+
+    <div class="grid grid-cols-2 gap-3 sm:gap-6">
+      <div class="bg-gradient-to-b from-red-900/40 to-red-900/10 border border-red-400/30 rounded-2xl p-4 sm:p-6 text-center flex flex-col">
+        <p class="text-red-300 text-[10px] font-bold uppercase tracking-widest mb-1">Renting</p>
+        <p class="text-white text-sm sm:text-base font-bold mb-4">Money to landlord</p>
+        <div class="relative h-44 sm:h-72 bg-white/5 rounded-xl overflow-hidden flex items-end mb-4 border border-red-400/20">
+          <div id="rvoRentBar" class="w-full bg-gradient-to-t from-red-700 to-red-400 transition-all" style="height:0%;transition-duration:200ms"></div>
+        </div>
+        <p class="text-white/60 text-[10px] uppercase tracking-wide">Paid in rent</p>
+        <p class="text-xl sm:text-2xl font-black text-red-400 leading-tight">R<span id="rvoRentPaid">0</span></p>
+        <p class="text-white/60 text-[10px] uppercase tracking-wide mt-2">In your name</p>
+        <p class="text-xl sm:text-2xl font-black text-red-500 leading-tight">R0</p>
+      </div>
+      <div class="bg-gradient-to-b from-green-900/40 to-green-900/10 border border-green-400/30 rounded-2xl p-4 sm:p-6 text-center flex flex-col">
+        <p class="text-green-300 text-[10px] font-bold uppercase tracking-widest mb-1">Owning</p>
+        <p class="text-white text-sm sm:text-base font-bold mb-4">Your home's value</p>
+        <div class="relative h-44 sm:h-72 bg-white/5 rounded-xl overflow-hidden flex items-end mb-4 border border-green-400/20">
+          <div id="rvoOwnBar" class="w-full bg-gradient-to-t from-green-700 to-green-400 transition-all" style="height:0%;transition-duration:200ms"></div>
+        </div>
+        <p class="text-white/60 text-[10px] uppercase tracking-wide">Bond paid</p>
+        <p class="text-xl sm:text-2xl font-black text-green-400 leading-tight">R<span id="rvoOwnPaid">0</span></p>
+        <p class="text-white/60 text-[10px] uppercase tracking-wide mt-2">Home worth</p>
+        <p class="text-xl sm:text-2xl font-black text-green-300 leading-tight">R<span id="rvoHomeWorth">0</span></p>
+      </div>
+    </div>
+
+    <div class="text-center mt-6">
+      <p class="text-white/70 text-[10px] uppercase tracking-widest mb-1">Year</p>
+      <p class="text-white text-4xl font-black"><span id="rvoYear">0</span> <span class="text-white/40 text-lg">/ 30</span></p>
+    </div>
+
+    <div class="text-center mt-6">
+      <button id="rvoPlay" type="button" class="bg-[#ff6a00] hover:bg-[#e55f00] text-white font-black px-8 py-3.5 rounded-xl uppercase tracking-wide text-sm shadow-xl transition-all">
+        ▶ Play 30 years
+      </button>
+    </div>
+
+    <p class="text-white/40 text-[11px] text-center mt-6 max-w-xl mx-auto leading-relaxed">Bond: R1,095,000 over 20 years at 11% ≈ R11,300/mo. After year 20, no more bond. Home appreciates ~5%/year. Rent escalates ~6%/year (SA average).</p>
+  </div>
+</section>
+
 <!-- ===================== GALLERY ===================== -->
 <section id="gallery" class="py-10 sm:py-20" style="background: #1e3a5f; border-top: 3px solid #1e3a5f; border-bottom: 3px solid #1e3a5f;">
   <div class="max-w-6xl mx-auto px-4">
@@ -221,6 +327,40 @@
       <div class="absolute bottom-3 right-4 z-10 bg-black/45 text-white text-sm px-3 py-1 rounded-full"><span id="galleryIdx">1</span> / 20</div>
     </div>
 
+  </div>
+</section>
+
+<!-- ===================== PIN YOUR RESERVATION ===================== -->
+<section id="reservSection" class="py-12 sm:py-16 px-4" style="background:linear-gradient(135deg,#0a1830 0%,#1e3a5f 100%);">
+  <div class="max-w-xl mx-auto text-center">
+    <p class="text-xs font-bold uppercase tracking-widest text-[#ff6a00] mb-3">No cost · No commitment</p>
+    <h2 class="text-2xl sm:text-4xl font-black text-white mb-3 leading-tight">Hold your priority slot for 24 hours.</h2>
+    <p class="text-white/70 text-sm max-w-md mx-auto mb-6">Reserve a 24-hour window where a Bloukloof consultant is briefed on your situation and ready when you call. No deposit. Just first-in-line.</p>
+
+    <div id="reservPrompt" class="bg-white/5 border border-white/10 rounded-2xl p-6">
+      <button id="reservStart" type="button" class="w-full bg-[#ff6a00] hover:bg-[#e55f00] text-white font-black py-4 rounded-xl uppercase tracking-wide text-sm shadow-xl transition-all">
+        🔒 Pin my 24-hour priority slot
+      </button>
+    </div>
+
+    <div id="reservPhoneForm" class="bg-white rounded-2xl p-6 hidden text-left">
+      <p class="text-[#1e3a5f] text-sm font-bold mb-3">Drop your number — we'll lock your slot.</p>
+      <input id="reservPhone" type="tel" placeholder="Mobile number" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#1e3a5f] mb-3" />
+      <button id="reservConfirm" type="button" class="w-full bg-[#1e3a5f] hover:bg-[#162d4a] text-white font-bold py-3 rounded-xl transition-all">Lock my slot →</button>
+    </div>
+
+    <div id="reservActive" class="bg-gradient-to-br from-green-500/30 to-green-700/20 border-2 border-green-400 rounded-2xl p-6 hidden">
+      <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-green-500 mb-3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <p class="text-white font-black text-lg mb-2">Your slot is locked.</p>
+      <p class="text-white/80 text-sm mb-4">A consultant has been briefed and will be in touch within 24 hours.</p>
+      <div class="bg-black/30 rounded-xl py-3 px-4 mb-3">
+        <p class="text-white/60 text-[10px] uppercase tracking-widest mb-1">Time remaining</p>
+        <p class="text-white font-black text-3xl tabular-nums" id="reservCountdown">23:59:59</p>
+      </div>
+      <p class="text-white/60 text-[11px]">Saved on this device — refresh anytime to check.</p>
+    </div>
   </div>
 </section>
 
@@ -1624,6 +1764,290 @@
     function show() { v.style.opacity = target; }
     if (v.readyState >= 3) { show(); } else { v.addEventListener('canplay', show, { once: true }); }
   });
+
+  // ================================================================
+  // WIDGET: TAP TO REVEAL
+  // ================================================================
+  (function() {
+    const card = document.getElementById('revealCard');
+    const fog  = document.getElementById('revealFog');
+    if (!card || !fog) return;
+    card.addEventListener('click', () => {
+      if (fog.dataset.revealed) return;
+      fog.dataset.revealed = '1';
+      fog.style.opacity = '0';
+      fog.style.transform = 'scale(1.08)';
+      setTimeout(() => { fog.style.display = 'none'; }, 700);
+    });
+  })();
+
+  // ================================================================
+  // WIDGET: TILT VIEW
+  // ================================================================
+  (function() {
+    const stage    = document.getElementById('tiltStage');
+    const video    = document.getElementById('tiltVideo');
+    const overlay  = document.getElementById('tiltOverlay');
+    const startBtn = document.getElementById('tiltStart');
+    const hint     = document.getElementById('tiltHint');
+    const fallback = document.getElementById('tiltFallback');
+    if (!startBtn || !video) return;
+
+    let active = false;
+    let centerGamma = null;
+
+    function activate() {
+      overlay.style.display = 'none';
+      hint.classList.remove('hidden');
+      active = true;
+      if (video.duration) video.currentTime = video.duration / 2;
+    }
+
+    function handleOrient(e) {
+      if (!active || e.gamma == null || !video.duration) return;
+      if (centerGamma == null) centerGamma = e.gamma;
+      const delta = e.gamma - centerGamma;
+      const range = 30;
+      const t = Math.max(-1, Math.min(1, delta / range));
+      const target = (t + 1) / 2;
+      video.currentTime = target * video.duration;
+    }
+
+    function enableDrag(showFallback) {
+      overlay.style.display = 'none';
+      if (showFallback) fallback.classList.remove('hidden');
+      hint.classList.remove('hidden');
+      active = true;
+      if (video.duration) video.currentTime = video.duration / 2;
+      let dragging = false, startX = 0, startT = 0;
+      stage.addEventListener('mousedown', e => { dragging = true; startX = e.clientX; startT = video.currentTime; });
+      window.addEventListener('mousemove', e => {
+        if (!dragging || !video.duration) return;
+        const dx = e.clientX - startX;
+        const t = startT - (dx / stage.offsetWidth) * video.duration;
+        video.currentTime = Math.max(0, Math.min(video.duration, t));
+      });
+      window.addEventListener('mouseup', () => { dragging = false; });
+      stage.addEventListener('touchstart', e => {
+        dragging = true; startX = e.touches[0].clientX; startT = video.currentTime;
+      }, { passive: true });
+      stage.addEventListener('touchmove', e => {
+        if (!dragging || !video.duration) return;
+        const dx = e.touches[0].clientX - startX;
+        const t = startT - (dx / stage.offsetWidth) * video.duration;
+        video.currentTime = Math.max(0, Math.min(video.duration, t));
+      }, { passive: true });
+      stage.addEventListener('touchend', () => { dragging = false; }, { passive: true });
+    }
+
+    function tryStart() {
+      if (typeof DeviceOrientationEvent !== 'undefined' &&
+          typeof DeviceOrientationEvent.requestPermission === 'function') {
+        DeviceOrientationEvent.requestPermission().then(state => {
+          if (state === 'granted') {
+            window.addEventListener('deviceorientation', handleOrient);
+            activate();
+          } else { enableDrag(true); }
+        }).catch(() => enableDrag(true));
+      } else if (window.DeviceOrientationEvent && 'ontouchstart' in window) {
+        window.addEventListener('deviceorientation', handleOrient);
+        activate();
+      } else {
+        enableDrag(true);
+      }
+    }
+
+    startBtn.addEventListener('click', () => {
+      if (video.readyState < 1) {
+        video.addEventListener('loadedmetadata', tryStart, { once: true });
+        video.load();
+      } else {
+        tryStart();
+      }
+    });
+  })();
+
+  // ================================================================
+  // WIDGET: RENT vs OWN VISUALISER
+  // ================================================================
+  (function() {
+    const rentEl       = document.getElementById('rvoRent');
+    const slider       = document.getElementById('rvoSlider');
+    const playBtn      = document.getElementById('rvoPlay');
+    const rentBar      = document.getElementById('rvoRentBar');
+    const ownBar       = document.getElementById('rvoOwnBar');
+    const rentPaidEl   = document.getElementById('rvoRentPaid');
+    const ownPaidEl    = document.getElementById('rvoOwnPaid');
+    const homeWorthEl  = document.getElementById('rvoHomeWorth');
+    const yearEl       = document.getElementById('rvoYear');
+    if (!slider) return;
+
+    const HOME_PRICE      = 1095000;
+    const BOND_MONTHLY    = 11300;
+    const BOND_YEARS      = 20;
+    const APPRECIATION    = 0.05;
+    const RENT_ESCALATION = 0.06;
+
+    const fmt = n => Math.round(n).toLocaleString('en-ZA');
+
+    function computeYear(year, monthlyRent) {
+      let rentTotal = 0, r = monthlyRent;
+      for (let y = 0; y < year; y++) {
+        rentTotal += r * 12;
+        r *= (1 + RENT_ESCALATION);
+      }
+      const bondTotal = BOND_MONTHLY * 12 * Math.min(year, BOND_YEARS);
+      const homeValue = HOME_PRICE * Math.pow(1 + APPRECIATION, year);
+      return { rentTotal, bondTotal, homeValue };
+    }
+
+    const maxRentEnd = computeYear(30, parseInt(slider.max, 10)).rentTotal;
+    const maxHomeEnd = HOME_PRICE * Math.pow(1 + APPRECIATION, 30);
+    const scaleMax   = Math.max(maxRentEnd, maxHomeEnd);
+
+    function update(year, monthlyRent) {
+      const r = computeYear(year, monthlyRent);
+      yearEl.textContent      = year;
+      rentPaidEl.textContent  = fmt(r.rentTotal);
+      ownPaidEl.textContent   = fmt(r.bondTotal);
+      homeWorthEl.textContent = fmt(r.homeValue);
+      rentBar.style.height    = Math.min(100, (r.rentTotal / scaleMax) * 100) + '%';
+      ownBar.style.height     = Math.min(100, (r.homeValue / scaleMax) * 100) + '%';
+    }
+
+    let playing = false, currentYear = 0;
+
+    slider.addEventListener('input', () => {
+      rentEl.textContent = fmt(parseInt(slider.value, 10));
+      if (!playing) update(currentYear, parseInt(slider.value, 10));
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (playing) return;
+      playing = true;
+      playBtn.textContent = 'Playing...';
+      playBtn.disabled = true;
+      const monthlyRent = parseInt(slider.value, 10);
+      currentYear = 0;
+      update(0, monthlyRent);
+      const timer = setInterval(() => {
+        currentYear++;
+        update(currentYear, monthlyRent);
+        if (currentYear >= 30) {
+          clearInterval(timer);
+          playing = false;
+          playBtn.disabled = false;
+          playBtn.textContent = '↻ Replay 30 years';
+        }
+      }, 110);
+    });
+
+    rentEl.textContent = fmt(12000);
+    update(0, 12000);
+  })();
+
+  // ================================================================
+  // WIDGET: PIN YOUR RESERVATION (24h)
+  // ================================================================
+  (function() {
+    const startBtn   = document.getElementById('reservStart');
+    const phoneForm  = document.getElementById('reservPhoneForm');
+    const prompt     = document.getElementById('reservPrompt');
+    const active     = document.getElementById('reservActive');
+    const countdown  = document.getElementById('reservCountdown');
+    const phoneInp   = document.getElementById('reservPhone');
+    const confirmBtn = document.getElementById('reservConfirm');
+    if (!startBtn) return;
+
+    const STORAGE_KEY = 'bk_reservation';
+    const DURATION_MS = 24 * 60 * 60 * 1000;
+    let countdownTimer = null;
+
+    function getReservation() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return null;
+        const r = JSON.parse(raw);
+        if (Date.now() - r.startedAt >= DURATION_MS) {
+          localStorage.removeItem(STORAGE_KEY);
+          return null;
+        }
+        return r;
+      } catch(e) { return null; }
+    }
+
+    function fmtTime(ms) {
+      const h = Math.floor(ms / 3600000);
+      const m = Math.floor((ms % 3600000) / 60000);
+      const s = Math.floor((ms % 60000) / 1000);
+      return String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    }
+
+    function startCountdown(r) {
+      if (countdownTimer) clearTimeout(countdownTimer);
+      const tick = () => {
+        const remaining = DURATION_MS - (Date.now() - r.startedAt);
+        if (remaining <= 0) {
+          localStorage.removeItem(STORAGE_KEY);
+          active.classList.add('hidden');
+          prompt.classList.remove('hidden');
+          return;
+        }
+        countdown.textContent = fmtTime(remaining);
+        countdownTimer = setTimeout(tick, 1000);
+      };
+      tick();
+    }
+
+    function activate(r) {
+      prompt.classList.add('hidden');
+      phoneForm.classList.add('hidden');
+      active.classList.remove('hidden');
+      startCountdown(r);
+    }
+
+    function pushReservation(r) {
+      if (typeof pushToSheets !== 'function') return;
+      const ld = (typeof leadData !== 'undefined' && leadData) ? leadData : {};
+      pushToSheets({
+        firstName: ld.firstName || '',
+        surname:   ld.surname   || '',
+        phone:     r.phone,
+        email:     ld.email     || '',
+        completionStatus: 'Priority slot reserved (24h)',
+        submittedAt:      new Date().toISOString()
+      });
+    }
+
+    const existing = getReservation();
+    if (existing) activate(existing);
+
+    startBtn.addEventListener('click', () => {
+      const ld = (typeof leadData !== 'undefined' && leadData) ? leadData : {};
+      if (ld.phone) {
+        const r = { phone: ld.phone, startedAt: Date.now() };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(r));
+        pushReservation(r);
+        activate(r);
+      } else {
+        prompt.classList.add('hidden');
+        phoneForm.classList.remove('hidden');
+        phoneInp.focus();
+      }
+    });
+
+    confirmBtn.addEventListener('click', () => {
+      const phone = (phoneInp.value || '').trim();
+      if (phone.length < 7) {
+        phoneInp.style.borderColor = '#ef4444';
+        return;
+      }
+      const r = { phone, startedAt: Date.now() };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(r));
+      pushReservation(r);
+      activate(r);
+    });
+  })();
 </script>
 
 </body>
