@@ -236,8 +236,7 @@ html, body { -webkit-text-size-adjust: 100%; }
     window.addEventListener('load', postHeight);
     window.addEventListener('orientationchange', function(){ setTimeout(postHeight, 250); });
     if (document.fonts && document.fonts.ready) { document.fonts.ready.then(postHeight); }
-    setTimeout(postHeight, 200);
-    setTimeout(postHeight, 800);
+    window.addEventListener('message', function(e){ if (e.data && e.data.type === 'bk_measure') postHeight(); });
 
 
 </script>

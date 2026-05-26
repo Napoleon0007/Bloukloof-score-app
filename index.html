@@ -997,6 +997,10 @@
     document.getElementById('resultsPage').classList.remove('hidden');
     document.body.style.overflow = 'auto';
     document.getElementById('resultsPage').scrollTop = 0;
+    setTimeout(function(){
+      var frame = document.getElementById('bondCalcFrame');
+      if (frame && frame.contentWindow) { frame.contentWindow.postMessage({ type: 'bk_measure' }, '*'); }
+    }, 50);
     const bgVideo = document.querySelector('#resultsPage video');
     if (bgVideo) { bgVideo.load(); bgVideo.play().catch(() => {}); }
 
