@@ -40,6 +40,16 @@
     .cta-shimmer::after { content:''; position:absolute; top:0; left:0; width:35%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.28),transparent); animation:shimmerSweep 4.5s ease-in-out 2s infinite; pointer-events:none; }
     #quizConfirmBar { transform: translateY(100%); opacity: 0; transition: transform 0.25s ease, opacity 0.25s ease; }
     #quizConfirmBar.show { transform: translateY(0); opacity: 1; }
+    /* Reward badge */
+    @keyframes rewardFloat { 0%{opacity:0;transform:translate(-50%,8px) scale(0.8);} 18%{opacity:1;transform:translate(-50%,-2px) scale(1.15);} 40%{opacity:1;transform:translate(-50%,-8px) scale(1);} 100%{opacity:0;transform:translate(-50%,-44px) scale(0.95);} }
+    #rewardBadge { position: fixed; left: 50%; transform: translateX(-50%); pointer-events: none; z-index: 25; color: #ff6a00; font-weight: 900; font-size: 22px; text-shadow: 0 2px 14px rgba(0,0,0,0.55); display: none; }
+    #rewardBadge.pop { display: block; animation: rewardFloat 1.2s ease-out forwards; }
+    /* Midway teaser */
+    @keyframes teaserIn { from{opacity:0;transform:scale(0.92);} to{opacity:1;transform:scale(1);} }
+    #midwayTeaser .teaser-card { animation: teaserIn 0.5s cubic-bezier(0.22,1,0.36,1) forwards; }
+    /* Calc screen step fade */
+    @keyframes stepIn { from{opacity:0;transform:translateY(6px);} to{opacity:1;transform:translateY(0);} }
+    .calc-step { opacity: 0; animation: stepIn 0.35s ease forwards; }
     /* Prevent iOS Safari auto-zoom on input focus (triggers when font-size < 16px) */
     @media screen and (-webkit-min-device-pixel-ratio: 0) {
       select, textarea, input { font-size: 16px !important; }
@@ -381,6 +391,59 @@
   </div>
 </div>
 
+<!-- ===================== EXIT-INTENT RESCUE MODAL ===================== -->
+<div id="rescueModal" class="fixed inset-0 z-[350] hidden items-center justify-center p-4 modal-backdrop bg-black/80">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-7 relative fade-in">
+    <div class="text-center mb-5">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-orange-100 mb-3">
+        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#ff6a00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      <h3 class="text-xl font-black text-[#1e3a5f]">Don't lose your score!</h3>
+      <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+        You're <span id="rescuePct" class="font-bold text-[#ff6a00]">62</span>% of the way there — just <span id="rescueLeft" class="font-bold text-[#1e3a5f]">a few questions</span> left to unlock your full result and matched units.
+      </p>
+    </div>
+    <button onclick="closeRescue()" class="w-full bg-[#ff6a00] hover:bg-[#e55f00] text-white font-bold py-3.5 rounded-xl transition-all mb-3 shadow-lg">
+      Continue — almost there!
+    </button>
+    <button onclick="saveAndClose()" class="w-full text-gray-500 hover:text-[#1e3a5f] text-xs font-medium py-2">
+      Text me my partial score instead
+    </button>
+  </div>
+</div>
+
+<!-- ===================== MIDWAY TEASER ===================== -->
+<div id="midwayTeaser" class="fixed inset-0 z-[250] hidden items-center justify-center p-4 bg-black/85" onclick="dismissTeaser()">
+  <div class="teaser-card text-center max-w-md w-full">
+    <div class="text-6xl mb-4">🎯</div>
+    <p class="text-xs font-bold uppercase tracking-widest text-white/60 mb-2">Early read</p>
+    <p class="text-3xl sm:text-4xl font-black text-white mb-3">You're tracking <span id="teaserTier" class="text-[#ff6a00]">Promising</span></p>
+    <p class="text-sm text-white/70 mb-6 px-4">Finish the rest to unlock your full score and the units that match your budget.</p>
+    <div class="inline-flex items-center gap-2 text-white/50 text-xs">
+      <div class="w-1.5 h-1.5 rounded-full bg-[#ff6a00]" style="animation:pulse 1.5s infinite"></div>
+      Tap to continue
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CALCULATING SCREEN ===================== -->
+<div id="calcScreen" class="fixed inset-0 z-[280] hidden items-center justify-center p-6">
+  <div class="absolute inset-0" style="background:linear-gradient(135deg,#1e3a5f 0%,#0f2340 100%)"></div>
+  <div class="relative max-w-md w-full">
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/10 mb-4">
+        <div class="w-10 h-10 border-4 border-white/20 border-t-[#ff6a00] rounded-full animate-spin"></div>
+      </div>
+      <p class="text-xs font-bold uppercase tracking-widest text-white/60 mb-2">Finalising</p>
+      <h2 class="text-2xl sm:text-3xl font-black text-white">Generating your report</h2>
+    </div>
+    <div id="calcSteps" class="space-y-3"></div>
+  </div>
+</div>
+
+<!-- ===================== REWARD BADGE ===================== -->
+<div id="rewardBadge">+0%</div>
+
 <!-- ===================== QUIZ OVERLAY ===================== -->
 <div id="quizOverlay" class="fixed inset-0 z-[200] hidden overflow-y-auto">
   <!-- Slideshow background -->
@@ -428,10 +491,8 @@
   <div class="max-w-2xl mx-auto px-4 pt-12 pb-4 relative z-[2]">
 
     <div class="text-center mb-6">
-      <div class="flex items-center justify-center gap-4 mb-4">
-        <video autoplay muted loop playsinline class="logo-vid h-14 w-auto" style="opacity:0;transition:opacity 0.5s"><source src="./bloukloof-living-logo.webm" type="video/webm"><source src="./Bloukloof living logo.mov" type="video/mp4"></video>
-        <div class="w-px h-10 bg-white/30"></div>
-        <video autoplay muted loop playsinline class="logo-vid h-8 w-auto" data-target-opacity="0.75" style="opacity:0;transition:opacity 0.5s"><source src="./kiron-living-logo.webm" type="video/webm"><source src="./Kiron living logo.mp4" type="video/mp4"></video>
+      <div class="flex items-center justify-center mb-4">
+        <video autoplay muted loop playsinline class="logo-vid h-24 sm:h-28 w-auto" style="opacity:0;transition:opacity 0.5s"><source src="./bloukloof-living-logo.webm" type="video/webm"><source src="./Bloukloof living logo.mov" type="video/mp4"></video>
       </div>
       <h2 class="text-2xl font-black text-white">Your Results Are Ready</h2>
       <p id="resultName" class="text-white/60 text-sm mt-1"></p>
@@ -451,18 +512,46 @@
     <!-- Score card — colour set by JS -->
     <div id="scoreCard" class="rounded-3xl p-8 text-center mb-5">
       <p class="text-xs font-bold uppercase tracking-widest mb-5 text-white">Qualification Score</p>
-      <div id="scoreBadge" class="relative w-32 h-32 mx-auto mb-5">
-        <svg width="128" height="128" viewBox="0 0 128 128" class="absolute inset-0">
+      <div id="scoreBadge" class="relative w-40 h-40 mx-auto mb-5">
+        <svg width="160" height="160" viewBox="0 0 128 128" class="absolute inset-0">
           <circle id="scoreBgCircle" cx="64" cy="64" r="58" fill="#22c55e"/>
           <circle cx="64" cy="64" r="50" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="7"/>
           <circle id="scoreRing" cx="64" cy="64" r="50" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="7"
             stroke-linecap="round" stroke-dasharray="314.16" stroke-dashoffset="314.16"
             transform="rotate(-90 64 64)"/>
+          <!-- HAPPY (green, >=75) -->
+          <g id="faceHappy" style="display:none">
+            <path d="M44 38 q6 -9 12 0" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <path d="M72 38 q6 -9 12 0" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <path d="M40 90 q24 26 48 0" stroke="white" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          </g>
+          <!-- SUN (yellow, 50-74) -->
+          <g id="faceSun" style="display:none">
+            <g stroke="white" stroke-width="2.8" stroke-linecap="round">
+              <line x1="64" y1="2" x2="64" y2="10"/>
+              <line x1="64" y1="118" x2="64" y2="126"/>
+              <line x1="2" y1="64" x2="10" y2="64"/>
+              <line x1="118" y1="64" x2="126" y2="64"/>
+              <line x1="20" y1="20" x2="26" y2="26"/>
+              <line x1="102" y1="102" x2="108" y2="108"/>
+              <line x1="20" y1="108" x2="26" y2="102"/>
+              <line x1="102" y1="26" x2="108" y2="20"/>
+            </g>
+            <circle cx="50" cy="42" r="2.6" fill="white"/>
+            <circle cx="78" cy="42" r="2.6" fill="white"/>
+            <path d="M46 90 q18 16 36 0" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+          </g>
+          <!-- SAD (red, <50) -->
+          <g id="faceSad" style="display:none">
+            <circle cx="50" cy="42" r="3.5" fill="white"/>
+            <circle cx="78" cy="42" r="3.5" fill="white"/>
+            <path d="M44 96 q20 -18 40 0" stroke="white" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          </g>
         </svg>
-        <div class="absolute inset-0 flex items-center justify-center text-white text-center">
+        <div class="absolute inset-0 flex items-center justify-center text-white text-center pointer-events-none">
           <div>
-            <div id="scorePercent" class="text-4xl font-black leading-none">0%</div>
-            <div class="text-xs opacity-75 mt-1">score</div>
+            <div id="scorePercent" class="text-4xl font-black leading-none drop-shadow-lg">0%</div>
+            <div class="text-[10px] uppercase tracking-widest opacity-80 mt-1">score</div>
           </div>
         </div>
       </div>
@@ -691,6 +780,86 @@
   let quizStartTime   = null;
   let quizDone        = false;
   let abandonSent     = false;
+  let rescueShown     = false;
+  let wasHidden       = false;
+  let teaserShown     = false;
+  let progressChunks  = [];
+  let audioCtx        = null;
+
+  const PROGRESS_BASE = 13;
+
+  function generateChunks(total, n) {
+    const cuts = [];
+    for (let i = 0; i < n - 1; i++) cuts.push(Math.random() * total);
+    cuts.sort((a, b) => a - b);
+    const chunks = [];
+    let prev = 0;
+    cuts.forEach(c => { chunks.push(c - prev); prev = c; });
+    chunks.push(total - prev);
+    const min = 5;
+    let deficit = 0;
+    chunks.forEach((c, i) => { if (c < min) { deficit += (min - c); chunks[i] = min; } });
+    while (deficit > 0) {
+      const maxIdx = chunks.indexOf(Math.max(...chunks));
+      const take = Math.min(deficit, chunks[maxIdx] - min);
+      chunks[maxIdx] -= take;
+      deficit -= take;
+      if (take <= 0) break;
+    }
+    for (let i = chunks.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [chunks[i], chunks[j]] = [chunks[j], chunks[i]];
+    }
+    return chunks;
+  }
+
+  function currentProgress() {
+    let total = PROGRESS_BASE;
+    for (let i = 0; i < currentQ; i++) total += (progressChunks[i] || 0);
+    return Math.min(100, total);
+  }
+
+  function playDing() {
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(660, audioCtx.currentTime);
+      o.frequency.exponentialRampToValueAtTime(980, audioCtx.currentTime + 0.08);
+      g.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.16, audioCtx.currentTime + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.20);
+      o.connect(g); g.connect(audioCtx.destination);
+      o.start();
+      o.stop(audioCtx.currentTime + 0.22);
+    } catch(e) {}
+    if (navigator.vibrate) navigator.vibrate(12);
+  }
+
+  function showRewardBadge(pct) {
+    const badge = document.getElementById('rewardBadge');
+    if (!badge) return;
+    const anchor = document.getElementById('quizPct');
+    const rect = anchor ? anchor.getBoundingClientRect() : null;
+    if (rect) {
+      badge.style.left = (rect.left + rect.width / 2) + 'px';
+      badge.style.top  = (rect.top - 8) + 'px';
+    }
+    badge.textContent = '+' + pct + '%';
+    badge.classList.remove('pop');
+    void badge.offsetWidth;
+    badge.classList.add('pop');
+  }
+
+  function setFace(tier) {
+    ['faceHappy','faceSun','faceSad'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+    const map = { happy:'faceHappy', sun:'faceSun', sad:'faceSad' };
+    if (map[tier]) document.getElementById(map[tier]).style.display = '';
+  }
 
   // ================================================================
   // SLIDESHOW
@@ -772,6 +941,12 @@
     {
       text: "What is your combined monthly salary before deductions?",
       sub:  "To qualify for a Bloukloof unit, banks typically require a minimum household income of around R35,000 per month.",
+      dynSub(answers) {
+        const q3 = answers[2] && answers[2].answer;
+        if (q3 === 'Low')      return "Great — low debit orders means more of your income is available for a bond. What's your combined monthly salary?";
+        if (q3 === 'Stressed') return "Banks weigh income against existing obligations carefully — what's your combined monthly salary before deductions?";
+        return this.sub;
+      },
       options: [
         { label: "R0 – R15,000",       score: 0  },
         { label: "R15,000 – R25,000",  score: 2  },
@@ -783,6 +958,12 @@
     {
       text: "What is your living situation at the moment?",
       sub:  "Understanding your current situation helps us personalise your result.",
+      dynSub(answers) {
+        const q4 = answers[3] && answers[3].answer;
+        if (q4 === 'R45,000+')          return "With your income, you're already in solid qualifying territory. What's your current living setup?";
+        if (q4 === 'R35,000 – R45,000') return "You're right in the qualifying range — what's your current living situation?";
+        return this.sub;
+      },
       options: [
         { label: "Renting",              score: 7  },
         { label: "Staying with family",  score: 5  },
@@ -792,6 +973,13 @@
     {
       text: "Have you been saving towards a deposit?",
       sub:  "A deposit isn't required, but it dramatically improves your approval odds and your monthly repayment amount.",
+      dynSub(answers) {
+        const q5 = answers[4] && answers[4].answer;
+        if (q5 === 'Renting')             return "Your rent could be covering an R11,000 bond payment on your own R1,095,000 Bloukloof unit instead. A deposit makes that a reality — have you started saving?";
+        if (q5 === 'Staying with family') return "Living with family is the perfect setup to save aggressively — even a modest deposit dramatically improves your approval odds.";
+        if (q5 === 'Homeowner')           return "You know the drill — a deposit reduces your bond and your monthly repayment. How are you positioned?";
+        return this.sub;
+      },
       options: [
         { label: "Yes",  score: 10 },
         { label: "No",   score: 4  }
@@ -899,6 +1087,10 @@
   // ================================================================
   function startQuiz() {
     currentQ      = 0;
+    progressChunks = generateChunks(100 - PROGRESS_BASE, QUESTIONS.length);
+    rescueShown   = false;
+    wasHidden     = false;
+    teaserShown   = false;
     skipQ8        = false;
     quizAnswers   = [];
     quizDone      = false;
@@ -918,12 +1110,14 @@
     if (overlay) overlay.scrollTop = 0;
 
     const q        = QUESTIONS[currentQ];
-    const progress = ((currentQ + 1) / QUESTIONS.length) * 100;
+    const progress = currentProgress();
 
     document.getElementById('quizProgress').style.width = progress + '%';
     document.getElementById('quizPct').textContent = Math.round(progress);
     const confirmBar = document.getElementById('quizConfirmBar');
     if (confirmBar) confirmBar.classList.remove('show');
+
+    const subText = (typeof q.dynSub === 'function') ? q.dynSub(quizAnswers) : q.sub;
 
     const optionsHTML = q.options.map((opt, i) => `
       <button
@@ -945,7 +1139,7 @@
             ${currentQ >= QUESTIONS.length - 1 ? 'Last question — your score awaits!' : currentQ >= QUESTIONS.length - 2 ? 'Almost there!' : `Question ${currentQ + 1} of ${QUESTIONS.length}`}
           </span>
           <h2 class="text-2xl sm:text-3xl font-black text-white leading-snug mb-3 drop-shadow-lg">${q.text}</h2>
-          <p class="text-white/70 text-sm">${q.sub}</p>
+          <p class="text-white/70 text-sm">${subText}</p>
         </div>
         <div class="space-y-3">${optionsHTML}</div>
         ${currentQ > 0
@@ -970,8 +1164,19 @@
       score:      score
     };
 
+    // Variable reward — randomised % gain, animate progress, ding + haptic
+    const reward = progressChunks[currentQ] || 0;
+    const rewardPct = Math.max(1, Math.round(reward));
+    const newProgress = Math.min(100, currentProgress() + reward);
+    const bar = document.getElementById('quizProgress');
+    const pctEl = document.getElementById('quizPct');
+    if (bar) bar.style.width = newProgress + '%';
+    if (pctEl) pctEl.textContent = Math.round(newProgress);
+    showRewardBadge(rewardPct);
+    playDing();
+
     const cbar = document.getElementById('quizConfirmBar');
-    cbar.textContent = CONFIRMATIONS[Math.floor(Math.random() * CONFIRMATIONS.length)];
+    cbar.textContent = CONFIRMATIONS[Math.floor(Math.random() * CONFIRMATIONS.length)] + '  ·  +' + rewardPct + '%';
     cbar.classList.add('show');
 
     // Q7 (index 6): if "No" or "Not sure" → skip Q8, show Experian modal
@@ -987,8 +1192,13 @@
 
     setTimeout(() => {
       currentQ++;
-      if (currentQ >= QUESTIONS.length) finishQuiz();
-      else renderQuestion();
+      if (currentQ >= QUESTIONS.length) { finishQuiz(); return; }
+      if (currentQ === 4 && !teaserShown) {
+        teaserShown = true;
+        showMidwayTeaser();
+        return;
+      }
+      renderQuestion();
     }, 700);
   }
 
@@ -1028,8 +1238,149 @@
     });
 
     stopSlideshow();
-    showResults(pct);
+    runCalcScreen(() => showResults(pct));
   }
+
+  // ================================================================
+  // MIDWAY TEASER (#3)
+  // ================================================================
+  function showMidwayTeaser() {
+    const answered = quizAnswers.filter(Boolean);
+    const earned   = answered.reduce((s, a) => s + a.score, 0);
+    const maxSoFar = QUESTIONS.slice(0, answered.length)
+      .reduce((s, q) => s + Math.max(...q.options.map(o => o.score)), 0);
+    const pct = maxSoFar ? (earned / maxSoFar) * 100 : 0;
+
+    let tier, color;
+    if (pct >= 70)      { tier = 'Strong';       color = '#22c55e'; }
+    else if (pct >= 45) { tier = 'Promising';    color = '#ff6a00'; }
+    else                { tier = 'Foundational'; color = '#eab308'; }
+
+    const tierEl = document.getElementById('teaserTier');
+    if (tierEl) { tierEl.textContent = tier; tierEl.style.color = color; }
+    const teaser = document.getElementById('midwayTeaser');
+    teaser.classList.remove('hidden');
+    teaser.classList.add('flex');
+
+    setTimeout(dismissTeaser, 2600);
+  }
+
+  function dismissTeaser() {
+    const teaser = document.getElementById('midwayTeaser');
+    if (teaser.classList.contains('hidden')) return;
+    teaser.classList.remove('flex');
+    teaser.classList.add('hidden');
+    if (currentQ < QUESTIONS.length) renderQuestion();
+  }
+
+  // ================================================================
+  // CALCULATING SCREEN (#5)
+  // ================================================================
+  const CALC_STEPS = [
+    'Checking affordability bracket',
+    'Matching available units',
+    'Cross-referencing 52 listings',
+    'Calculating bond scenarios',
+    'Generating your report'
+  ];
+
+  function runCalcScreen(onDone) {
+    const overlay   = document.getElementById('calcScreen');
+    const container = document.getElementById('calcSteps');
+    container.innerHTML = '';
+    document.getElementById('quizOverlay').classList.add('hidden');
+    overlay.classList.remove('hidden');
+    overlay.classList.add('flex');
+
+    CALC_STEPS.forEach((label, i) => {
+      const row = document.createElement('div');
+      row.className = 'calc-step flex items-center gap-3 text-white/85 bg-white/5 border border-white/10 rounded-xl px-4 py-3';
+      row.style.animationDelay = (i * 0.42) + 's';
+      row.innerHTML = `
+        <div class="check-bullet w-6 h-6 rounded-full border-2 border-white/30 flex items-center justify-center flex-shrink-0 text-white/40 text-sm">·</div>
+        <span class="text-sm font-medium">${label}</span>`;
+      container.appendChild(row);
+      setTimeout(() => {
+        const bullet = row.querySelector('.check-bullet');
+        bullet.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><polyline points="20 6 9 17 4 12"/></svg>`;
+        bullet.style.borderColor = '#22c55e';
+        bullet.style.background  = 'rgba(34,197,94,0.15)';
+      }, i * 420 + 320);
+    });
+
+    setTimeout(() => {
+      overlay.classList.remove('flex');
+      overlay.classList.add('hidden');
+      if (onDone) onDone();
+    }, CALC_STEPS.length * 420 + 600);
+  }
+
+  // ================================================================
+  // EXIT-INTENT RESCUE (#1)
+  // ================================================================
+  let rescueInitialHTML = null;
+
+  function maybeShowRescue() {
+    if (rescueShown || quizDone) return;
+    const quizVisible = !document.getElementById('quizOverlay').classList.contains('hidden');
+    if (!quizVisible) return;
+    if (currentQ < 1) return;
+    if (!document.getElementById('rescueModal').classList.contains('hidden')) return;
+    if (!document.getElementById('experianModal').classList.contains('hidden')) return;
+    if (!document.getElementById('calcScreen').classList.contains('hidden')) return;
+    if (!document.getElementById('midwayTeaser').classList.contains('hidden')) return;
+    rescueShown = true;
+    const pct = Math.round(currentProgress());
+    const left = QUESTIONS.length - currentQ;
+    const leftEl = document.getElementById('rescueLeft');
+    if (leftEl) leftEl.textContent = left === 1 ? '1 question' : left + ' questions';
+    document.getElementById('rescuePct').textContent = pct;
+    const modal = document.getElementById('rescueModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  function closeRescue() {
+    const modal = document.getElementById('rescueModal');
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+    if (rescueInitialHTML) modal.innerHTML = rescueInitialHTML;
+  }
+
+  function saveAndClose() {
+    if (quizStartTime) {
+      const payload = buildPayload(`Rescue captured at Q${currentQ + 1}`);
+      pushToSheets(payload);
+    }
+    const modal = document.getElementById('rescueModal');
+    modal.innerHTML = `
+      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 text-center fade-in">
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-green-100 mb-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3 class="text-xl font-black text-[#1e3a5f] mb-2">Saved!</h3>
+        <p class="text-sm text-gray-600">We'll text your partial score shortly — feel free to keep going to unlock the full result.</p>
+      </div>`;
+    setTimeout(closeRescue, 1800);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const m = document.getElementById('rescueModal');
+    if (m) rescueInitialHTML = m.innerHTML;
+  });
+
+  document.addEventListener('mouseleave', function(e) {
+    if (e && e.clientY <= 0) maybeShowRescue();
+  });
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') {
+      const quizVisible = !document.getElementById('quizOverlay').classList.contains('hidden');
+      if (quizVisible && currentQ >= 1 && !quizDone) wasHidden = true;
+    } else if (document.visibilityState === 'visible' && wasHidden) {
+      wasHidden = false;
+      setTimeout(maybeShowRescue, 350);
+    }
+  });
 
   // ================================================================
   // RESULTS
@@ -1078,8 +1429,9 @@
     document.getElementById('scorePercent').textContent = '0%';
 
     if (pct >= 75) {
+      setFace('happy');
       card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#1e3a5f] border border-green-400/30 shadow-xl';
-      badge.className = 'relative w-32 h-32 mx-auto mb-5 shadow-xl shadow-green-500/40 ring-4 ring-green-400/30 rounded-full';
+      badge.className = 'relative w-40 h-40 mx-auto mb-5 shadow-xl shadow-green-500/40 ring-4 ring-green-400/30 rounded-full';
       document.getElementById('scoreBgCircle').setAttribute('fill', '#22c55e');
       title.className = 'text-2xl font-black mb-2 text-green-400';
       title.textContent = 'Great — You Qualify for a Bond!';
@@ -1090,8 +1442,9 @@
         <div class="flex gap-3 p-3 bg-white/5 border border-green-400/20 rounded-xl"><span class="text-green-400 mt-0.5">✓</span><p class="text-sm text-white/90">Entry units from R1,095,000 with 0% transfer duty may fall comfortably within your budget.</p></div>
         <div class="flex gap-3 p-3 bg-white/5 border border-green-400/20 rounded-xl"><span class="text-green-400 mt-0.5">✓</span><p class="text-sm text-white/90">Expect a call within 24 hours — in the meantime, feel free to WhatsApp or download the brochure below.</p></div>`;
     } else if (pct >= 50) {
+      setFace('sun');
       card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#1e3a5f] border border-yellow-400/30 shadow-xl';
-      badge.className = 'relative w-32 h-32 mx-auto mb-5 shadow-xl shadow-yellow-500/40 ring-4 ring-yellow-400/30 rounded-full';
+      badge.className = 'relative w-40 h-40 mx-auto mb-5 shadow-xl shadow-yellow-500/40 ring-4 ring-yellow-400/30 rounded-full';
       document.getElementById('scoreBgCircle').setAttribute('fill', '#eab308');
       title.className = 'text-2xl font-black mb-2 text-yellow-400';
       title.textContent = "You're Nearly There";
@@ -1102,8 +1455,9 @@
         <div class="flex gap-3 p-3 bg-white/5 border border-yellow-400/20 rounded-xl"><span class="text-yellow-400 mt-0.5">◉</span><p class="text-sm text-white/90">A larger deposit or trimming existing monthly debt is usually the quickest way to improve your position.</p></div>
         <div class="flex gap-3 p-3 bg-white/5 border border-yellow-400/20 rounded-xl"><span class="text-yellow-400 mt-0.5">◉</span><p class="text-sm text-white/90">Reach out and we'll talk you through the adjustments that will get you ready.</p></div>`;
     } else {
+      setFace('sad');
       card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#1e3a5f] border border-red-400/30 shadow-xl';
-      badge.className = 'relative w-32 h-32 mx-auto mb-5 shadow-xl shadow-red-500/40 ring-4 ring-red-400/30 rounded-full';
+      badge.className = 'relative w-40 h-40 mx-auto mb-5 shadow-xl shadow-red-500/40 ring-4 ring-red-400/30 rounded-full';
       document.getElementById('scoreBgCircle').setAttribute('fill', '#ef4444');
       title.className = 'text-2xl font-black mb-2 text-red-400';
       title.textContent = "You've Got a Way to Go";
@@ -1190,6 +1544,7 @@
     document.body.style.overflow = 'auto';
     leadData = {}; quizAnswers = []; currentQ = 0; skipQ8 = false;
     quizStartTime = null; quizDone = false; abandonSent = false;
+    rescueShown = false; wasHidden = false; teaserShown = false; progressChunks = [];
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
