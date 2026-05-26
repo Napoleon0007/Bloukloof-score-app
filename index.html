@@ -870,13 +870,18 @@
     abandonSent   = false;
     quizStartTime = Date.now();
 
-    document.getElementById('quizOverlay').classList.remove('hidden');
+    const overlay = document.getElementById('quizOverlay');
+    overlay.classList.remove('hidden');
+    overlay.scrollTop = 0;
     document.body.style.overflow = 'hidden';
     initSlideshow();
     renderQuestion();
   }
 
   function renderQuestion() {
+    const overlay = document.getElementById('quizOverlay');
+    if (overlay) overlay.scrollTop = 0;
+
     const q        = QUESTIONS[currentQ];
     const progress = (currentQ / QUESTIONS.length) * 100;
 
