@@ -24,11 +24,20 @@
     @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(30,58,95,0.5); } 50% { box-shadow: 0 0 0 18px rgba(30,58,95,0); } }
     .quiz-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.8s ease; }
     .quiz-slide.active { opacity: 1; }
-    .gallery-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; }
-    .gallery-slide.active { opacity: 1; }
+    .gallery-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease; }
+    .gallery-slide.active { opacity: 1; animation: polaroidReveal 0.9s ease forwards; }
+    .gallery-slide:nth-child(even).active { animation-name: polaroidRevealAlt; }
+    @keyframes polaroidReveal { from { opacity:0; transform:scale(1.04) rotate(-1deg); } to { opacity:1; transform:scale(1) rotate(0deg); } }
+    @keyframes polaroidRevealAlt { from { opacity:0; transform:scale(1.04) rotate(1deg); } to { opacity:1; transform:scale(1) rotate(0deg); } }
     .testimonials-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease; }
     .testimonials-slide.active { opacity: 1; }
     #quizOverlay, #resultsPage { -webkit-overflow-scrolling: touch; }
+    /* Hero word drop */
+    .hero-word { opacity:0; display:inline-block; animation: wordDrop 0.5s ease forwards; }
+    @keyframes wordDrop { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+    /* CTA shimmer */
+    @keyframes shimmerSweep { 0% { transform:translateX(-200%) skewX(-20deg); } 100% { transform:translateX(500%) skewX(-20deg); } }
+    .cta-shimmer::after { content:''; position:absolute; top:0; left:0; width:35%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.28),transparent); animation:shimmerSweep 4.5s ease-in-out 2s infinite; pointer-events:none; }
     #quizConfirmBar { transform: translateY(100%); opacity: 0; transition: transform 0.25s ease, opacity 0.25s ease; }
     #quizConfirmBar.show { transform: translateY(0); opacity: 1; }
     /* Prevent iOS Safari auto-zoom on input focus (triggers when font-size < 16px) */
@@ -71,8 +80,12 @@
     </div>
 
     <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.05] mb-6">
-      Stop Paying Rent.<br>
-      Start Building <span class="text-sky-300">Wealth</span>.
+      <span class="hero-word" style="animation-delay:0.2s">Stop</span>
+      <span class="hero-word" style="animation-delay:0.32s">Paying</span>
+      <span class="hero-word" style="animation-delay:0.44s">Rent.</span><br>
+      <span class="hero-word" style="animation-delay:0.62s">Start</span>
+      <span class="hero-word" style="animation-delay:0.74s">Building</span>
+      <span class="hero-word text-sky-300" style="animation-delay:0.86s;text-shadow:0 0 32px rgba(125,211,252,0.55)">Wealth</span><span class="hero-word" style="animation-delay:0.92s">.</span>
     </h1>
 
     <p class="text-xs sm:text-xl max-w-2xl mx-auto mb-4 leading-relaxed px-2" style="font-family: 'Raleway', sans-serif; font-weight: 900; color: white; text-shadow: 0 1px 4px rgba(0,0,0,0.5);">
@@ -84,7 +97,7 @@
 
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <button onclick="openLeadModal()"
-        class="pulse-cta relative overflow-hidden w-full sm:w-auto text-white font-black text-lg px-10 py-4 rounded-xl shadow-xl transition-all transform hover:scale-105"
+        class="pulse-cta cta-shimmer relative overflow-hidden w-full sm:w-auto text-white font-black text-lg px-10 py-4 rounded-xl shadow-xl transition-all transform hover:scale-105"
         style="background-color: #ff6a00; box-shadow: 0 0 20px rgba(255,106,0,0.6), 0 8px 25px rgba(0,0,0,0.3);"
         onmouseover="this.style.backgroundColor='#ff8533'"
         onmouseout="this.style.backgroundColor='#ff6a00'">
@@ -202,7 +215,7 @@
 </section>
 
 <!-- ===================== TESTIMONIALS ===================== -->
-<section class="py-6 sm:py-16 relative overflow-hidden">
+<section id="testimonialsSection" class="py-6 sm:py-16 relative overflow-hidden">
   <div id="testimonialsSlideshow" class="absolute inset-0 z-0"></div>
   <div class="absolute inset-0 z-[1] bg-black/65"></div>
   <div class="max-w-6xl mx-auto px-3 sm:px-4 relative z-[2]">
@@ -212,7 +225,7 @@
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-6">
       <div class="bg-white rounded-lg p-3 sm:p-7 shadow-sm">
-        <p class="text-[#1e3a5f] text-sm sm:text-lg mb-1 sm:mb-4">★★★★★</p>
+        <p class="star-row text-sm sm:text-lg mb-1 sm:mb-4"><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span></p>
         <p class="text-gray-600 leading-snug sm:leading-relaxed mb-2 sm:mb-6 text-[11px] sm:text-sm">"I never thought I could afford my own place at 28. The team guided me through the whole process and I moved in 4 months later. Best decision I ever made."</p>
         <div class="flex items-center gap-2">
           <div class="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-[#1e3a5f] flex items-center justify-center flex-shrink-0"><span class="text-white font-black text-[10px] sm:text-xs">JJ</span></div>
@@ -220,7 +233,7 @@
         </div>
       </div>
       <div class="bg-white rounded-lg p-3 sm:p-7 shadow-sm">
-        <p class="text-[#1e3a5f] text-sm sm:text-lg mb-1 sm:mb-4">★★★★★</p>
+        <p class="star-row text-sm sm:text-lg mb-1 sm:mb-4"><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span></p>
         <p class="text-gray-600 leading-snug sm:leading-relaxed mb-2 sm:mb-6 text-[11px] sm:text-sm">"Our bond repayment is actually R400 less than what we were paying in rent. We own something now. It still blows my mind every time I walk through the door."</p>
         <div class="flex items-center gap-2">
           <div class="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-[#1e3a5f] flex items-center justify-center flex-shrink-0"><span class="text-white font-black text-[10px] sm:text-xs">JE</span></div>
@@ -228,7 +241,7 @@
         </div>
       </div>
       <div class="bg-white rounded-lg p-3 sm:p-7 shadow-sm">
-        <p class="text-[#1e3a5f] text-sm sm:text-lg mb-1 sm:mb-4">★★★★★</p>
+        <p class="star-row text-sm sm:text-lg mb-1 sm:mb-4"><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span></p>
         <p class="text-gray-600 leading-snug sm:leading-relaxed mb-2 sm:mb-6 text-[11px] sm:text-sm">"The qualifier quiz on the website told me exactly where I stood before I even spoke to anyone. No pressure, no surprises — just clear, honest info. And they had an internal bond calculator… like whaaaaaat???"</p>
         <div class="flex items-center gap-2">
           <div class="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-[#1e3a5f] flex items-center justify-center flex-shrink-0"><span class="text-white font-black text-[10px] sm:text-xs">LJ</span></div>
@@ -438,10 +451,19 @@
     <!-- Score card — colour set by JS -->
     <div id="scoreCard" class="rounded-3xl p-8 text-center mb-5">
       <p class="text-xs font-bold uppercase tracking-widest mb-5 text-white">Qualification Score</p>
-      <div id="scoreBadge" class="w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white">
-        <div>
-          <div id="scorePercent" class="text-4xl font-black leading-none"></div>
-          <div class="text-xs opacity-75 mt-1">score</div>
+      <div id="scoreBadge" class="relative w-32 h-32 mx-auto mb-5">
+        <svg width="128" height="128" viewBox="0 0 128 128" class="absolute inset-0">
+          <circle id="scoreBgCircle" cx="64" cy="64" r="58" fill="#22c55e"/>
+          <circle cx="64" cy="64" r="50" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="7"/>
+          <circle id="scoreRing" cx="64" cy="64" r="50" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="7"
+            stroke-linecap="round" stroke-dasharray="314.16" stroke-dashoffset="314.16"
+            transform="rotate(-90 64 64)"/>
+        </svg>
+        <div class="absolute inset-0 flex items-center justify-center text-white text-center">
+          <div>
+            <div id="scorePercent" class="text-4xl font-black leading-none">0%</div>
+            <div class="text-xs opacity-75 mt-1">score</div>
+          </div>
         </div>
       </div>
       <h3 id="scoreTitle" class="text-2xl font-black mb-2"></h3>
@@ -1013,13 +1035,17 @@
   // RESULTS
   // ================================================================
   function animateScore(target) {
-    const el = document.getElementById('scorePercent');
+    const el   = document.getElementById('scorePercent');
+    const ring = document.getElementById('scoreRing');
+    const circ = 314.16;
     const start = performance.now();
     const duration = 1400;
     function tick(now) {
       const t = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - t, 3);
-      el.textContent = Math.round(eased * target) + '%';
+      const val = eased * target;
+      el.textContent = Math.round(val) + '%';
+      if (ring) ring.setAttribute('stroke-dashoffset', circ * (1 - val / 100));
       if (t < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
@@ -1053,7 +1079,8 @@
 
     if (pct >= 75) {
       card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#1e3a5f] border border-green-400/30 shadow-xl';
-      badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-green-500 shadow-xl shadow-green-500/40 ring-4 ring-green-400/30';
+      badge.className = 'relative w-32 h-32 mx-auto mb-5 shadow-xl shadow-green-500/40 ring-4 ring-green-400/30 rounded-full';
+      document.getElementById('scoreBgCircle').setAttribute('fill', '#22c55e');
       title.className = 'text-2xl font-black mb-2 text-green-400';
       title.textContent = 'Great — You Qualify for a Bond!';
       msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-90 text-white';
@@ -1064,7 +1091,8 @@
         <div class="flex gap-3 p-3 bg-white/5 border border-green-400/20 rounded-xl"><span class="text-green-400 mt-0.5">✓</span><p class="text-sm text-white/90">Expect a call within 24 hours — in the meantime, feel free to WhatsApp or download the brochure below.</p></div>`;
     } else if (pct >= 50) {
       card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#1e3a5f] border border-yellow-400/30 shadow-xl';
-      badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-yellow-500 shadow-xl shadow-yellow-500/40 ring-4 ring-yellow-400/30';
+      badge.className = 'relative w-32 h-32 mx-auto mb-5 shadow-xl shadow-yellow-500/40 ring-4 ring-yellow-400/30 rounded-full';
+      document.getElementById('scoreBgCircle').setAttribute('fill', '#eab308');
       title.className = 'text-2xl font-black mb-2 text-yellow-400';
       title.textContent = "You're Nearly There";
       msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-90 text-white';
@@ -1075,7 +1103,8 @@
         <div class="flex gap-3 p-3 bg-white/5 border border-yellow-400/20 rounded-xl"><span class="text-yellow-400 mt-0.5">◉</span><p class="text-sm text-white/90">Reach out and we'll talk you through the adjustments that will get you ready.</p></div>`;
     } else {
       card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#1e3a5f] border border-red-400/30 shadow-xl';
-      badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-red-500 shadow-xl shadow-red-500/40 ring-4 ring-red-400/30';
+      badge.className = 'relative w-32 h-32 mx-auto mb-5 shadow-xl shadow-red-500/40 ring-4 ring-red-400/30 rounded-full';
+      document.getElementById('scoreBgCircle').setAttribute('fill', '#ef4444');
       title.className = 'text-2xl font-black mb-2 text-red-400';
       title.textContent = "You've Got a Way to Go";
       msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-90 text-white';
@@ -1215,6 +1244,24 @@
       if (frame) { frame.style.height = e.data.height + 'px'; }
     }
   });
+
+  // Testimonial star sequential fill on scroll-into-view
+  (function() {
+    var section = document.getElementById('testimonialsSection');
+    if (!section) return;
+    var fired = false;
+    var obs = new IntersectionObserver(function(entries) {
+      if (fired || !entries[0].isIntersecting) return;
+      fired = true;
+      document.querySelectorAll('.star-row').forEach(function(row) {
+        row.querySelectorAll('.star').forEach(function(star, i) {
+          setTimeout(function() { star.style.color = '#f59e0b'; }, i * 160);
+        });
+      });
+      obs.disconnect();
+    }, { threshold: 0.3 });
+    obs.observe(section);
+  })();
 
   // Fade logo videos in only after they can play — hides the native play-button flash on mobile
   document.querySelectorAll('.logo-vid').forEach(function(v) {
