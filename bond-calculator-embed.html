@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>html,body{margin:0;padding:0;background:#0f1928;}</style>
+  <style>html,body{margin:0;padding:0;background:transparent;}</style>
 </head>
 <body>
 <!-- ============================================================
@@ -236,6 +236,8 @@ html, body { -webkit-text-size-adjust: 100%; }
     window.addEventListener('load', postHeight);
     window.addEventListener('orientationchange', function(){ setTimeout(postHeight, 250); });
     if (document.fonts && document.fonts.ready) { document.fonts.ready.then(postHeight); }
+    setTimeout(postHeight, 200);
+    setTimeout(postHeight, 800);
 
 
 </script>
