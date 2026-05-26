@@ -73,14 +73,6 @@
         </div>
 
         <div class="bk-field">
-            <span class="bk-label">Existing Monthly Debt</span>
-            <span class="bk-amount">R <span id="bk_debt">3,000</span></span>
-            <input type="range" class="bk-slider" id="bk_debtSlider" min="0" max="30000" value="3000" step="500">
-            <div class="bk-range-labels"><span>R 0</span><span>R 30,000</span></div>
-            <p style="font-size:0.7rem;opacity:0.5;margin-top:6px;line-height:1.4;">Car finance, credit cards, store accounts, personal loans. Banks subtract this from your affordability.</p>
-        </div>
-
-        <div class="bk-field">
             <span class="bk-label">Deposit You Can Put Down</span>
             <span class="bk-amount">R <span id="bk_dep">50,000</span></span>
             <input type="range" class="bk-slider" id="bk_depSlider" min="0" max="500000" value="50000" step="5000">
@@ -143,21 +135,17 @@
     }
     function calc(){
         var sal  = parseFloat(document.getElementById('bk_salSlider').value)  || 0;
-        var debt = parseFloat(document.getElementById('bk_debtSlider').value) || 0;
         var dep  = parseFloat(document.getElementById('bk_depSlider').value)  || 0;
         var rate = parseFloat(document.getElementById('bk_rateSlider').value) / 100 || 0.11;
         var term = 20;
 
         document.getElementById('bk_sal').textContent  = fmt(sal);
-        document.getElementById('bk_debt').textContent = fmt(debt);
         document.getElementById('bk_dep').textContent  = fmt(dep);
         document.getElementById('bk_rate').textContent = parseFloat(document.getElementById('bk_rateSlider').value).toFixed(2);
-        ['bk_salSlider','bk_debtSlider','bk_depSlider','bk_rateSlider'].forEach(function(id){ setTrack(document.getElementById(id)); });
+        ['bk_salSlider','bk_depSlider','bk_rateSlider'].forEach(function(id){ setTrack(document.getElementById(id)); });
 
         // SA banks apply DSR (Debt Service Ratio): total debt repayments <= 30% of gross income
-        // Available for the bond installment = (gross * 0.30) - existing monthly debt
-        var maxAllDebt = sal * 0.30;
-        var maxMonthly = Math.max(0, maxAllDebt - debt);
+        var maxMonthly = sal * 0.30;
         var r = rate / 12, n = term * 12;
         var bond = maxMonthly > 0 ? (maxMonthly * (1 - Math.pow(1 + r, -n)) / r) : 0;
         bond = Math.round(bond / 1000) * 1000;
@@ -176,12 +164,7 @@
 
         var q = document.getElementById('bk_qualifier');
         var shortfall = 1095000 - prop;
-        if (maxMonthly <= 0) {
-            q.className = 'bk-qualifier bk-q-no';
-            document.getElementById('bk_qIcon').textContent  = '✗';
-            document.getElementById('bk_qTitle').textContent = 'Existing debt too high';
-            document.getElementById('bk_qSub').textContent   = 'Your existing debt already exceeds 30% of your income — no room left for a bond installment. Settle debt to qualify.';
-        } else if (prop >= 1095000) {
+        if (prop >= 1095000) {
             q.className = 'bk-qualifier bk-q-yes';
             document.getElementById('bk_qIcon').textContent  = '✓';
             document.getElementById('bk_qTitle').textContent = 'You qualify for Bloukloof@69!';
@@ -190,20 +173,17 @@
             q.className = 'bk-qualifier bk-q-close';
             document.getElementById('bk_qIcon').textContent  = '~';
             document.getElementById('bk_qTitle').textContent = 'Almost there!';
-            document.getElementById('bk_qSub').textContent   = 'Only ' + fmtR(shortfall) + ' short — a bigger deposit or less debt bridges the gap';
+            document.getElementById('bk_qSub').textContent   = 'Only ' + fmtR(shortfall) + ' short — a bigger deposit bridges the gap';
         } else {
             q.className = 'bk-qualifier bk-q-no';
             document.getElementById('bk_qIcon').textContent  = '✗';
             document.getElementById('bk_qTitle').textContent = 'Not quite yet';
-            document.getElementById('bk_qSub').textContent   = 'You need ' + fmtR(shortfall) + ' more — increase salary, reduce debt, or grow your deposit';
+            document.getElementById('bk_qSub').textContent   = 'You need ' + fmtR(shortfall) + ' more — increase salary or grow your deposit';
         }
 
         var banner = document.getElementById('bk_statusBanner');
         if (banner) {
-            if (maxMonthly <= 0) {
-                banner.style.background = '#e74c3c'; banner.style.color = '#fff';
-                banner.textContent = '✗ Existing debt too high — clear debt to qualify';
-            } else if (prop >= 1095000) {
+            if (prop >= 1095000) {
                 banner.style.background = '#27ae60'; banner.style.color = '#fff';
                 banner.textContent = '✓ You qualify! Congratulations — Bloukloof@69 is within your reach!';
             } else if (shortfall <= 150000) {
@@ -211,11 +191,11 @@
                 banner.textContent = '✓ Almost there! You\'re ' + fmtR(shortfall) + ' away — adjust your inputs!';
             } else {
                 banner.style.background = '#e74c3c'; banner.style.color = '#fff';
-                banner.textContent = '✗ You don\'t qualify yet — increase salary, reduce debt, or grow your deposit';
+                banner.textContent = '✗ You don\'t qualify yet — increase salary or grow your deposit';
             }
         }
     }
-    ['bk_salSlider','bk_debtSlider','bk_depSlider','bk_rateSlider'].forEach(function(id){
+    ['bk_salSlider','bk_depSlider','bk_rateSlider'].forEach(function(id){
         var el = document.getElementById(id);
         if (el) { el.addEventListener('input', calc); setTrack(el); }
     });

@@ -433,8 +433,8 @@
     </div>
 
     <!-- Detail bullets -->
-    <div id="scoreDetails" class="bg-white rounded-2xl p-6 mb-5 shadow-sm">
-      <h4 class="font-bold text-gray-900 mb-4 text-sm uppercase tracking-wide">What This Means For You</h4>
+    <div id="scoreDetails" class="bg-[#1e3a5f] border border-white/10 rounded-2xl p-6 mb-5 shadow-xl">
+      <h4 class="font-bold text-white mb-4 text-sm uppercase tracking-wide">What This Means For You</h4>
       <div id="scoreDetailsList" class="space-y-3"></div>
     </div>
 
@@ -466,27 +466,20 @@
     </div>
 
     <!-- Next step CTA -->
-    <div class="bg-[#1e3a5f] rounded-2xl p-7 text-center mb-5">
+    <div class="bg-[#1877f2] rounded-2xl p-7 text-center mb-5">
       <div class="flex items-center justify-center mb-5">
-        <div class="bg-white rounded-xl px-5 py-2.5 inline-flex items-center gap-3">
+        <div class="bg-white rounded-xl px-5 py-2.5 inline-flex items-center">
           <img src="./logo.png" alt="Bloukloof Properties" class="h-9 w-auto" />
-          <div class="w-px h-7 bg-gray-200"></div>
-          <img src="./kiron-logo.png" alt="Kiron" class="h-6 w-auto" />
         </div>
       </div>
       <h4 class="text-xl font-black text-white mb-1.5">Ready to take the next step?</h4>
       <p class="text-white/80 text-sm mb-5">Our consultants are standing by to help you secure your unit.</p>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <!--
-          Replace 27XXXXXXXXXX with your WhatsApp number (no spaces, include country code).
-          Example: 27821234567
-        -->
         <a href="https://wa.me/27609845300?text=Hi%2C%20I%20just%20completed%20the%20Bloukloof%20qualifier%20quiz%20and%20want%20to%20find%20out%20more."
           target="_blank" rel="noopener"
-          class="bg-white text-[#1e3a5f] font-black px-8 py-3.5 rounded-xl hover:bg-white/90 transition-colors text-sm">
+          class="bg-white text-[#1877f2] font-black px-8 py-3.5 rounded-xl hover:bg-white/90 transition-colors text-sm">
           WhatsApp Us Now
         </a>
-        <!-- Replace 27XXXXXXXXXX with your phone number -->
         <a href="tel:+27609845300"
           class="bg-white/20 text-white font-semibold px-8 py-3.5 rounded-xl hover:bg-white/30 transition-colors border border-white/25 text-sm">
           Call Us Directly
@@ -965,39 +958,39 @@
     document.getElementById('scorePercent').textContent = pct + '%';
 
     if (pct >= 75) {
-      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-green-50';
-      badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-green-500 shadow-xl shadow-green-100';
-      title.className = 'text-2xl font-black mb-2 text-green-700';
+      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#1e3a5f] border border-green-400/30 shadow-xl';
+      badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-green-500 shadow-xl shadow-green-500/40 ring-4 ring-green-400/30';
+      title.className = 'text-2xl font-black mb-2 text-green-400';
       title.textContent = 'Excellent — Very Likely to Qualify';
-      msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-80 text-green-700';
+      msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-90 text-white';
       msg.textContent = `${leadData.firstName}, your profile looks strong! Based on your answers, you have a very high likelihood of bond approval. Our consultants are ready to move fast.`;
       list.innerHTML  = `
-        <div class="flex gap-3 p-3 bg-green-50 rounded-xl"><span class="text-green-500 mt-0.5">✓</span><p class="text-sm text-gray-700">Your income and employment profile looks well-suited for a bond application.</p></div>
-        <div class="flex gap-3 p-3 bg-green-50 rounded-xl"><span class="text-green-500 mt-0.5">✓</span><p class="text-sm text-gray-700">Entry units from R1,095,000 with 0% transfer duty may fall comfortably within your budget.</p></div>
-        <div class="flex gap-3 p-3 bg-green-50 rounded-xl"><span class="text-green-500 mt-0.5">✓</span><p class="text-sm text-gray-700">We recommend contacting a consultant this week — units are limited and selling fast.</p></div>`;
+        <div class="flex gap-3 p-3 bg-white/5 border border-green-400/20 rounded-xl"><span class="text-green-400 mt-0.5">✓</span><p class="text-sm text-white/90">Your income and employment profile looks well-suited for a bond application.</p></div>
+        <div class="flex gap-3 p-3 bg-white/5 border border-green-400/20 rounded-xl"><span class="text-green-400 mt-0.5">✓</span><p class="text-sm text-white/90">Entry units from R1,095,000 with 0% transfer duty may fall comfortably within your budget.</p></div>
+        <div class="flex gap-3 p-3 bg-white/5 border border-green-400/20 rounded-xl"><span class="text-green-400 mt-0.5">✓</span><p class="text-sm text-white/90">We recommend contacting a consultant this week — units are limited and selling fast.</p></div>`;
     } else if (pct >= 50) {
-      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-blue-50';
-      badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-[#1e3a5f] shadow-xl shadow-blue-100';
-      title.className = 'text-2xl font-black mb-2 text-[#1e3a5f]';
+      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#1e3a5f] border border-yellow-400/30 shadow-xl';
+      badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-yellow-500 shadow-xl shadow-yellow-500/40 ring-4 ring-yellow-400/30';
+      title.className = 'text-2xl font-black mb-2 text-yellow-400';
       title.textContent = 'Good Potential — We Can Likely Get You Approved';
-      msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-80 text-[#1e3a5f]';
+      msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-90 text-white';
       msg.textContent = `${leadData.firstName}, you're on the right track. There are a couple of areas to strengthen, but with the right guidance, approval is very achievable.`;
       list.innerHTML  = `
-        <div class="flex gap-3 p-3 bg-blue-50 rounded-xl"><span class="text-[#1e3a5f] mt-0.5">◉</span><p class="text-sm text-gray-700">Some aspects of your profile need attention — nothing that can't be addressed with guidance.</p></div>
-        <div class="flex gap-3 p-3 bg-blue-50 rounded-xl"><span class="text-[#1e3a5f] mt-0.5">◉</span><p class="text-sm text-gray-700">A larger deposit or reducing existing monthly debt could significantly boost your approval odds.</p></div>
-        <div class="flex gap-3 p-3 bg-blue-50 rounded-xl"><span class="text-[#1e3a5f] mt-0.5">◉</span><p class="text-sm text-gray-700">Our consultants specialise in getting borderline applications over the line. Let's talk.</p></div>`;
+        <div class="flex gap-3 p-3 bg-white/5 border border-yellow-400/20 rounded-xl"><span class="text-yellow-400 mt-0.5">◉</span><p class="text-sm text-white/90">Some aspects of your profile need attention — nothing that can't be addressed with guidance.</p></div>
+        <div class="flex gap-3 p-3 bg-white/5 border border-yellow-400/20 rounded-xl"><span class="text-yellow-400 mt-0.5">◉</span><p class="text-sm text-white/90">A larger deposit or reducing existing monthly debt could significantly boost your approval odds.</p></div>
+        <div class="flex gap-3 p-3 bg-white/5 border border-yellow-400/20 rounded-xl"><span class="text-yellow-400 mt-0.5">◉</span><p class="text-sm text-white/90">Our consultants specialise in getting borderline applications over the line. Let's talk.</p></div>`;
     } else {
-      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-red-50';
-      badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-red-500 shadow-xl shadow-red-100';
-      title.className = 'text-2xl font-black mb-2 text-red-700';
+      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#1e3a5f] border border-red-400/30 shadow-xl';
+      badge.className = 'w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-5 text-white bg-red-500 shadow-xl shadow-red-500/40 ring-4 ring-red-400/30';
+      title.className = 'text-2xl font-black mb-2 text-red-400';
       title.textContent = "Needs Work — Here's How to Improve";
-      msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-80 text-red-700';
+      msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-90 text-white';
       msg.textContent = `Don't be discouraged, ${leadData.firstName}. Owning is still absolutely possible — it just needs a bit more preparation. Focus on these areas:`;
       list.innerHTML  = `
-        <div class="flex gap-3 p-3 bg-red-50 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-gray-700"><strong>Credit health:</strong> Check your score at TransUnion or Experian. Dispute errors and start clearing overdue accounts.</p></div>
-        <div class="flex gap-3 p-3 bg-red-50 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-gray-700"><strong>Reduce debt:</strong> Pay down store accounts and personal loans to improve your debt-to-income ratio before applying.</p></div>
-        <div class="flex gap-3 p-3 bg-red-50 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-gray-700"><strong>Build a deposit:</strong> Even R30,000–R50,000 saved can shift a declined application to an approved one.</p></div>
-        <div class="flex gap-3 p-3 bg-red-50 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-gray-700"><strong>Stay in touch:</strong> Register your interest now so we contact you when you're ready. Units will still be available.</p></div>`;
+        <div class="flex gap-3 p-3 bg-white/5 border border-red-400/20 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-white/90"><strong>Credit health:</strong> Check your score at TransUnion or Experian. Dispute errors and start clearing overdue accounts.</p></div>
+        <div class="flex gap-3 p-3 bg-white/5 border border-red-400/20 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-white/90"><strong>Reduce debt:</strong> Pay down store accounts and personal loans to improve your debt-to-income ratio before applying.</p></div>
+        <div class="flex gap-3 p-3 bg-white/5 border border-red-400/20 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-white/90"><strong>Build a deposit:</strong> Even R30,000–R50,000 saved can shift a declined application to an approved one.</p></div>
+        <div class="flex gap-3 p-3 bg-white/5 border border-red-400/20 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-white/90"><strong>Stay in touch:</strong> Register your interest now so we contact you when you're ready. Units will still be available.</p></div>`;
     }
   }
 
