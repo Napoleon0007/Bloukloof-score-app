@@ -144,8 +144,11 @@
         document.getElementById('bk_rate').textContent = parseFloat(document.getElementById('bk_rateSlider').value).toFixed(2);
         ['bk_salSlider','bk_depSlider','bk_rateSlider'].forEach(function(id){ setTrack(document.getElementById(id)); });
 
-        // SA banks apply DSR (Debt Service Ratio): total debt repayments <= 30% of gross income
-        var maxMonthly = sal * 0.30;
+        // SA banks apply DSR (Debt Service Ratio): bond installment <= ~30% of gross income.
+        // A meaningful deposit lowers loan-to-value risk, so banks will stretch DSR up to 35%.
+        // Formula: +0.5% DSR per R50k deposit, capped at +5% (so 35% max).
+        var depositBoost = Math.min(0.05, (dep / 50000) * 0.005);
+        var maxMonthly = sal * (0.30 + depositBoost);
         var r = rate / 12, n = term * 12;
         var bond = maxMonthly > 0 ? (maxMonthly * (1 - Math.pow(1 + r, -n)) / r) : 0;
         bond = Math.round(bond / 1000) * 1000;
