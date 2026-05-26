@@ -329,6 +329,7 @@
               class="flex-1 px-4 py-3 text-sm outline-none bg-white" />
           </div>
           <p class="text-xs text-[#1e3a5f] font-semibold mt-1 ml-1">Phone *</p>
+          <p id="leadPhoneError" class="hidden text-xs text-red-600 font-semibold mt-1 ml-1"></p>
         </div>
         <button type="submit"
           class="w-full bg-[#1e3a5f] hover:bg-[#162d4a] text-white font-bold text-base py-4 rounded-xl transition-all mt-2">
@@ -803,12 +804,55 @@
     if (e.target === this) closeLeadModal();
   });
 
+  // Validate a South African mobile number.
+  // Accepts: 0XX XXX XXXX, +27XX XXX XXXX, 27XX XXX XXXX. Strips spaces/dashes/brackets.
+  // Rejects: wrong length, non-mobile prefix, all-same digits, sequential digits.
+  function validateSAMobile(raw) {
+    if (!raw) return { ok: false, msg: 'Please enter a phone number' };
+    var digits = raw.replace(/[^0-9+]/g, '');
+    if (digits.startsWith('+27')) digits = '0' + digits.slice(3);
+    else if (digits.startsWith('27') && digits.length === 11) digits = '0' + digits.slice(2);
+    digits = digits.replace(/[^0-9]/g, '');
+    if (digits.length !== 10) return { ok: false, msg: 'Must be 10 digits (e.g. 071 123 4567)' };
+    if (!/^0(6|7|8)[0-9]{8}$/.test(digits)) return { ok: false, msg: 'Must be a valid SA mobile (starts with 06, 07, or 08)' };
+    if (/^(\d)\1{9}$/.test(digits)) return { ok: false, msg: 'That doesn\'t look like a real number' };
+    if (digits === '0123456789' || digits === '0987654321') return { ok: false, msg: 'That doesn\'t look like a real number' };
+    return { ok: true, normalised: digits };
+  }
+
+  function showPhoneError(msg) {
+    var err = document.getElementById('leadPhoneError');
+    var wrap = document.getElementById('leadPhone').parentElement;
+    err.textContent = msg;
+    err.classList.remove('hidden');
+    wrap.classList.remove('border-[#1e3a5f]');
+    wrap.classList.add('border-red-500', 'ring-2', 'ring-red-200');
+  }
+
+  function clearPhoneError() {
+    var err = document.getElementById('leadPhoneError');
+    var wrap = document.getElementById('leadPhone').parentElement;
+    err.classList.add('hidden');
+    wrap.classList.remove('border-red-500', 'ring-2', 'ring-red-200');
+    wrap.classList.add('border-[#1e3a5f]');
+  }
+
+  document.getElementById('leadPhone').addEventListener('input', clearPhoneError);
+
   function submitLead(e) {
     e.preventDefault();
+    var rawPhone = document.getElementById('leadPhone').value.trim();
+    var check = validateSAMobile(rawPhone);
+    if (!check.ok) {
+      showPhoneError(check.msg);
+      document.getElementById('leadPhone').focus();
+      return;
+    }
+    clearPhoneError();
     leadData = {
       firstName: document.getElementById('leadFirstName').value.trim(),
       surname:   document.getElementById('leadSurname').value.trim(),
-      phone:     document.getElementById('leadPhone').value.trim(),
+      phone:     check.normalised,
       email:     document.getElementById('leadEmail').value.trim()
     };
     closeLeadModal();
