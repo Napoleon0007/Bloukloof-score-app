@@ -29,6 +29,8 @@
     .testimonials-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease; }
     .testimonials-slide.active { opacity: 1; }
     #quizOverlay, #resultsPage { -webkit-overflow-scrolling: touch; }
+    #quizConfirmBar { transform: translateY(100%); opacity: 0; transition: transform 0.25s ease, opacity 0.25s ease; }
+    #quizConfirmBar.show { transform: translateY(0); opacity: 1; }
     /* Prevent iOS Safari auto-zoom on input focus (triggers when font-size < 16px) */
     @media screen and (-webkit-min-device-pixel-ratio: 0) {
       select, textarea, input { font-size: 16px !important; }
@@ -382,10 +384,13 @@
             <div class="w-px h-5 bg-gray-200"></div>
             <img src="./kiron-logo.png" alt="Kiron" class="h-5 w-auto" />
           </div>
-          <span class="text-xs text-white/70">Question <span id="questionNum">1</span> of 9</span>
+          <div class="text-right">
+            <div class="text-[10px] text-white/50 uppercase tracking-wider leading-none mb-0.5">Calculating your score</div>
+            <div class="text-sm font-bold text-[#ff6a00]"><span id="quizPct">13</span>% complete</div>
+          </div>
         </div>
         <div class="bg-white/20 rounded-full h-2 overflow-hidden">
-          <div id="quizProgress" class="progress-bar h-2 bg-white rounded-full" style="width:0%"></div>
+          <div id="quizProgress" class="progress-bar h-2 bg-[#ff6a00] rounded-full" style="width:13%"></div>
         </div>
       </div>
     </div>
@@ -394,6 +399,8 @@
       <div id="questionContainer" class="w-full max-w-2xl"></div>
     </div>
   </div>
+  <!-- Micro-confirmation bar -->
+  <div id="quizConfirmBar" class="fixed bottom-0 left-0 right-0 z-[20] bg-[#ff6a00] text-white text-sm font-bold text-center py-3.5 px-4 pointer-events-none"></div>
 </div>
 
 <!-- ===================== RESULTS PAGE ===================== -->
@@ -642,6 +649,17 @@
   // STATE
   // ================================================================
   let leadData        = {};
+  const CONFIRMATIONS = [
+    "Good to know — your profile is building.",
+    "Noted — that's factored in.",
+    "Great — that works in your favour.",
+    "Perfect — almost there.",
+    "Understood — one step closer.",
+    "That helps personalise your result.",
+    "Recorded — your score is updating.",
+    "Got it — keep going!"
+  ];
+
   let quizAnswers     = [];
   let currentQ        = 0;
   let skipQ8          = false;
@@ -875,10 +893,12 @@
     if (overlay) overlay.scrollTop = 0;
 
     const q        = QUESTIONS[currentQ];
-    const progress = (currentQ / QUESTIONS.length) * 100;
+    const progress = ((currentQ + 1) / QUESTIONS.length) * 100;
 
-    document.getElementById('questionNum').textContent      = currentQ + 1;
-    document.getElementById('quizProgress').style.width    = progress + '%';
+    document.getElementById('quizProgress').style.width = progress + '%';
+    document.getElementById('quizPct').textContent = Math.round(progress);
+    const confirmBar = document.getElementById('quizConfirmBar');
+    if (confirmBar) confirmBar.classList.remove('show');
 
     const optionsHTML = q.options.map((opt, i) => `
       <button
@@ -897,7 +917,7 @@
       <div class="fade-in">
         <div class="mb-8">
           <span class="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full mb-5 uppercase tracking-wide border border-white/30">
-            Question ${currentQ + 1} of ${QUESTIONS.length}
+            ${currentQ >= QUESTIONS.length - 1 ? 'Last question — your score awaits!' : currentQ >= QUESTIONS.length - 2 ? 'Almost there!' : `Question ${currentQ + 1} of ${QUESTIONS.length}`}
           </span>
           <h2 class="text-2xl sm:text-3xl font-black text-white leading-snug mb-3 drop-shadow-lg">${q.text}</h2>
           <p class="text-white/70 text-sm">${q.sub}</p>
@@ -925,6 +945,10 @@
       score:      score
     };
 
+    const cbar = document.getElementById('quizConfirmBar');
+    cbar.textContent = CONFIRMATIONS[Math.floor(Math.random() * CONFIRMATIONS.length)];
+    cbar.classList.add('show');
+
     // Q7 (index 6): if "No" or "Not sure" → skip Q8, show Experian modal
     if (currentQ === 6 && (idx === 1 || idx === 2)) {
       skipQ8 = true;
@@ -932,7 +956,7 @@
         currentQ = 8;
         document.getElementById('experianModal').classList.remove('hidden');
         document.getElementById('experianModal').classList.add('flex');
-      }, 280);
+      }, 700);
       return;
     }
 
@@ -940,7 +964,7 @@
       currentQ++;
       if (currentQ >= QUESTIONS.length) finishQuiz();
       else renderQuestion();
-    }, 280);
+    }, 700);
   }
 
   function continueAfterExperian() {
@@ -985,6 +1009,19 @@
   // ================================================================
   // RESULTS
   // ================================================================
+  function animateScore(target) {
+    const el = document.getElementById('scorePercent');
+    const start = performance.now();
+    const duration = 1400;
+    function tick(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(eased * target) + '%';
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
   function showResults(pct) {
     document.getElementById('quizOverlay').classList.add('hidden');
     document.getElementById('resultsPage').classList.remove('hidden');
@@ -1009,7 +1046,7 @@
     const msg     = document.getElementById('scoreMessage');
     const list    = document.getElementById('scoreDetailsList');
 
-    document.getElementById('scorePercent').textContent = pct + '%';
+    document.getElementById('scorePercent').textContent = '0%';
 
     if (pct >= 75) {
       card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#1e3a5f] border border-green-400/30 shadow-xl';
@@ -1046,6 +1083,8 @@
         <div class="flex gap-3 p-3 bg-white/5 border border-red-400/20 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-white/90"><strong>Build a deposit:</strong> Even R30,000–R50,000 saved can shift a declined application to an approved one.</p></div>
         <div class="flex gap-3 p-3 bg-white/5 border border-red-400/20 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-white/90"><strong>Stay in touch:</strong> Register your interest now so we contact you when you're ready. Units will still be available.</p></div>`;
     }
+
+    setTimeout(() => animateScore(pct), 350);
   }
 
   // ================================================================
