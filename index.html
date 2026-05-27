@@ -90,24 +90,24 @@
       55%            { transform:translate(-80px,-1000px) rotate(220deg) scale(0); opacity:0; }
       70%            { transform:translate(-80px,-1000px) rotate(220deg) scale(0); opacity:0; }
     }
-    /* n — arcs down toward "Wealth", bounces off it, then rockets upper-right */
+    /* n — drops down onto H in "Wealth", ricochets off its top crossbar, rockets upper-right */
     @keyframes blastN {
       0%,39%,71%,100%{ transform:translate(0,0) rotate(0deg) scale(1); opacity:1; filter:none; }
-      40%            { transform:translate(-8px,10px) rotate(-14deg) scale(1.5); opacity:1; filter:none; }
-      44%            { transform:translate(-130px,68px) rotate(-95deg) scale(0.9); opacity:1; filter:none; }
-      45.5%          { transform:translate(-128px,66px) rotate(-100deg) scale(1.6); opacity:1; filter:brightness(5); }
-      /* elastic rebound — bounces right, barely upward; gravity already pulling */
-      48%            { transform:translate(-52px,54px) rotate(-128deg) scale(1.05); opacity:1; filter:none; }
-      /* gravity dominant — arcing down-right */
-      53%            { transform:translate(80px,210px) rotate(-255deg) scale(0.75); opacity:0.85; filter:none; }
-      60%            { transform:translate(240px,520px) rotate(-395deg) scale(0.2); opacity:0.25; filter:none; }
-      65%            { transform:translate(295px,760px) rotate(-455deg) scale(0); opacity:0; filter:none; }
-      70%            { transform:translate(295px,760px) rotate(-455deg) scale(0); opacity:0; filter:none; }
+      40%            { transform:translate(4px,10px) rotate(12deg) scale(1.5); opacity:1; filter:none; }
+      44%            { transform:translate(22px,64px) rotate(58deg) scale(0.9); opacity:1; filter:none; }
+      45.5%          { transform:translate(32px,78px) rotate(68deg) scale(1.6); opacity:1; filter:brightness(5); }
+      /* ricochet — n bounces off top of H, reversing upward */
+      47%            { transform:translate(24px,58px) rotate(72deg) scale(1.05); opacity:1; filter:none; }
+      /* launching upper-right off the ricochet */
+      52%            { transform:translate(190px,-170px) rotate(188deg) scale(0.55); opacity:0.7; filter:none; }
+      60%            { transform:translate(510px,-550px) rotate(342deg) scale(0.12); opacity:0.15; filter:none; }
+      65%            { transform:translate(700px,-760px) rotate(415deg) scale(0); opacity:0; filter:none; }
+      70%            { transform:translate(700px,-760px) rotate(415deg) scale(0); opacity:0; filter:none; }
     }
-    @keyframes wealthBounce {
+    @keyframes wealthHBounce {
       0%,44%,49%,100%{ transform:none; filter:none; }
-      45.5%          { transform:translate(5px,-6px) scale(1.07); filter:brightness(2.8) drop-shadow(0 0 14px rgba(125,211,252,1)); }
-      46.5%          { transform:translate(-3px,3px) scale(1.02); filter:brightness(1.4); }
+      45.5%          { transform:translate(3px,4px) scale(1.09); filter:brightness(2.8) drop-shadow(0 0 14px rgba(125,211,252,1)); }
+      46.5%          { transform:translate(-2px,-2px) scale(1.02); filter:brightness(1.4); }
       48%            { transform:none; filter:none; }
     }
     /* t — crashes down-right through the paragraph text, then off-screen */
@@ -183,42 +183,28 @@
     .device-home-pill { width: 68px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 999px; }
     .device-btn { background: linear-gradient(to right, #1e1e1e, #363636); border-radius: 3px; position: absolute; }
 
-    /* ── Lightning bolts ── */
-    .bk-lightning-wrap { position:absolute; inset:0; pointer-events:none; z-index:3; overflow:hidden; }
-    .bk-bolt { position:absolute; top:0; overflow:visible; }
-    .bk-bolt path {
-      fill:none; stroke:#e8f4ff; stroke-width:2.5;
+    /* ── Red rent lightning — tiny bolts aimed at "Rent." just before explosion ── */
+    .bk-rent-bolt { position:absolute; top:0; overflow:visible; pointer-events:none; }
+    .bk-rent-bolt path {
+      fill:none; stroke:#ff2200; stroke-width:1.8;
       stroke-linecap:round; stroke-linejoin:round;
-      stroke-dasharray:1000; stroke-dashoffset:1000;
+      vector-effect:non-scaling-stroke;
+      stroke-dasharray:220; stroke-dashoffset:220;
     }
-    /* sky-wide light pulse on each strike */
-    .bk-sky-flash { position:absolute; inset:0; opacity:0; background:rgba(180,220,255,0.12); pointer-events:none; }
-
-    @keyframes bkStrike {
-      0%,6%,100%  { stroke-dashoffset:1000; opacity:0; filter:none; }
-      1%           { stroke-dashoffset:0; opacity:1;
-                     filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 14px rgba(140,200,255,.95)); }
-      2%           { stroke-dashoffset:0; opacity:0.3; filter:none; }
-      /* secondary re-strike */
-      2.8%         { stroke-dashoffset:0; opacity:1;
-                     filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 22px rgba(140,200,255,1)); }
-      5%           { stroke-dashoffset:0; opacity:0; filter:none; }
+    /* synced to rentLife 10s cycle — fire builds 28-36%, explosion at 40% */
+    @keyframes bkRentStrike {
+      0%,34%    { stroke-dashoffset:220; opacity:0; filter:none; }
+      35%        { stroke-dashoffset:0;   opacity:1;
+                   filter:drop-shadow(0 0 2px #ff5500) drop-shadow(0 0 8px rgba(255,50,0,.9)); }
+      36.5%      { stroke-dashoffset:0;   opacity:0.15; filter:none; }
+      37.5%      { stroke-dashoffset:0;   opacity:0.9;
+                   filter:drop-shadow(0 0 3px #ff4400) drop-shadow(0 0 12px rgba(255,70,0,1)); }
+      39.5%      { stroke-dashoffset:0;   opacity:0;   filter:none; }
+      40%,100%  { stroke-dashoffset:220; opacity:0;   filter:none; }
     }
-    @keyframes bkSkyPulse {
-      0%,1%,5%,100% { opacity:0; }
-      1.5%           { opacity:1; }
-      4%             { opacity:0; }
-    }
-
-    /* bolt timings — first strike 4-6 s in, then loops */
-    #bk-b-l1 path  { animation: bkStrike  8s linear 4.1s infinite; }
-    #bk-b-l2 path  { animation: bkStrike  9s linear 5.9s infinite; }
-    #bk-b-r1 path  { animation: bkStrike  7s linear 5.3s infinite; }
-    #bk-b-r2 path  { animation: bkStrike 10s linear 4.6s infinite; }
-    #bk-sf-l1      { animation: bkSkyPulse  8s linear 4.1s infinite; }
-    #bk-sf-l2      { animation: bkSkyPulse  9s linear 5.9s infinite; }
-    #bk-sf-r1      { animation: bkSkyPulse  7s linear 5.3s infinite; }
-    #bk-sf-r2      { animation: bkSkyPulse 10s linear 4.6s infinite; }
+    #bk-rb-a path { animation: bkRentStrike 10s linear 1.80s infinite; }
+    #bk-rb-b path { animation: bkRentStrike 10s linear 1.87s infinite; }
+    #bk-rb-c path { animation: bkRentStrike 10s linear 1.94s infinite; }
   </style>
 </head>
 <body class="bg-white text-gray-900 overflow-x-hidden">
@@ -246,30 +232,19 @@
   <!-- 20% dark overlay so text stays readable -->
   <div class="absolute inset-0 bg-black/20 z-[1]"></div>
 
-  <!-- Lightning bolts — strike from cloud-top toward ground, starting ~4-6s in -->
-  <div class="bk-lightning-wrap" aria-hidden="true">
-    <!-- sky flash overlays (one per bolt) -->
-    <div id="bk-sf-l1" class="bk-sky-flash"></div>
-    <div id="bk-sf-l2" class="bk-sky-flash"></div>
-    <div id="bk-sf-r1" class="bk-sky-flash"></div>
-    <div id="bk-sf-r2" class="bk-sky-flash"></div>
-    <!-- Left bolt 1 — ~8% from left edge, angles inward -->
-    <svg id="bk-b-l1" class="bk-bolt" style="left:7%;width:90px;height:600px;">
-      <path d="M 0,0 L 26,92 L 10,92 L 40,200 L 22,200 L 52,314 L 32,314 L 64,436 L 42,436 L 76,578"/>
-    </svg>
-    <!-- Left bolt 2 — ~17% from left, different rhythm -->
-    <svg id="bk-b-l2" class="bk-bolt" style="left:16%;width:80px;height:540px;">
-      <path d="M 0,0 L 20,80 L 7,80 L 32,176 L 16,176 L 44,282 L 26,282 L 56,396 L 34,396 L 62,530"/>
-    </svg>
-    <!-- Right bolt 1 — ~8% from right, mirrors inward -->
-    <svg id="bk-b-r1" class="bk-bolt" style="right:7%;width:90px;height:600px;">
-      <path d="M 80,0 L 54,92 L 70,92 L 40,200 L 58,200 L 28,314 L 48,314 L 16,436 L 38,436 L 4,578"/>
-    </svg>
-    <!-- Right bolt 2 — ~17% from right -->
-    <svg id="bk-b-r2" class="bk-bolt" style="right:16%;width:80px;height:540px;">
-      <path d="M 72,0 L 52,80 L 65,80 L 38,176 L 54,176 L 26,282 L 44,282 L 14,396 L 36,396 L 8,530"/>
-    </svg>
-  </div>
+  <!-- Small red lightning bolts — positioned by JS to strike "Rent." just before explosion -->
+  <!-- Bolt A: fans from left at top, converges on Rent. -->
+  <svg id="bk-rb-a" class="bk-rent-bolt" style="width:40px;" preserveAspectRatio="none" viewBox="0 0 40 100" aria-hidden="true">
+    <path d="M 5,0 L 24,18 L 11,18 L 27,38 L 14,38 L 23,60 L 13,60 L 20,82 L 18,82 L 20,100"/>
+  </svg>
+  <!-- Bolt B: straight down center -->
+  <svg id="bk-rb-b" class="bk-rent-bolt" style="width:40px;" preserveAspectRatio="none" viewBox="0 0 40 100" aria-hidden="true">
+    <path d="M 20,0 L 12,20 L 25,20 L 15,42 L 27,42 L 17,65 L 23,65 L 19,85 L 21,85 L 20,100"/>
+  </svg>
+  <!-- Bolt C: fans from right at top, converges on Rent. -->
+  <svg id="bk-rb-c" class="bk-rent-bolt" style="width:40px;" preserveAspectRatio="none" viewBox="0 0 40 100" aria-hidden="true">
+    <path d="M 35,0 L 16,18 L 29,18 L 13,38 L 26,38 L 17,60 L 27,60 L 20,82 L 22,82 L 20,100"/>
+  </svg>
 
   <div class="relative z-[2] max-w-4xl mx-auto px-4 text-center pt-7 pb-12 sm:pt-14 sm:pb-20">
     <div class="flex justify-center mb-8">
@@ -285,7 +260,7 @@
       <span class="hero-word" style="position:relative; animation: wordDrop 0.5s ease 0.44s both, rentLife 10s ease-in-out 1.8s infinite; display:inline-block;"><span style="display:inline-block;animation:blastR 10s linear 1.8s infinite">R</span><span style="display:inline-block;animation:blastE 10s linear 1.8s infinite">e</span><span style="display:inline-block;animation:blastN 10s linear 1.8s infinite">n</span><span style="display:inline-block;animation:blastT 10s linear 1.8s infinite">t</span><span style="display:inline-block;animation:blastDot 10s linear 1.8s infinite">.</span></span><br>
       <span class="hero-word" style="animation-delay:0.62s">Start</span>
       <span class="hero-word" style="animation-delay:0.74s">Building</span>
-      <span class="hero-word text-sky-300" style="position:relative;animation:wordDrop 0.5s ease 0.86s both,wealthBounce 10s linear 1.8s infinite;text-shadow:0 0 8px rgba(125,211,252,0.6),0 0 18px rgba(125,211,252,0.35),0 0 35px rgba(125,211,252,0.18)">Wealth<span class="steam-p" style="left:8%;animation-delay:0s;"></span><span class="steam-p" style="left:24%;animation-delay:0.5s;"></span><span class="steam-p" style="left:44%;animation-delay:1s;"></span><span class="steam-p" style="left:64%;animation-delay:0.3s;"></span><span class="steam-p" style="left:82%;animation-delay:0.75s;"></span></span><span class="hero-word" style="animation-delay:0.92s">.</span>
+      <span class="hero-word text-sky-300" style="position:relative;animation:wordDrop 0.5s ease 0.86s both;text-shadow:0 0 8px rgba(125,211,252,0.6),0 0 18px rgba(125,211,252,0.35),0 0 35px rgba(125,211,252,0.18)">Wealt<span style="display:inline-block;animation:wealthHBounce 10s linear 1.8s infinite">h</span><span class="steam-p" style="left:8%;animation-delay:0s;"></span><span class="steam-p" style="left:24%;animation-delay:0.5s;"></span><span class="steam-p" style="left:44%;animation-delay:1s;"></span><span class="steam-p" style="left:64%;animation-delay:0.3s;"></span><span class="steam-p" style="left:82%;animation-delay:0.75s;"></span></span><span class="hero-word" style="animation-delay:0.92s">.</span>
     </h1>
 
     <p class="text-base sm:text-3xl max-w-2xl mx-auto mb-6 leading-relaxed px-2" style="font-family: 'Lora', Georgia, serif; font-weight: 600; color: white; text-shadow: 0 1px 4px rgba(0,0,0,0.5);">
@@ -339,7 +314,7 @@
       <img src="./logo.png" alt="Bloukloof Properties" class="h-16 sm:h-20 mx-auto mb-4 w-auto" style="filter:brightness(0) invert(1);" />
       <p class="text-sm font-bold uppercase tracking-widest text-[#ff6a00] mb-3" id="rvoTruthLabel">The 30-year truth</p>
       <h2 class="text-2xl sm:text-4xl font-black text-white mb-4 leading-tight" id="rvoHeading">If you rent, play this game below at your own risk.</h2>
-      <p class="text-white/70 text-sm max-w-xl mx-auto">See how much you'll spend over the next 10, 20 or 30 years on Rent!</p>
+      <p class="text-white/70 text-sm max-w-xl mx-auto">See how much you'll spend over the next 10, 20 or 30 years on Rent! <span class="text-white/90 font-bold">You have been warned.</span></p>
     </div>
 
     <div class="border rounded-2xl p-5 mb-6 relative overflow-hidden" style="border-color:#1e4a8f;">
