@@ -170,7 +170,9 @@
 
 <!-- ===================== RENT vs OWN ===================== -->
 <section class="py-12 sm:py-20 px-4 relative overflow-hidden" style="background:#1a2d3e;">
-  <div id="rvoSlideshow" class="absolute inset-0 z-0"></div>
+  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+    <source src="./clouds.mp4" type="video/mp4">
+  </video>
   <div class="absolute inset-0 z-[1] bg-black/70"></div>
   <div class="max-w-3xl mx-auto relative z-[2]">
     <div class="text-center mb-8">
@@ -189,29 +191,29 @@
         class="w-full" style="accent-color:#ff6a00; height:36px; touch-action:pan-y;" />
     </div>
 
-    <div class="grid grid-cols-2 gap-6 sm:gap-12">
+    <div class="grid grid-cols-2 gap-4 sm:gap-10">
 
       <!-- RENTING — phone mockup -->
       <div class="flex justify-center">
-        <div class="device-frame w-full" style="max-width:190px;">
+        <div class="device-frame w-full" style="max-width:260px;">
           <!-- Volume buttons (left) -->
-          <div class="device-btn" style="left:-5px;top:68px;width:5px;height:22px;"></div>
-          <div class="device-btn" style="left:-5px;top:98px;width:5px;height:22px;"></div>
+          <div class="device-btn" style="left:-5px;top:80px;width:5px;height:26px;"></div>
+          <div class="device-btn" style="left:-5px;top:116px;width:5px;height:26px;"></div>
           <!-- Power button (right) -->
-          <div class="device-btn" style="right:-5px;top:82px;width:5px;height:38px;background:linear-gradient(to left,#1e1e1e,#363636);"></div>
+          <div class="device-btn" style="right:-5px;top:98px;width:5px;height:46px;background:linear-gradient(to left,#1e1e1e,#363636);"></div>
           <div class="device-screen">
             <div class="device-notch"><div class="device-notch-pill"></div></div>
-            <div class="px-3 pb-1">
-              <p class="text-red-300 text-[9px] sm:text-[11px] font-bold uppercase tracking-widest mb-0.5 text-center">Renting</p>
-              <p class="text-white text-[10px] sm:text-[13px] font-bold mb-2 text-center leading-tight">Money to landlord</p>
-              <div class="relative h-28 sm:h-48 rounded-xl overflow-hidden flex items-end mb-2" style="background:#060c14; border:1px solid #1e3050;">
+            <div class="px-4 pb-2">
+              <p class="text-red-300 text-[11px] sm:text-sm font-bold uppercase tracking-widest mb-1 text-center">Renting</p>
+              <p class="text-white text-xs sm:text-base font-bold mb-3 text-center leading-tight">Money to landlord</p>
+              <div class="relative h-40 sm:h-64 rounded-xl overflow-hidden flex items-end mb-3" style="background:#060c14; border:1px solid #1e3050;">
                 <div id="rvoRentBar" class="w-full bg-gradient-to-t from-red-700 to-red-400 transition-all" style="height:0%;transition-duration:200ms"></div>
               </div>
               <div class="text-center">
-                <p class="text-white/50 text-[8px] uppercase tracking-wide">Paid in rent</p>
-                <p class="text-sm sm:text-lg font-black text-red-400 leading-tight">R<span id="rvoRentPaid">0</span></p>
-                <p class="text-white/50 text-[8px] uppercase tracking-wide mt-1">In your name</p>
-                <p class="text-sm sm:text-lg font-black text-red-500 leading-tight">R0</p>
+                <p class="text-white/50 text-[10px] uppercase tracking-wide">Paid in rent</p>
+                <p class="text-lg sm:text-2xl font-black text-red-400 leading-tight">R<span id="rvoRentPaid">0</span></p>
+                <p class="text-white/50 text-[10px] uppercase tracking-wide mt-1">In your name</p>
+                <p class="text-lg sm:text-2xl font-black text-red-500 leading-tight">R0</p>
               </div>
             </div>
             <div class="device-home-bar"><div class="device-home-pill"></div></div>
@@ -221,25 +223,25 @@
 
       <!-- OWNING — phone mockup -->
       <div class="flex justify-center">
-        <div class="device-frame w-full" style="max-width:190px;">
+        <div class="device-frame w-full" style="max-width:260px;">
           <!-- Volume buttons (left) -->
-          <div class="device-btn" style="left:-5px;top:68px;width:5px;height:22px;"></div>
-          <div class="device-btn" style="left:-5px;top:98px;width:5px;height:22px;"></div>
+          <div class="device-btn" style="left:-5px;top:80px;width:5px;height:26px;"></div>
+          <div class="device-btn" style="left:-5px;top:116px;width:5px;height:26px;"></div>
           <!-- Power button (right) -->
-          <div class="device-btn" style="right:-5px;top:82px;width:5px;height:38px;background:linear-gradient(to left,#1e1e1e,#363636);"></div>
+          <div class="device-btn" style="right:-5px;top:98px;width:5px;height:46px;background:linear-gradient(to left,#1e1e1e,#363636);"></div>
           <div class="device-screen">
             <div class="device-notch"><div class="device-notch-pill"></div></div>
-            <div class="px-3 pb-1">
-              <p class="text-green-300 text-[9px] sm:text-[11px] font-bold uppercase tracking-widest mb-0.5 text-center">Owning</p>
-              <p class="text-white text-[10px] sm:text-[13px] font-bold mb-2 text-center leading-tight">Bloukloof value</p>
-              <div class="relative h-28 sm:h-48 rounded-xl overflow-hidden flex items-end mb-2" style="background:#060c14; border:1px solid #1e3050;">
+            <div class="px-4 pb-2">
+              <p class="text-green-300 text-[11px] sm:text-sm font-bold uppercase tracking-widest mb-1 text-center">Owning</p>
+              <p class="text-white text-xs sm:text-base font-bold mb-3 text-center leading-tight">Bloukloof value</p>
+              <div class="relative h-40 sm:h-64 rounded-xl overflow-hidden flex items-end mb-3" style="background:#060c14; border:1px solid #1e3050;">
                 <div id="rvoOwnBar" class="w-full bg-gradient-to-t from-green-700 to-green-400 transition-all" style="height:0%;transition-duration:200ms"></div>
               </div>
               <div class="text-center">
-                <p class="text-white/50 text-[8px] uppercase tracking-wide">Bond paid</p>
-                <p class="text-sm sm:text-lg font-black text-green-400 leading-tight">R<span id="rvoOwnPaid">0</span></p>
-                <p class="text-white/50 text-[8px] uppercase tracking-wide mt-1">Bloukloof value</p>
-                <p class="text-sm sm:text-lg font-black text-green-300 leading-tight">R<span id="rvoHomeWorth">0</span></p>
+                <p class="text-white/50 text-[10px] uppercase tracking-wide">Bond paid</p>
+                <p class="text-lg sm:text-2xl font-black text-green-400 leading-tight">R<span id="rvoOwnPaid">0</span></p>
+                <p class="text-white/50 text-[10px] uppercase tracking-wide mt-1">Bloukloof value</p>
+                <p class="text-lg sm:text-2xl font-black text-green-300 leading-tight">R<span id="rvoHomeWorth">0</span></p>
               </div>
             </div>
             <div class="device-home-bar"><div class="device-home-pill"></div></div>
@@ -1678,7 +1680,7 @@
   (function() {
     const imgs = ['./bk-living-room.jpg','./bk-kitchen.jpg','./bk-bedroom.jpg','./bk-house.jpg','./1000000406.jpg','./1000002126.jpg'];
     const container = document.getElementById('rvoSlideshow');
-    imgs.forEach((src, i) => {
+    if (container) imgs.forEach((src, i) => {
       const div = document.createElement('div');
       div.className = 'rvo-slide' + (i === 0 ? ' active' : '');
       div.style.backgroundImage = `url('${src}')`;
