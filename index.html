@@ -114,7 +114,7 @@
 </nav>
 
 <!-- ===================== HERO ===================== -->
-<section class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+<section class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden pt-16" style="background:#0d1c28;">
   <!-- Static background image -->
   <video autoplay muted loop playsinline poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="absolute inset-0 w-full h-full object-cover z-0" style="filter:brightness(0.8) saturate(0.85);"><source src="./clouds.mp4" type="video/mp4"></video>
   <!-- 20% dark overlay so text stays readable -->
@@ -332,20 +332,21 @@
   <div class="absolute inset-0 z-[1]" style="background:rgba(26,45,62,0.78);"></div>
   <div class="max-w-6xl mx-auto px-4 relative z-[2]">
     <div class="grid grid-cols-3 items-center mb-6 sm:mb-12">
-      <!-- Left: empty -->
-      <div></div>
-      <!-- Centre: logo only, centered -->
-      <div class="flex justify-center">
-        <img src="./logo.png" alt="Bloukloof Properties" class="h-14 sm:h-20 w-auto" style="filter: brightness(0) invert(1);" />
-      </div>
-      <!-- Right: Gallery label + walkthrough button -->
-      <div class="flex flex-col items-end gap-2 sm:gap-3">
-        <h2 class="text-3xl sm:text-4xl text-white" style="font-family: 'Tangerine', cursive; font-weight: 700; line-height: 1;">Gallery</h2>
+      <!-- Left: walkthrough button -->
+      <div class="flex items-center">
         <button onclick="openWalkthrough()"
           class="cta-shimmer flex items-center gap-2 bg-[#ff6a00] hover:bg-[#e55a00] text-white rounded-full px-3 py-2 text-xs sm:text-sm transition-all shadow-lg">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
           <span class="whitespace-nowrap">Walk through</span>
         </button>
+      </div>
+      <!-- Centre: logo only, centered -->
+      <div class="flex justify-center">
+        <img src="./logo.png" alt="Bloukloof Properties" class="h-14 sm:h-20 w-auto" style="filter: brightness(0) invert(1);" />
+      </div>
+      <!-- Right: Gallery label, vertically centered with logo -->
+      <div class="flex items-center justify-end">
+        <h2 class="text-3xl sm:text-4xl text-white" style="font-family: 'Tangerine', cursive; font-weight: 700; line-height: 1;">Gallery</h2>
       </div>
     </div>
 
@@ -410,7 +411,7 @@
         </a>
         <a href="./bloukloof-brochure.pdf" download
            class="flex-1 flex items-center justify-center gap-1.5 font-bold text-sm px-4 py-3 rounded-xl border transition-all hover:scale-105"
-           style="background: linear-gradient(rgba(185,140,70,0.45),rgba(185,140,70,0.45)), url('btn-leopard.jpg') center/cover; border-color: rgba(80,35,0,0.55); color: #fff; text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 0 6px rgba(0,0,0,0.8);">
+           style="background: url('btn-leopard.jpg') center/cover; border-color: rgba(80,35,0,0.55); color: #fff; text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 0 6px rgba(0,0,0,0.8);">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
           <span style="background:rgba(40,72,96,0.3);border-radius:4px;padding:1px 6px;">Brochure</span>
         </a>
@@ -747,7 +748,7 @@
       </a>
       <a href="./bloukloof-brochure.pdf" download
          class="flex items-center justify-center gap-2 font-bold text-sm px-5 py-3 rounded-xl border transition-all hover:scale-105"
-         style="background: linear-gradient(rgba(185,140,70,0.45),rgba(185,140,70,0.45)), url('btn-leopard.jpg') center/cover; border-color: rgba(80,35,0,0.55); color: #fff; text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 0 6px rgba(0,0,0,0.8);">
+         style="background: url('btn-leopard.jpg') center/cover; border-color: rgba(80,35,0,0.55); color: #fff; text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 0 6px rgba(0,0,0,0.8);">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
         <span style="background:rgba(40,72,96,0.3);border-radius:4px;padding:1px 6px;">Brochure</span>
       </a>
@@ -1692,12 +1693,39 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Force video autoplay on mobile (iOS requires programmatic play after load/touch)
-  function forcePlayVideos() {
-    document.querySelectorAll('video[muted]').forEach(v => { v.play().catch(() => {}); });
-  }
-  document.addEventListener('DOMContentLoaded', forcePlayVideos);
-  document.addEventListener('touchstart', forcePlayVideos, { once: true });
+  // Coordinate video startup: bg videos hold until both logos are ready
+  (function() {
+    var logoVids = Array.from(document.querySelectorAll('.logo-vid'));
+    var bgVids   = Array.from(document.querySelectorAll('video[muted]')).filter(function(v) {
+      return !v.classList.contains('logo-vid');
+    });
+    var logosReady = 0;
+    var bgStarted  = false;
+
+    bgVids.forEach(function(v) { v.pause(); });
+
+    function startBgVideos() {
+      if (bgStarted) return;
+      bgStarted = true;
+      bgVids.forEach(function(v) { v.play().catch(function(){}); });
+    }
+
+    function onLogoReady(v) {
+      v.style.opacity = '1';
+      logosReady++;
+      if (logosReady >= logoVids.length) startBgVideos();
+    }
+
+    logoVids.forEach(function(v) {
+      if (v.readyState >= 3) { onLogoReady(v); }
+      else { v.addEventListener('canplay', function() { onLogoReady(v); }, { once: true }); }
+    });
+
+    document.addEventListener('touchstart', function() {
+      logoVids.forEach(function(v) { v.play().catch(function(){}); });
+      if (logosReady >= logoVids.length) startBgVideos();
+    }, { once: true });
+  })();
 
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -1741,12 +1769,6 @@
   });
 
 
-  // Fade logo videos in only after they can play — hides the native play-button flash on mobile
-  document.querySelectorAll('.logo-vid').forEach(function(v) {
-    var target = v.dataset.targetOpacity || '1';
-    function show() { v.style.opacity = target; }
-    if (v.readyState >= 3) { show(); } else { v.addEventListener('canplay', show, { once: true }); }
-  });
 
   // ================================================================
   // WIDGET: RENT vs OWN VISUALISER
