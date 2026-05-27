@@ -140,11 +140,6 @@ html, body { -webkit-text-size-adjust: 100%; }
             </div>
         </div>
 
-        <div id="bk_statusBanner" style="margin-top:16px;padding:10px 14px;border-radius:12px;text-align:center;font-weight:900;font-size:0.9rem;line-height:1.4;transition:background 0.4s,color 0.4s;background:#e74c3c;color:#fff;">
-            ✗ You don't qualify yet — adjust your inputs
-        </div>
-
-        <p class="bk-note">Estimate only · DSR 30% rule · 20-year term · Once-off costs are indicative (transfer + bond reg + attorney). Actual approval subject to credit check, income verification, and bank discretion.</p>
     </div>
 </div>
 
@@ -206,19 +201,6 @@ html, body { -webkit-text-size-adjust: 100%; }
             document.getElementById('bk_qSub').textContent   = 'You need ' + fmtR(shortfall) + ' more — increase salary or grow your deposit';
         }
 
-        var banner = document.getElementById('bk_statusBanner');
-        if (banner) {
-            if (prop >= 1095000) {
-                banner.style.background = '#27ae60'; banner.style.color = '#fff';
-                banner.textContent = '✓ You qualify! Congratulations — Bloukloof@69 is within your reach!';
-            } else if (shortfall <= 150000) {
-                banner.style.background = '#27ae60'; banner.style.color = '#fff';
-                banner.textContent = '✓ Almost there! You\'re ' + fmtR(shortfall) + ' away — adjust your inputs!';
-            } else {
-                banner.style.background = '#e74c3c'; banner.style.color = '#fff';
-                banner.textContent = '✗ You don\'t qualify yet — increase salary or grow your deposit';
-            }
-        }
         postHeight();
     }
     function postHeight() {
