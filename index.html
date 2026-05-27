@@ -78,21 +78,6 @@
         0 16px 32px rgba(0,0,0,0.7),
         8px 16px 40px rgba(0,0,0,0.7);
     }
-    .device-left {
-      transform: perspective(900px) rotateY(-12deg) rotateX(4deg);
-      transform-origin: center bottom;
-    }
-    .device-right {
-      transform: perspective(900px) rotateY(12deg) rotateX(4deg);
-      transform-origin: center bottom;
-    }
-    .device-shadow {
-      width: 72%;
-      height: 18px;
-      margin: 6px auto 0;
-      background: radial-gradient(ellipse at center, rgba(0,0,0,0.65) 0%, transparent 70%);
-      filter: blur(7px);
-    }
     .device-screen {
       background: #050a10;
       border-radius: 2rem;
@@ -220,8 +205,8 @@
     <div class="grid grid-cols-2 gap-4 sm:gap-10">
 
       <!-- RENTING — phone mockup -->
-      <div class="flex flex-col items-center">
-        <div class="device-frame device-left w-full" style="max-width:260px;">
+      <div class="flex justify-center">
+        <div class="device-frame w-full" style="max-width:260px;">
           <!-- Volume buttons (left) -->
           <div class="device-btn" style="left:-5px;top:80px;width:5px;height:26px;"></div>
           <div class="device-btn" style="left:-5px;top:116px;width:5px;height:26px;"></div>
@@ -245,12 +230,11 @@
             <div class="device-home-bar"><div class="device-home-pill"></div></div>
           </div>
         </div>
-        <div class="device-shadow"></div>
       </div>
 
       <!-- OWNING — phone mockup -->
-      <div class="flex flex-col items-center">
-        <div class="device-frame device-right w-full" style="max-width:260px;">
+      <div class="flex justify-center">
+        <div class="device-frame w-full" style="max-width:260px;">
           <!-- Volume buttons (left) -->
           <div class="device-btn" style="left:-5px;top:80px;width:5px;height:26px;"></div>
           <div class="device-btn" style="left:-5px;top:116px;width:5px;height:26px;"></div>
@@ -274,7 +258,6 @@
             <div class="device-home-bar"><div class="device-home-pill"></div></div>
           </div>
         </div>
-        <div class="device-shadow"></div>
       </div>
 
     </div>
