@@ -66,6 +66,12 @@
       93% { transform: translate(1px, -2px) rotate(1.2deg); color: white; }
       95% { transform: translate(0,0) rotate(0deg); color: white; }
     }
+    /* Individual letter blast keyframes — sync with rentLife 8s */
+    @keyframes blastR   { 0%,57%,85%,100%{transform:translate(0,0)rotate(0deg);opacity:1;} 63%{transform:translate(-90px,-110px)rotate(-75deg);opacity:0;} 84%{opacity:0;} }
+    @keyframes blastE   { 0%,57%,85%,100%{transform:translate(0,0)rotate(0deg);opacity:1;} 63%{transform:translate(-35px,-130px)rotate(30deg);opacity:0;} 84%{opacity:0;} }
+    @keyframes blastN   { 0%,57%,85%,100%{transform:translate(0,0)rotate(0deg);opacity:1;} 63%{transform:translate(5px,-120px)rotate(-25deg);opacity:0;} 84%{opacity:0;} }
+    @keyframes blastT   { 0%,57%,85%,100%{transform:translate(0,0)rotate(0deg);opacity:1;} 63%{transform:translate(55px,-105px)rotate(50deg);opacity:0;} 84%{opacity:0;} }
+    @keyframes blastDot { 0%,57%,85%,100%{transform:translate(0,0)rotate(0deg);opacity:1;} 63%{transform:translate(100px,35px)rotate(200deg);opacity:0;} 84%{opacity:0;} }
     @keyframes flameRise {
       0%   { transform: translateY(0) scale(1); }
       100% { transform: translateY(-48px) scale(0.25); }
@@ -170,14 +176,14 @@
     <div class="flex justify-center mb-8">
       <div class="inline-flex flex-col items-center text-sm font-bold px-6 py-2.5 rounded-full uppercase tracking-widest" style="background: rgba(40,72,96,0.55); color: white; border: 1px solid rgba(40,72,96,0.55); gap: 4px;">
         <span>52 units · Pacaltsdorp, George</span>
-        <span style="letter-spacing: 0.14em;"><span style="color: rgba(255,255,255,0.55); font-size: 0.6rem; font-weight:600;">Starting from</span> <span style="color:white; font-size: 0.75rem; font-weight:700; letter-spacing:0.08em;">R1,095,000</span></span>
+        <span style="color: rgba(255,255,255,0.7); font-size: 0.7rem; font-weight:600; letter-spacing: 0.12em;">Starting from R1,095,000</span>
       </div>
     </div>
 
     <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.05] mb-6">
       <span class="hero-word" style="animation-delay:0.2s">Stop</span>
       <span class="hero-word" style="animation-delay:0.32s">Paying</span>
-      <span class="hero-word" style="position:relative; animation: wordDrop 0.5s ease 0.44s both, rentLife 8s ease-in-out 1.8s infinite; display:inline-block;">Rent.<span class="flame-p" style="left:8%;background:#ff6a00;animation:flameRise 0.75s ease-out 0s infinite,flameVisible 8s linear 1.8s infinite;"></span><span class="flame-p" style="left:26%;background:#ffcc00;animation:flameRise 0.9s ease-out 0.18s infinite,flameVisible 8s linear 1.8s infinite;"></span><span class="flame-p" style="left:46%;background:#ff3300;animation:flameRise 0.7s ease-out 0.38s infinite,flameVisible 8s linear 1.8s infinite;"></span><span class="flame-p" style="left:66%;background:#ff8800;animation:flameRise 0.85s ease-out 0.08s infinite,flameVisible 8s linear 1.8s infinite;"></span><span class="flame-p" style="left:85%;background:#ffee00;animation:flameRise 0.65s ease-out 0.28s infinite,flameVisible 8s linear 1.8s infinite;"></span></span><br>
+      <span class="hero-word" style="position:relative; animation: wordDrop 0.5s ease 0.44s both, rentLife 8s ease-in-out 1.8s infinite; display:inline-block;"><span style="display:inline-block;animation:blastR 8s linear 1.8s infinite">R</span><span style="display:inline-block;animation:blastE 8s linear 1.8s infinite">e</span><span style="display:inline-block;animation:blastN 8s linear 1.8s infinite">n</span><span style="display:inline-block;animation:blastT 8s linear 1.8s infinite">t</span><span style="display:inline-block;animation:blastDot 8s linear 1.8s infinite">.</span><span class="flame-p" style="left:8%;background:#ff6a00;animation:flameRise 0.75s ease-out 0s infinite,flameVisible 8s linear 1.8s infinite;"></span><span class="flame-p" style="left:26%;background:#ffcc00;animation:flameRise 0.9s ease-out 0.18s infinite,flameVisible 8s linear 1.8s infinite;"></span><span class="flame-p" style="left:46%;background:#ff3300;animation:flameRise 0.7s ease-out 0.38s infinite,flameVisible 8s linear 1.8s infinite;"></span><span class="flame-p" style="left:66%;background:#ff8800;animation:flameRise 0.85s ease-out 0.08s infinite,flameVisible 8s linear 1.8s infinite;"></span><span class="flame-p" style="left:85%;background:#ffee00;animation:flameRise 0.65s ease-out 0.28s infinite,flameVisible 8s linear 1.8s infinite;"></span></span><br>
       <span class="hero-word" style="animation-delay:0.62s">Start</span>
       <span class="hero-word" style="animation-delay:0.74s">Building</span>
       <span class="hero-word text-sky-300" style="position:relative;animation-delay:0.86s;text-shadow:0 0 8px rgba(125,211,252,0.6),0 0 18px rgba(125,211,252,0.35),0 0 35px rgba(125,211,252,0.18)">Wealth<span class="steam-p" style="left:8%;animation-delay:0s;"></span><span class="steam-p" style="left:24%;animation-delay:0.5s;"></span><span class="steam-p" style="left:44%;animation-delay:1s;"></span><span class="steam-p" style="left:64%;animation-delay:0.3s;"></span><span class="steam-p" style="left:82%;animation-delay:0.75s;"></span></span><span class="hero-word" style="animation-delay:0.92s">.</span>
