@@ -182,6 +182,43 @@
     .device-home-bar { height: 22px; display:flex; align-items:center; justify-content:center; padding-bottom: 3px; }
     .device-home-pill { width: 68px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 999px; }
     .device-btn { background: linear-gradient(to right, #1e1e1e, #363636); border-radius: 3px; position: absolute; }
+
+    /* ── Lightning bolts ── */
+    .bk-lightning-wrap { position:absolute; inset:0; pointer-events:none; z-index:3; overflow:hidden; }
+    .bk-bolt { position:absolute; top:0; overflow:visible; }
+    .bk-bolt path {
+      fill:none; stroke:#e8f4ff; stroke-width:2.5;
+      stroke-linecap:round; stroke-linejoin:round;
+      stroke-dasharray:1000; stroke-dashoffset:1000;
+    }
+    /* sky-wide light pulse on each strike */
+    .bk-sky-flash { position:absolute; inset:0; opacity:0; background:rgba(180,220,255,0.12); pointer-events:none; }
+
+    @keyframes bkStrike {
+      0%,6%,100%  { stroke-dashoffset:1000; opacity:0; filter:none; }
+      1%           { stroke-dashoffset:0; opacity:1;
+                     filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 14px rgba(140,200,255,.95)); }
+      2%           { stroke-dashoffset:0; opacity:0.3; filter:none; }
+      /* secondary re-strike */
+      2.8%         { stroke-dashoffset:0; opacity:1;
+                     filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 22px rgba(140,200,255,1)); }
+      5%           { stroke-dashoffset:0; opacity:0; filter:none; }
+    }
+    @keyframes bkSkyPulse {
+      0%,1%,5%,100% { opacity:0; }
+      1.5%           { opacity:1; }
+      4%             { opacity:0; }
+    }
+
+    /* bolt timings — first strike 4-6 s in, then loops */
+    #bk-b-l1 path  { animation: bkStrike  8s linear 4.1s infinite; }
+    #bk-b-l2 path  { animation: bkStrike  9s linear 5.9s infinite; }
+    #bk-b-r1 path  { animation: bkStrike  7s linear 5.3s infinite; }
+    #bk-b-r2 path  { animation: bkStrike 10s linear 4.6s infinite; }
+    #bk-sf-l1      { animation: bkSkyPulse  8s linear 4.1s infinite; }
+    #bk-sf-l2      { animation: bkSkyPulse  9s linear 5.9s infinite; }
+    #bk-sf-r1      { animation: bkSkyPulse  7s linear 5.3s infinite; }
+    #bk-sf-r2      { animation: bkSkyPulse 10s linear 4.6s infinite; }
   </style>
 </head>
 <body class="bg-white text-gray-900 overflow-x-hidden">
@@ -208,6 +245,31 @@
   <video autoplay muted loop playsinline poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="absolute inset-0 w-full h-full object-cover z-0" style="filter:brightness(0.8) saturate(0.85);"><source src="./clouds.mp4" type="video/mp4"></video>
   <!-- 20% dark overlay so text stays readable -->
   <div class="absolute inset-0 bg-black/20 z-[1]"></div>
+
+  <!-- Lightning bolts — strike from cloud-top toward ground, starting ~4-6s in -->
+  <div class="bk-lightning-wrap" aria-hidden="true">
+    <!-- sky flash overlays (one per bolt) -->
+    <div id="bk-sf-l1" class="bk-sky-flash"></div>
+    <div id="bk-sf-l2" class="bk-sky-flash"></div>
+    <div id="bk-sf-r1" class="bk-sky-flash"></div>
+    <div id="bk-sf-r2" class="bk-sky-flash"></div>
+    <!-- Left bolt 1 — ~8% from left edge, angles inward -->
+    <svg id="bk-b-l1" class="bk-bolt" style="left:7%;width:90px;height:600px;">
+      <path d="M 0,0 L 26,92 L 10,92 L 40,200 L 22,200 L 52,314 L 32,314 L 64,436 L 42,436 L 76,578"/>
+    </svg>
+    <!-- Left bolt 2 — ~17% from left, different rhythm -->
+    <svg id="bk-b-l2" class="bk-bolt" style="left:16%;width:80px;height:540px;">
+      <path d="M 0,0 L 20,80 L 7,80 L 32,176 L 16,176 L 44,282 L 26,282 L 56,396 L 34,396 L 62,530"/>
+    </svg>
+    <!-- Right bolt 1 — ~8% from right, mirrors inward -->
+    <svg id="bk-b-r1" class="bk-bolt" style="right:7%;width:90px;height:600px;">
+      <path d="M 80,0 L 54,92 L 70,92 L 40,200 L 58,200 L 28,314 L 48,314 L 16,436 L 38,436 L 4,578"/>
+    </svg>
+    <!-- Right bolt 2 — ~17% from right -->
+    <svg id="bk-b-r2" class="bk-bolt" style="right:16%;width:80px;height:540px;">
+      <path d="M 72,0 L 52,80 L 65,80 L 38,176 L 54,176 L 26,282 L 44,282 L 14,396 L 36,396 L 8,530"/>
+    </svg>
+  </div>
 
   <div class="relative z-[2] max-w-4xl mx-auto px-4 text-center pt-7 pb-12 sm:pt-14 sm:pb-20">
     <div class="flex justify-center mb-8">
