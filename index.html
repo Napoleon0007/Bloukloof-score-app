@@ -332,9 +332,22 @@
   <div id="galleryBgSlideshow" class="absolute inset-0 z-0"></div>
   <div class="absolute inset-0 z-[1]" style="background:rgba(26,45,62,0.78);"></div>
   <div class="max-w-6xl mx-auto px-4 relative z-[2]">
-    <div class="flex items-center justify-center gap-3 mb-6 sm:mb-12">
-      <img src="./logo.png" alt="Bloukloof Properties" class="h-10 sm:h-16 w-auto" style="filter: brightness(0) invert(1);" />
-      <h2 class="text-5xl sm:text-7xl text-white" style="font-family: 'Tangerine', cursive; font-weight: 700; line-height: 1;">Gallery</h2>
+    <div class="grid grid-cols-3 items-center mb-6 sm:mb-12">
+      <!-- Left: walkthrough button -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button onclick="openWalkthrough()"
+          class="cta-shimmer flex items-center justify-center bg-[#ff6a00] hover:bg-[#e55a00] text-white rounded-full w-10 h-10 transition-all shadow-lg flex-shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <span class="text-white font-medium text-sm sm:text-base">Wanna walk through?</span>
+      </div>
+      <!-- Centre: big logo -->
+      <div class="flex flex-col items-center gap-1">
+        <img src="./logo.png" alt="Bloukloof Properties" class="h-16 sm:h-28 w-auto" style="filter: brightness(0) invert(1);" />
+        <h2 class="text-5xl sm:text-8xl text-white" style="font-family: 'Tangerine', cursive; font-weight: 700; line-height: 1;">Gallery</h2>
+      </div>
+      <!-- Right: empty balance column -->
+      <div></div>
     </div>
 
     <div class="relative rounded-2xl overflow-hidden h-[260px] sm:h-[500px]">
@@ -362,7 +375,7 @@
     <div class="flex items-center justify-center gap-3 mt-8">
       <span class="text-white font-medium text-base">Wanna walk through?</span>
       <button onclick="openWalkthrough()"
-        class="cta-shimmer flex items-center justify-center bg-[#ff6a00] hover:bg-[#e55a00] text-white rounded-full w-10 h-10 transition-all shadow-lg flex-shrink-0">
+        class="cta-shimmer flex items-center justify-center bg-[#284860] hover:bg-[#1a2d3e] text-white rounded-full w-10 h-10 transition-all shadow-lg flex-shrink-0">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
       </button>
       <span class="text-white font-medium text-base">Push here</span>
@@ -1706,7 +1719,7 @@
 
   // Force video autoplay on mobile (iOS requires programmatic play after load/touch)
   function forcePlayVideos() {
-    document.querySelectorAll('video').forEach(v => { v.play().catch(() => {}); });
+    document.querySelectorAll('video[muted]').forEach(v => { v.play().catch(() => {}); });
   }
   document.addEventListener('DOMContentLoaded', forcePlayVideos);
   document.addEventListener('touchstart', forcePlayVideos, { once: true });
