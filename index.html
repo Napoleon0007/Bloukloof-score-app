@@ -136,7 +136,7 @@
     </p>
 
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <button onclick="openLeadModal()"
+      <button onclick="startQuiz()"
         class="pulse-cta cta-shimmer relative overflow-hidden w-full sm:w-auto text-white font-black text-lg px-10 py-4 rounded-xl shadow-xl transition-all transform hover:scale-105"
         style="background-color: #ff6a00; box-shadow: 0 0 20px rgba(255,106,0,0.6), 0 8px 25px rgba(0,0,0,0.3);"
         onmouseover="this.style.backgroundColor='#ff8533'"
@@ -309,7 +309,7 @@
     </div>
 
     <div class="mt-8 sm:mt-12 flex justify-center">
-      <button onclick="openLeadModal()"
+      <button onclick="startQuiz()"
         class="pulse-cta cta-shimmer relative overflow-hidden text-white font-black text-lg px-12 py-4 rounded-xl transition-all transform hover:scale-105"
         style="background-color: #ff6a00; box-shadow: 0 0 20px rgba(255,106,0,0.6), 0 8px 25px rgba(0,0,0,0.3);"
         onmouseover="this.style.backgroundColor='#ff8533'"
@@ -420,12 +420,12 @@
 
     <!-- Right: Form -->
     <div class="flex-1 p-8 relative">
-      <button onclick="closeLeadModal()" class="absolute top-4 right-4 text-gray-300 hover:text-gray-500 transition-colors">
+      <button id="leadModalClose" onclick="closeLeadModal()" class="absolute top-4 right-4 text-gray-300 hover:text-gray-500 transition-colors">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
 
       <img src="./logo.png" alt="Bloukloof Properties" class="h-10 sm:h-8 w-auto mb-4 mx-auto block" />
-      <h2 class="text-xl font-bold text-[#284860] text-center mb-6">Enter your details to begin</h2>
+      <h2 id="leadModalHeading" class="text-xl font-bold text-[#284860] text-center mb-6">Enter your details to begin</h2>
 
       <form onsubmit="submitLead(event)" class="space-y-4" autocomplete="on">
         <div class="grid grid-cols-2 gap-3">
@@ -880,6 +880,8 @@
   // STATE
   // ================================================================
   let leadData        = {};
+  let pendingPct      = 0;
+  let pendingQuizPayload = null;
   const CONFIRMATIONS = [
     "Good to know — your profile is building.",
     "Noted — that's factored in.",
@@ -1135,13 +1137,14 @@
   }
 
   function closeLeadModal() {
+    if (preResultsMode) return;
     document.getElementById('leadModal').classList.remove('flex');
     document.getElementById('leadModal').classList.add('hidden');
     document.body.style.overflow = '';
   }
 
   document.getElementById('leadModal').addEventListener('click', function(e) {
-    if (e.target === this) closeLeadModal();
+    if (e.target === this && !preResultsMode) closeLeadModal();
   });
 
   // Validate a South African mobile number.
@@ -1195,24 +1198,36 @@
       phone:     check.normalised,
       email:     document.getElementById('leadEmail').value.trim()
     };
-    closeLeadModal();
-    startQuiz();
+    document.getElementById('leadModal').classList.remove('flex');
+    document.getElementById('leadModal').classList.add('hidden');
+    document.body.style.overflow = '';
+    preResultsMode = false;
+
+    if (pendingQuizPayload) {
+      pushToSheets({ ...leadData, ...pendingQuizPayload });
+      showResults(pendingPct);
+    } else {
+      startQuiz();
+    }
   }
 
   // ================================================================
   // QUIZ ENGINE
   // ================================================================
   function startQuiz() {
-    currentQ      = 0;
-    progressChunks = generateChunks(100 - PROGRESS_BASE, QUESTIONS.length);
-    rescueShown   = false;
-    wasHidden     = false;
-    teaserShown   = false;
-    skipQ8        = false;
-    quizAnswers   = [];
-    quizDone      = false;
-    abandonSent   = false;
-    quizStartTime = Date.now();
+    currentQ           = 0;
+    progressChunks     = generateChunks(100 - PROGRESS_BASE, QUESTIONS.length);
+    rescueShown        = false;
+    wasHidden          = false;
+    teaserShown        = false;
+    skipQ8             = false;
+    quizAnswers        = [];
+    quizDone           = false;
+    abandonSent        = false;
+    pendingPct         = 0;
+    pendingQuizPayload = null;
+    preResultsMode     = false;
+    quizStartTime      = Date.now();
 
     const overlay = document.getElementById('quizOverlay');
     overlay.classList.remove('hidden');
@@ -1337,22 +1352,22 @@
 
   function finishQuiz() {
     quizDone = true;
-    const raw      = quizAnswers.reduce((s, a) => s + (a ? a.score : 0), 0);
-    const pct      = Math.round((raw / MAX_SCORE) * 100);
-    const seconds  = Math.round((Date.now() - quizStartTime) / 1000);
+    const raw     = quizAnswers.reduce((s, a) => s + (a ? a.score : 0), 0);
+    const pct     = Math.round((raw / MAX_SCORE) * 100);
+    const seconds = Math.round((Date.now() - quizStartTime) / 1000);
 
-    pushToSheets({
-      ...leadData,
+    pendingPct = pct;
+    pendingQuizPayload = {
       score:              pct + '%',
       questionsCompleted: quizAnswers.filter(Boolean).length,
       timeTakenSeconds:   seconds,
       completionStatus:   'Completed',
       submittedAt:        new Date().toISOString(),
       ...flattenAnswers(quizAnswers)
-    });
+    };
 
     stopSlideshow();
-    runCalcScreen(() => showResults(pct));
+    runCalcScreen(() => showLeadCapture());
   }
 
   // ================================================================
@@ -1420,6 +1435,21 @@
       overlay.classList.add('hidden');
       if (onDone) onDone();
     }, CALC_STEPS.length * 420 + 600);
+  }
+
+  // ================================================================
+  // LEAD CAPTURE (post-quiz gate)
+  // ================================================================
+  let preResultsMode = false;
+
+  function showLeadCapture() {
+    preResultsMode = true;
+    const heading = document.getElementById('leadModalHeading');
+    if (heading) heading.textContent = 'Almost there — enter your details to unlock your results';
+    const closeBtn = document.getElementById('leadModalClose');
+    if (closeBtn) closeBtn.style.display = 'none';
+    document.getElementById('leadModal').classList.remove('hidden');
+    document.getElementById('leadModal').classList.add('flex');
   }
 
   // ================================================================
@@ -1650,6 +1680,7 @@
     document.getElementById('resultsPage').classList.add('hidden');
     document.body.style.overflow = 'auto';
     leadData = {}; quizAnswers = []; currentQ = 0; skipQ8 = false;
+    pendingPct = 0; pendingQuizPayload = null; preResultsMode = false;
     quizStartTime = null; quizDone = false; abandonSent = false;
     rescueShown = false; wasHidden = false; teaserShown = false; progressChunks = [];
     window.scrollTo({ top: 0, behavior: 'smooth' });
