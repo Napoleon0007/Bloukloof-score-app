@@ -439,10 +439,9 @@
 <!-- ===================== MIDWAY TEASER ===================== -->
 <div id="midwayTeaser" class="fixed inset-0 z-[250] hidden items-center justify-center p-4 bg-black/85" onclick="dismissTeaser()">
   <div class="teaser-card text-center max-w-md w-full">
-    <div class="text-6xl mb-4">🎯</div>
-    <p class="text-xs font-bold uppercase tracking-widest text-white/60 mb-2">Early read</p>
-    <p class="text-3xl sm:text-4xl font-black text-white mb-3">You're tracking <span id="teaserTier" class="text-[#ff6a00]">Promising</span></p>
-    <p class="text-sm text-white/70 mb-6 px-4">Finish the rest to unlock your full score and the units that match your budget.</p>
+    <div class="text-7xl mb-5">💪</div>
+    <p class="text-3xl sm:text-4xl font-black text-white mb-2">You're doing well.</p>
+    <p class="text-3xl sm:text-4xl font-black text-[#ff6a00] mb-6">Keep going.</p>
     <div class="inline-flex items-center gap-2 text-white/50 text-xs">
       <div class="w-1.5 h-1.5 rounded-full bg-[#ff6a00]" style="animation:pulse 1.5s infinite"></div>
       Tap to continue
@@ -1305,13 +1304,6 @@
       .reduce((s, q) => s + Math.max(...q.options.map(o => o.score)), 0);
     const pct = maxSoFar ? (earned / maxSoFar) * 100 : 0;
 
-    let tier, color;
-    if (pct >= 70)      { tier = 'Strong';       color = '#22c55e'; }
-    else if (pct >= 45) { tier = 'Promising';    color = '#ff6a00'; }
-    else                { tier = 'Foundational'; color = '#eab308'; }
-
-    const tierEl = document.getElementById('teaserTier');
-    if (tierEl) { tierEl.textContent = tier; tierEl.style.color = color; }
     const teaser = document.getElementById('midwayTeaser');
     teaser.classList.remove('hidden');
     teaser.classList.add('flex');
