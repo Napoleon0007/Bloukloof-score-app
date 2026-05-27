@@ -1693,39 +1693,19 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Coordinate video startup: bg videos hold until both logos are ready
-  (function() {
-    var logoVids = Array.from(document.querySelectorAll('.logo-vid'));
-    var bgVids   = Array.from(document.querySelectorAll('video[muted]')).filter(function(v) {
-      return !v.classList.contains('logo-vid');
-    });
-    var logosReady = 0;
-    var bgStarted  = false;
+  // Force video autoplay on mobile (iOS requires programmatic play after load/touch)
+  function forcePlayVideos() {
+    document.querySelectorAll('video[muted]').forEach(function(v) { v.play().catch(function(){}); });
+  }
+  document.addEventListener('DOMContentLoaded', forcePlayVideos);
+  document.addEventListener('touchstart', forcePlayVideos, { once: true });
 
-    bgVids.forEach(function(v) { v.pause(); });
-
-    function startBgVideos() {
-      if (bgStarted) return;
-      bgStarted = true;
-      bgVids.forEach(function(v) { v.play().catch(function(){}); });
-    }
-
-    function onLogoReady(v) {
-      v.style.opacity = '1';
-      logosReady++;
-      if (logosReady >= logoVids.length) startBgVideos();
-    }
-
-    logoVids.forEach(function(v) {
-      if (v.readyState >= 3) { onLogoReady(v); }
-      else { v.addEventListener('canplay', function() { onLogoReady(v); }, { once: true }); }
-    });
-
-    document.addEventListener('touchstart', function() {
-      logoVids.forEach(function(v) { v.play().catch(function(){}); });
-      if (logosReady >= logoVids.length) startBgVideos();
-    }, { once: true });
-  })();
+  // Fade Kiron logo in once it can play
+  document.querySelectorAll('.logo-vid').forEach(function(v) {
+    if (v.style.opacity === '1') return; // Bloukloof already visible via poster
+    function show() { v.style.opacity = '1'; }
+    if (v.readyState >= 3) { show(); } else { v.addEventListener('canplay', show, { once: true }); }
+  });
 
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(a => {
