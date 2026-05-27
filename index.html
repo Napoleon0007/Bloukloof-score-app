@@ -191,54 +191,6 @@
   </div>
 </section>
 
-<!-- ===================== TAP TO REVEAL ===================== -->
-<section class="py-12 sm:py-20 px-4" style="background:linear-gradient(180deg,#0f2340 0%,#1e3a5f 100%);">
-  <div class="max-w-2xl mx-auto text-center">
-    <p class="text-xs font-bold uppercase tracking-widest text-[#ff6a00] mb-3">The honest number</p>
-    <h2 class="text-2xl sm:text-4xl font-black text-white mb-6 leading-tight">What does R1,095,000 actually cost per month?</h2>
-    <button id="revealCard" type="button" class="relative w-full max-w-md mx-auto bg-white rounded-3xl p-8 shadow-2xl overflow-hidden focus:outline-none transition-transform active:scale-[0.97] block">
-      <div id="revealFog" class="absolute inset-0 z-[2] flex items-center justify-center transition-all duration-700" style="backdrop-filter:blur(14px); background:rgba(255,255,255,0.85);">
-        <div class="text-center">
-          <div class="text-5xl mb-2 select-none">👆</div>
-          <p class="text-sm font-black text-[#1e3a5f] uppercase tracking-widest">Tap to reveal</p>
-        </div>
-      </div>
-      <div class="relative z-[1] text-center py-2">
-        <p class="text-[10px] font-bold uppercase tracking-widest text-[#1e3a5f]/60 mb-1">At today's rates, around</p>
-        <p class="text-5xl sm:text-6xl font-black text-[#1e3a5f] leading-none">R11,300</p>
-        <p class="text-sm text-[#1e3a5f]/70 mt-2">per month · 20-year bond at 11%</p>
-        <p class="text-xs text-[#ff6a00] font-bold mt-3">Less than most George rentals on the same size unit.</p>
-      </div>
-    </button>
-    <p class="text-white/50 text-xs mt-4">Estimate based on R1,095,000 entry price at current prime rate.</p>
-  </div>
-</section>
-
-<!-- ===================== TILT-VIEW ===================== -->
-<section class="py-12 sm:py-20 px-4" style="background:#0a1830;">
-  <div class="max-w-3xl mx-auto">
-    <div class="text-center mb-6">
-      <p class="text-xs font-bold uppercase tracking-widest text-[#ff6a00] mb-3">From your future window</p>
-      <h2 class="text-2xl sm:text-4xl font-black text-white mb-4 leading-tight">Tilt your phone to look around.</h2>
-      <p class="text-white/70 text-sm max-w-xl mx-auto">This is the view from Bloukloof@69. Move your phone left and right to scan the horizon.</p>
-    </div>
-    <div id="tiltStage" class="relative w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10" style="aspect-ratio:16/9; background:#000;">
-      <video id="tiltVideo" muted playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover">
-        <source src="./bloukloof-view.mp4" type="video/mp4">
-      </video>
-      <div id="tiltOverlay" class="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-        <button id="tiltStart" type="button" class="bg-[#ff6a00] hover:bg-[#e55f00] text-white font-black px-6 py-3.5 rounded-xl uppercase tracking-wide text-sm shadow-xl">
-          📱 Tap to enable tilt view
-        </button>
-      </div>
-      <div id="tiltHint" class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full hidden">
-        ← Tilt your phone →
-      </div>
-    </div>
-    <p id="tiltFallback" class="text-white/40 text-xs text-center mt-4 hidden">Tilt control needs a phone. Tap and drag the image to scan instead.</p>
-  </div>
-</section>
-
 <!-- ===================== RENT vs OWN ===================== -->
 <section class="py-12 sm:py-20 px-4" style="background:#0f2340;">
   <div class="max-w-3xl mx-auto">
@@ -327,40 +279,6 @@
       <div class="absolute bottom-3 right-4 z-10 bg-black/45 text-white text-sm px-3 py-1 rounded-full"><span id="galleryIdx">1</span> / 20</div>
     </div>
 
-  </div>
-</section>
-
-<!-- ===================== PIN YOUR RESERVATION ===================== -->
-<section id="reservSection" class="py-12 sm:py-16 px-4" style="background:linear-gradient(135deg,#0a1830 0%,#1e3a5f 100%);">
-  <div class="max-w-xl mx-auto text-center">
-    <p class="text-xs font-bold uppercase tracking-widest text-[#ff6a00] mb-3">No cost · No commitment</p>
-    <h2 class="text-2xl sm:text-4xl font-black text-white mb-3 leading-tight">Hold your priority slot for 24 hours.</h2>
-    <p class="text-white/70 text-sm max-w-md mx-auto mb-6">Reserve a 24-hour window where a Bloukloof consultant is briefed on your situation and ready when you call. No deposit. Just first-in-line.</p>
-
-    <div id="reservPrompt" class="bg-white/5 border border-white/10 rounded-2xl p-6">
-      <button id="reservStart" type="button" class="w-full bg-[#ff6a00] hover:bg-[#e55f00] text-white font-black py-4 rounded-xl uppercase tracking-wide text-sm shadow-xl transition-all">
-        🔒 Pin my 24-hour priority slot
-      </button>
-    </div>
-
-    <div id="reservPhoneForm" class="bg-white rounded-2xl p-6 hidden text-left">
-      <p class="text-[#1e3a5f] text-sm font-bold mb-3">Drop your number — we'll lock your slot.</p>
-      <input id="reservPhone" type="tel" placeholder="Mobile number" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#1e3a5f] mb-3" />
-      <button id="reservConfirm" type="button" class="w-full bg-[#1e3a5f] hover:bg-[#162d4a] text-white font-bold py-3 rounded-xl transition-all">Lock my slot →</button>
-    </div>
-
-    <div id="reservActive" class="bg-gradient-to-br from-green-500/30 to-green-700/20 border-2 border-green-400 rounded-2xl p-6 hidden">
-      <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-green-500 mb-3">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <p class="text-white font-black text-lg mb-2">Your slot is locked.</p>
-      <p class="text-white/80 text-sm mb-4">A consultant has been briefed and will be in touch within 24 hours.</p>
-      <div class="bg-black/30 rounded-xl py-3 px-4 mb-3">
-        <p class="text-white/60 text-[10px] uppercase tracking-widest mb-1">Time remaining</p>
-        <p class="text-white font-black text-3xl tabular-nums" id="reservCountdown">23:59:59</p>
-      </div>
-      <p class="text-white/60 text-[11px]">Saved on this device — refresh anytime to check.</p>
-    </div>
   </div>
 </section>
 
@@ -685,7 +603,7 @@
 
     <div class="text-center mb-6">
       <div class="flex items-center justify-center mb-4">
-        <video autoplay muted loop playsinline class="logo-vid h-24 sm:h-28 w-auto" style="opacity:0;transition:opacity 0.5s"><source src="./bloukloof-living-logo.webm" type="video/webm"><source src="./Bloukloof living logo.mov" type="video/mp4"></video>
+        <img src="./logo.png" alt="Bloukloof Properties" class="h-24 sm:h-28 w-auto" style="filter:brightness(0) invert(1);" />
       </div>
       <h2 class="text-2xl font-black text-white">Your Results Are Ready</h2>
       <p id="resultName" class="text-white/60 text-sm mt-1"></p>
@@ -752,12 +670,6 @@
       <p id="scoreMessage" class="text-sm leading-relaxed max-w-sm mx-auto opacity-80"></p>
     </div>
 
-    <!-- Detail bullets -->
-    <div id="scoreDetails" class="bg-[#1e3a5f] border border-white/10 rounded-2xl p-6 mb-5 shadow-xl">
-      <h4 class="font-bold text-white mb-4 text-sm uppercase tracking-wide">What This Means For You</h4>
-      <div id="scoreDetailsList" class="space-y-3"></div>
-    </div>
-
     <!--
       ================================================================
       BOND CALCULATOR EMBED SECTION
@@ -814,6 +726,42 @@
         <span>Find Us</span>
       </a>
     </div>
+
+    <!-- Pin your priority slot (moved into results page) -->
+    <section id="reservSection" class="mt-2 mb-8">
+      <div class="rounded-2xl p-6" style="background:linear-gradient(135deg,rgba(10,24,48,0.85) 0%,rgba(30,58,95,0.85) 100%); border:1px solid rgba(255,255,255,0.1);">
+        <div class="text-center">
+          <p class="text-[10px] font-bold uppercase tracking-widest text-[#ff6a00] mb-2">No cost · No commitment</p>
+          <h3 class="text-xl sm:text-2xl font-black text-white mb-2 leading-tight">Hold your priority slot for 24 hours.</h3>
+          <p class="text-white/70 text-xs sm:text-sm max-w-md mx-auto mb-5">A 24-hour window where a Bloukloof consultant is briefed on your situation and ready when you call. No deposit. Just first-in-line.</p>
+
+          <div id="reservPrompt" class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <button id="reservStart" type="button" class="w-full bg-[#ff6a00] hover:bg-[#e55f00] text-white font-black py-3.5 rounded-xl uppercase tracking-wide text-sm shadow-xl transition-all">
+              🔒 Pin my 24-hour priority slot
+            </button>
+          </div>
+
+          <div id="reservPhoneForm" class="bg-white rounded-xl p-5 hidden text-left">
+            <p class="text-[#1e3a5f] text-sm font-bold mb-3">Drop your number — we'll lock your slot.</p>
+            <input id="reservPhone" type="tel" placeholder="Mobile number" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#1e3a5f] mb-3" />
+            <button id="reservConfirm" type="button" class="w-full bg-[#1e3a5f] hover:bg-[#162d4a] text-white font-bold py-3 rounded-xl transition-all">Lock my slot →</button>
+          </div>
+
+          <div id="reservActive" class="bg-gradient-to-br from-green-500/30 to-green-700/20 border-2 border-green-400 rounded-xl p-5 hidden">
+            <div class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-green-500 mb-3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <p class="text-white font-black text-base mb-2">Your slot is locked.</p>
+            <p class="text-white/80 text-xs sm:text-sm mb-4">A consultant has been briefed and will be in touch within 24 hours.</p>
+            <div class="bg-black/30 rounded-xl py-3 px-4 mb-3">
+              <p class="text-white/60 text-[10px] uppercase tracking-widest mb-1">Time remaining</p>
+              <p class="text-white font-black text-2xl sm:text-3xl tabular-nums" id="reservCountdown">23:59:59</p>
+            </div>
+            <p class="text-white/60 text-[11px]">Saved on this device — refresh anytime to check.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <div class="text-center">
       <button onclick="restartApp()" class="text-gray-400 hover:text-gray-500 text-xs underline transition-colors">
@@ -1630,7 +1578,7 @@
       title.textContent = 'Great — You Qualify for a Bond!';
       msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-90 text-white';
       msg.textContent = `Congratulations ${leadData.firstName}! One of our team members will be in touch within the next 24 hours to walk you through the next steps and help you secure your unit.`;
-      list.innerHTML  = `
+      if (list) list.innerHTML  = `
         <div class="flex gap-3 p-3 bg-white/5 border border-green-400/20 rounded-xl"><span class="text-green-400 mt-0.5">✓</span><p class="text-sm text-white/90">Your income and employment profile looks well-suited for a bond application.</p></div>
         <div class="flex gap-3 p-3 bg-white/5 border border-green-400/20 rounded-xl"><span class="text-green-400 mt-0.5">✓</span><p class="text-sm text-white/90">Entry units from R1,095,000 with 0% transfer duty may fall comfortably within your budget.</p></div>
         <div class="flex gap-3 p-3 bg-white/5 border border-green-400/20 rounded-xl"><span class="text-green-400 mt-0.5">✓</span><p class="text-sm text-white/90">Expect a call within 24 hours — in the meantime, feel free to WhatsApp or download the brochure below.</p></div>`;
@@ -1643,7 +1591,7 @@
       title.textContent = "You're Nearly There";
       msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-90 text-white';
       msg.textContent = `${leadData.firstName}, with a few small adjustments everything should fall into place. Our team can guide you through what to tweak so you're ready when you apply.`;
-      list.innerHTML  = `
+      if (list) list.innerHTML  = `
         <div class="flex gap-3 p-3 bg-white/5 border border-yellow-400/20 rounded-xl"><span class="text-yellow-400 mt-0.5">◉</span><p class="text-sm text-white/90">A couple of areas in your profile need attention — small changes can make a meaningful difference.</p></div>
         <div class="flex gap-3 p-3 bg-white/5 border border-yellow-400/20 rounded-xl"><span class="text-yellow-400 mt-0.5">◉</span><p class="text-sm text-white/90">A larger deposit or trimming existing monthly debt is usually the quickest way to improve your position.</p></div>
         <div class="flex gap-3 p-3 bg-white/5 border border-yellow-400/20 rounded-xl"><span class="text-yellow-400 mt-0.5">◉</span><p class="text-sm text-white/90">Reach out and we'll talk you through the adjustments that will get you ready.</p></div>`;
@@ -1656,7 +1604,7 @@
       title.textContent = "You've Got a Way to Go";
       msg.className   = 'text-sm leading-relaxed max-w-sm mx-auto opacity-90 text-white';
       msg.textContent = `Don't be discouraged, ${leadData.firstName} — owning your home is still absolutely possible, it just needs a bit more preparation. Focus on these areas, and we'll be here when you're ready:`;
-      list.innerHTML  = `
+      if (list) list.innerHTML  = `
         <div class="flex gap-3 p-3 bg-white/5 border border-red-400/20 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-white/90"><strong>Credit health:</strong> Check your score at TransUnion or Experian. Dispute errors and start clearing overdue accounts.</p></div>
         <div class="flex gap-3 p-3 bg-white/5 border border-red-400/20 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-white/90"><strong>Reduce debt:</strong> Pay down store accounts and personal loans to improve your debt-to-income ratio before applying.</p></div>
         <div class="flex gap-3 p-3 bg-white/5 border border-red-400/20 rounded-xl"><span class="text-red-400 mt-0.5">→</span><p class="text-sm text-white/90"><strong>Build a deposit:</strong> Even R30,000–R50,000 saved can shift a declined application to an approved one.</p></div>
@@ -1817,108 +1765,6 @@
     function show() { v.style.opacity = target; }
     if (v.readyState >= 3) { show(); } else { v.addEventListener('canplay', show, { once: true }); }
   });
-
-  // ================================================================
-  // WIDGET: TAP TO REVEAL
-  // ================================================================
-  (function() {
-    const card = document.getElementById('revealCard');
-    const fog  = document.getElementById('revealFog');
-    if (!card || !fog) return;
-    card.addEventListener('click', () => {
-      if (fog.dataset.revealed) return;
-      fog.dataset.revealed = '1';
-      fog.style.opacity = '0';
-      fog.style.transform = 'scale(1.08)';
-      setTimeout(() => { fog.style.display = 'none'; }, 700);
-    });
-  })();
-
-  // ================================================================
-  // WIDGET: TILT VIEW
-  // ================================================================
-  (function() {
-    const stage    = document.getElementById('tiltStage');
-    const video    = document.getElementById('tiltVideo');
-    const overlay  = document.getElementById('tiltOverlay');
-    const startBtn = document.getElementById('tiltStart');
-    const hint     = document.getElementById('tiltHint');
-    const fallback = document.getElementById('tiltFallback');
-    if (!startBtn || !video) return;
-
-    let active = false;
-    let centerGamma = null;
-
-    function activate() {
-      overlay.style.display = 'none';
-      hint.classList.remove('hidden');
-      active = true;
-      if (video.duration) video.currentTime = video.duration / 2;
-    }
-
-    function handleOrient(e) {
-      if (!active || e.gamma == null || !video.duration) return;
-      if (centerGamma == null) centerGamma = e.gamma;
-      const delta = e.gamma - centerGamma;
-      const range = 30;
-      const t = Math.max(-1, Math.min(1, delta / range));
-      const target = (t + 1) / 2;
-      video.currentTime = target * video.duration;
-    }
-
-    function enableDrag(showFallback) {
-      overlay.style.display = 'none';
-      if (showFallback) fallback.classList.remove('hidden');
-      hint.classList.remove('hidden');
-      active = true;
-      if (video.duration) video.currentTime = video.duration / 2;
-      let dragging = false, startX = 0, startT = 0;
-      stage.addEventListener('mousedown', e => { dragging = true; startX = e.clientX; startT = video.currentTime; });
-      window.addEventListener('mousemove', e => {
-        if (!dragging || !video.duration) return;
-        const dx = e.clientX - startX;
-        const t = startT - (dx / stage.offsetWidth) * video.duration;
-        video.currentTime = Math.max(0, Math.min(video.duration, t));
-      });
-      window.addEventListener('mouseup', () => { dragging = false; });
-      stage.addEventListener('touchstart', e => {
-        dragging = true; startX = e.touches[0].clientX; startT = video.currentTime;
-      }, { passive: true });
-      stage.addEventListener('touchmove', e => {
-        if (!dragging || !video.duration) return;
-        const dx = e.touches[0].clientX - startX;
-        const t = startT - (dx / stage.offsetWidth) * video.duration;
-        video.currentTime = Math.max(0, Math.min(video.duration, t));
-      }, { passive: true });
-      stage.addEventListener('touchend', () => { dragging = false; }, { passive: true });
-    }
-
-    function tryStart() {
-      if (typeof DeviceOrientationEvent !== 'undefined' &&
-          typeof DeviceOrientationEvent.requestPermission === 'function') {
-        DeviceOrientationEvent.requestPermission().then(state => {
-          if (state === 'granted') {
-            window.addEventListener('deviceorientation', handleOrient);
-            activate();
-          } else { enableDrag(true); }
-        }).catch(() => enableDrag(true));
-      } else if (window.DeviceOrientationEvent && 'ontouchstart' in window) {
-        window.addEventListener('deviceorientation', handleOrient);
-        activate();
-      } else {
-        enableDrag(true);
-      }
-    }
-
-    startBtn.addEventListener('click', () => {
-      if (video.readyState < 1) {
-        video.addEventListener('loadedmetadata', tryStart, { once: true });
-        video.load();
-      } else {
-        tryStart();
-      }
-    });
-  })();
 
   // ================================================================
   // WIDGET: RENT vs OWN VISUALISER
