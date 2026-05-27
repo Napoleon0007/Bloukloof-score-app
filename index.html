@@ -170,9 +170,7 @@
 
 <!-- ===================== RENT vs OWN ===================== -->
 <section class="py-12 sm:py-20 px-4 relative overflow-hidden" style="background:#1a2d3e;">
-  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
-    <source src="./clouds.mp4" type="video/mp4">
-  </video>
+  <div id="rvoSlideshow" class="absolute inset-0 z-0"></div>
   <div class="absolute inset-0 z-[1] bg-black/70"></div>
   <div class="max-w-3xl mx-auto relative z-[2]">
     <div class="text-center mb-8">
@@ -182,13 +180,19 @@
       <p class="text-white/70 text-sm max-w-xl mx-auto">Set your current monthly rent below, then watch where the money ends up.</p>
     </div>
 
-    <div class="border rounded-2xl p-5 mb-6" style="background:#1a2d3e; border-color:#1e4a8f;">
-      <div class="flex items-center justify-between mb-3">
-        <span class="text-white/70 text-xs font-bold uppercase tracking-wide">Your current rent</span>
-        <span class="text-[#ff6a00] font-black text-xl">R<span id="rvoRent">12,000</span>/mo</span>
+    <div class="border rounded-2xl p-5 mb-6 relative overflow-hidden" style="border-color:#1e4a8f;">
+      <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover" style="z-index:0;">
+        <source src="./clouds.mp4" type="video/mp4">
+      </video>
+      <div class="absolute inset-0" style="background:rgba(26,45,62,0.55);z-index:1;"></div>
+      <div class="relative" style="z-index:2;">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-white/70 text-xs font-bold uppercase tracking-wide">Your current rent</span>
+          <span class="text-[#ff6a00] font-black text-xl">R<span id="rvoRent">12,000</span>/mo</span>
+        </div>
+        <input id="rvoSlider" type="range" min="3000" max="30000" step="500" value="12000"
+          class="w-full" style="accent-color:#ff6a00; height:36px; touch-action:pan-y;" />
       </div>
-      <input id="rvoSlider" type="range" min="3000" max="30000" step="500" value="12000"
-        class="w-full" style="accent-color:#ff6a00; height:36px; touch-action:pan-y;" />
     </div>
 
     <div class="grid grid-cols-2 gap-4 sm:gap-10">
