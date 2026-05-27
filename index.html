@@ -45,6 +45,20 @@
     /* Hero word drop */
     .hero-word { opacity:0; display:inline-block; animation: wordDrop 0.5s ease forwards; }
     @keyframes wordDrop { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+    /* Wealth steam */
+    @keyframes steamRise {
+      0%   { opacity:0; transform:translateY(0px) scale(0.8); }
+      18%  { opacity:0.55; }
+      100% { opacity:0; transform:translateY(-38px) scale(2.2); }
+    }
+    .steam-p {
+      position:absolute; top:4px;
+      width:7px; height:7px; border-radius:50%;
+      background:rgba(125,211,252,0.6);
+      filter:blur(4px);
+      pointer-events:none;
+      animation:steamRise 2.2s ease-out infinite;
+    }
     /* CTA shimmer */
     @keyframes shimmerSweep { 0% { transform:translateX(-200%) skewX(-20deg); } 100% { transform:translateX(500%) skewX(-20deg); } }
     .cta-shimmer::after { content:''; position:absolute; top:0; left:0; width:35%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.28),transparent); animation:shimmerSweep 4.5s ease-in-out 2s infinite; pointer-events:none; }
@@ -95,13 +109,13 @@
 
 <!-- ===================== NAV ===================== -->
 <nav class="fixed top-0 left-0 right-0 z-50" style="background:#284860; border: 2px solid #1a2d3e;">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-0 grid grid-cols-3 items-stretch">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2 grid grid-cols-3 items-stretch">
     <!-- Left: empty -->
     <div></div>
     <!-- Centre: Bloukloof -->
     <div class="flex justify-center">
       <a href="https://bloukloof.co.za/" target="_blank" rel="noopener noreferrer">
-        <img src="./logo-transparent.png" class="h-16 sm:h-20 w-auto" alt="Bloukloof" style="filter: brightness(0) invert(1);">
+        <img src="./logo-transparent.png" class="h-12 sm:h-16 w-auto" alt="Bloukloof" style="filter: brightness(0) invert(1);">
       </a>
     </div>
     <!-- Right: empty (Kiron logo removed, may return) -->
@@ -116,11 +130,11 @@
   <!-- 20% dark overlay so text stays readable -->
   <div class="absolute inset-0 bg-black/20 z-[1]"></div>
 
-  <div class="relative z-[2] max-w-4xl mx-auto px-4 text-center py-12 sm:py-20">
+  <div class="relative z-[2] max-w-4xl mx-auto px-4 text-center pt-4 pb-12 sm:pt-8 sm:pb-20">
     <div class="flex justify-center mb-8">
-      <div class="inline-flex flex-col items-center text-xs font-bold px-5 py-2 rounded-full uppercase tracking-wide" style="background: rgba(40,72,96,0.55); color: white; border: 1px solid rgba(40,72,96,0.55); gap: 4px;">
+      <div class="inline-flex flex-col items-center text-sm font-bold px-6 py-2.5 rounded-full uppercase tracking-widest" style="background: rgba(40,72,96,0.55); color: white; border: 1px solid rgba(40,72,96,0.55); gap: 4px;">
         <span>52 units · Pacaltsdorp, George</span>
-        <span style="color: rgba(255,255,255,0.7); font-size: 0.65rem; letter-spacing: 0.12em;">Starting from R1,095,000</span>
+        <span style="color: rgba(255,255,255,0.7); font-size: 0.75rem; letter-spacing: 0.14em;">Starting from R1,095,000</span>
       </div>
     </div>
 
@@ -130,17 +144,17 @@
       <span class="hero-word" style="animation-delay:0.44s">Rent.</span><br>
       <span class="hero-word" style="animation-delay:0.62s">Start</span>
       <span class="hero-word" style="animation-delay:0.74s">Building</span>
-      <span class="hero-word text-sky-300" style="animation-delay:0.86s;text-shadow:0 0 8px rgba(125,211,252,0.6),0 0 18px rgba(125,211,252,0.35),0 0 35px rgba(125,211,252,0.18)">Wealth</span><span class="hero-word" style="animation-delay:0.92s">.</span>
+      <span class="hero-word text-sky-300" style="position:relative;animation-delay:0.86s;text-shadow:0 0 8px rgba(125,211,252,0.6),0 0 18px rgba(125,211,252,0.35),0 0 35px rgba(125,211,252,0.18)">Wealth<span class="steam-p" style="left:8%;animation-delay:0s;"></span><span class="steam-p" style="left:24%;animation-delay:0.5s;"></span><span class="steam-p" style="left:44%;animation-delay:1s;"></span><span class="steam-p" style="left:64%;animation-delay:0.3s;"></span><span class="steam-p" style="left:82%;animation-delay:0.75s;"></span></span><span class="hero-word" style="animation-delay:0.92s">.</span>
     </h1>
 
     <p class="text-sm sm:text-2xl max-w-2xl mx-auto mb-6 leading-relaxed px-2" style="font-family: 'Lora', Georgia, serif; font-weight: 600; color: white; text-shadow: 0 1px 4px rgba(0,0,0,0.5);">
       While you were paying rent, your landlord got rich. Don't you think it's time to flip the script.
     </p>
     <div class="max-w-2xl mx-auto mb-16 px-2">
-      <p class="text-lg sm:text-3xl leading-relaxed text-center" style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 400; color: white; text-shadow: 0 1px 6px rgba(0,0,0,0.6);">
+      <p class="text-xl sm:text-4xl leading-relaxed text-center" style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 400; color: white; text-shadow: 0 1px 6px rgba(0,0,0,0.6);">
         "The sky's the limit."
       </p>
-      <p class="text-xs sm:text-sm text-right pr-2 mt-1" style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 600; color: rgba(255,255,255,0.5); text-shadow: 0 1px 4px rgba(0,0,0,0.5);">
+      <p class="text-xs sm:text-sm text-right pr-2 -mt-1" style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 600; color: rgba(255,255,255,0.5); text-shadow: 0 1px 4px rgba(0,0,0,0.5);">
         — Anonymous
       </p>
     </div>
