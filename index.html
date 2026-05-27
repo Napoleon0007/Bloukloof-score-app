@@ -31,6 +31,8 @@
     @keyframes polaroidRevealAlt { from { opacity:0; transform:scale(1.04) rotate(1deg); } to { opacity:1; transform:scale(1) rotate(0deg); } }
     .testimonials-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease; }
     .testimonials-slide.active { opacity: 1; }
+    .rvo-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease; }
+    .rvo-slide.active { opacity: 1; }
     #quizOverlay, #resultsPage { -webkit-overflow-scrolling: touch; }
     /* Hero word drop */
     .hero-word { opacity:0; display:inline-block; animation: wordDrop 0.5s ease forwards; }
@@ -150,8 +152,10 @@
 </div>
 
 <!-- ===================== RENT vs OWN ===================== -->
-<section class="py-12 sm:py-20 px-4" style="background:#0f2340;">
-  <div class="max-w-3xl mx-auto">
+<section class="py-12 sm:py-20 px-4 relative overflow-hidden" style="background:#0f2340;">
+  <div id="rvoSlideshow" class="absolute inset-0 z-0"></div>
+  <div class="absolute inset-0 z-[1] bg-black/70"></div>
+  <div class="max-w-3xl mx-auto relative z-[2]">
     <div class="text-center mb-8">
       <img src="./logo.png" alt="Bloukloof Properties" class="h-10 sm:h-14 mx-auto mb-4 w-auto" style="filter:brightness(0) invert(1);" />
       <p class="text-xs font-bold uppercase tracking-widest text-[#ff6a00] mb-3">The 30-year truth</p>
@@ -1674,6 +1678,25 @@
     document.getElementById('galleryIdx').textContent = galIdx + 1;
   }
   setInterval(() => moveGallery(1), 6500);
+
+  // Rent vs Own background slideshow
+  (function() {
+    const imgs = ['./bk-living-room.jpg','./bk-kitchen.jpg','./bk-bedroom.jpg','./bk-house.jpg','./1000000406.jpg','./1000002126.jpg'];
+    const container = document.getElementById('rvoSlideshow');
+    imgs.forEach((src, i) => {
+      const div = document.createElement('div');
+      div.className = 'rvo-slide' + (i === 0 ? ' active' : '');
+      div.style.backgroundImage = `url('${src}')`;
+      container.appendChild(div);
+    });
+    let ri = 0;
+    setInterval(() => {
+      const slides = document.querySelectorAll('.rvo-slide');
+      slides[ri].classList.remove('active');
+      ri = (ri + 1) % slides.length;
+      slides[ri].classList.add('active');
+    }, 6500);
+  })();
 
   // Testimonials background slideshow
   (function() {
