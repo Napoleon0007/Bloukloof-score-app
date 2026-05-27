@@ -2146,6 +2146,34 @@ document.getElementById('resultName').textContent =
   document.getElementById('walkthroughModal').addEventListener('click', function(e) {
     if (e.target === this) closeWalkthrough();
   });
+
+  // Position red lightning bolts so they descend from hero top and tip exactly on "Rent."
+  (function initRentLightning() {
+    var rentSpan = document.querySelector('.hero-word');
+    var heroEl   = document.querySelector('.hero-bg');
+    if (!rentSpan || !heroEl) return;
+
+    function place() {
+      var rr = rentSpan.getBoundingClientRect();
+      var hr = heroEl.getBoundingClientRect();
+      // aim at the centre-top of the "Rent." word
+      var cx = rr.left + rr.width * 0.5 - hr.left;
+      var cy = rr.top  - hr.top  + rr.height * 0.25;
+      ['bk-rb-a','bk-rb-b','bk-rb-c'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.style.left   = (cx - 20) + 'px'; // SVG is 40px wide; centre it on cx
+        el.style.height = cy + 'px';
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', place);
+    } else {
+      place();
+    }
+    window.addEventListener('resize', place);
+  })();
 </script>
 
 </body>
