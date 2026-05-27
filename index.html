@@ -29,8 +29,6 @@
     .gallery-slide:nth-child(even).active { animation-name: polaroidRevealAlt; }
     @keyframes polaroidReveal { from { opacity:0; transform:scale(1.04) rotate(-1deg); } to { opacity:1; transform:scale(1) rotate(0deg); } }
     @keyframes polaroidRevealAlt { from { opacity:0; transform:scale(1.04) rotate(1deg); } to { opacity:1; transform:scale(1) rotate(0deg); } }
-    .testimonials-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease; }
-    .testimonials-slide.active { opacity: 1; }
     .rvo-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease; }
     .rvo-slide.active { opacity: 1; }
     #quizOverlay, #resultsPage { -webkit-overflow-scrolling: touch; }
@@ -287,44 +285,6 @@
         onmouseout="this.style.backgroundColor='#ff6a00'">
         Check If I Qualify →
       </button>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== TESTIMONIALS ===================== -->
-<section id="testimonialsSection" class="py-6 sm:py-16 relative overflow-hidden">
-  <div id="testimonialsSlideshow" class="absolute inset-0 z-0"></div>
-  <div class="absolute inset-0 z-[1] bg-black/65"></div>
-  <div class="max-w-6xl mx-auto px-3 sm:px-4 relative z-[2]">
-    <div class="text-center mb-4 sm:mb-10">
-      <p class="text-white/60 text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-1 sm:mb-2">Real Owners. Real Results.</p>
-      <h2 class="text-lg sm:text-3xl font-black text-white">People just like you made the move</h2>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-6">
-      <div class="bg-white rounded-lg p-3 sm:p-7 shadow-sm">
-        <p class="star-row text-sm sm:text-lg mb-1 sm:mb-4"><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span></p>
-        <p class="text-gray-600 leading-snug sm:leading-relaxed mb-2 sm:mb-6 text-[11px] sm:text-sm">"I never thought I could afford my own place at 28. The team guided me through the whole process and I moved in 4 months later. Best decision I ever made."</p>
-        <div class="flex items-center gap-2">
-          <div class="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-[#1e3a5f] flex items-center justify-center flex-shrink-0"><span class="text-white font-black text-[10px] sm:text-xs">JJ</span></div>
-          <div><p class="font-semibold text-[11px] sm:text-sm leading-tight">Jessica J.</p><p class="text-gray-400 text-[10px] sm:text-xs leading-tight">First-time buyer</p></div>
-        </div>
-      </div>
-      <div class="bg-white rounded-lg p-3 sm:p-7 shadow-sm">
-        <p class="star-row text-sm sm:text-lg mb-1 sm:mb-4"><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span></p>
-        <p class="text-gray-600 leading-snug sm:leading-relaxed mb-2 sm:mb-6 text-[11px] sm:text-sm">"Our bond repayment is actually R400 less than what we were paying in rent. We own something now. It still blows my mind every time I walk through the door."</p>
-        <div class="flex items-center gap-2">
-          <div class="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-[#1e3a5f] flex items-center justify-center flex-shrink-0"><span class="text-white font-black text-[10px] sm:text-xs">JE</span></div>
-          <div><p class="font-semibold text-[11px] sm:text-sm leading-tight">John Elder</p><p class="text-gray-400 text-[10px] sm:text-xs leading-tight">Entrepreneur</p></div>
-        </div>
-      </div>
-      <div class="bg-white rounded-lg p-3 sm:p-7 shadow-sm">
-        <p class="star-row text-sm sm:text-lg mb-1 sm:mb-4"><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span><span class="star" style="color:#d1d5db;transition:color 0.2s ease">★</span></p>
-        <p class="text-gray-600 leading-snug sm:leading-relaxed mb-2 sm:mb-6 text-[11px] sm:text-sm">"The qualifier quiz on the website told me exactly where I stood before I even spoke to anyone. No pressure, no surprises — just clear, honest info. And they had an internal bond calculator… like whaaaaaat???"</p>
-        <div class="flex items-center gap-2">
-          <div class="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-[#1e3a5f] flex items-center justify-center flex-shrink-0"><span class="text-white font-black text-[10px] sm:text-xs">LJ</span></div>
-          <div><p class="font-semibold text-[11px] sm:text-sm leading-tight">Lucas Jackson</p><p class="text-gray-400 text-[10px] sm:text-xs leading-tight">Surfer</p></div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1690,24 +1650,6 @@
     }, 6500);
   })();
 
-  // Testimonials background slideshow
-  (function() {
-    const imgs = ['./IMG-20250922-WA0006.jpg','./1000000382.jpg','./1000000406.jpg','./1000002126.jpg','./1000002144.jpg','./1000002150.jpg'];
-    const container = document.getElementById('testimonialsSlideshow');
-    imgs.forEach((src, i) => {
-      const div = document.createElement('div');
-      div.className = 'testimonials-slide' + (i === 0 ? ' active' : '');
-      div.style.backgroundImage = `url('${src}')`;
-      container.appendChild(div);
-    });
-    let ti = 0;
-    setInterval(() => {
-      const slides = document.querySelectorAll('.testimonials-slide');
-      slides[ti].classList.remove('active');
-      ti = (ti + 1) % slides.length;
-      slides[ti].classList.add('active');
-    }, 6500);
-  })();
 
   window.addEventListener('message', function(e) {
     if (e.data && e.data.type === 'bk_resize') {
@@ -1716,23 +1658,6 @@
     }
   });
 
-  // Testimonial star sequential fill on scroll-into-view
-  (function() {
-    var section = document.getElementById('testimonialsSection');
-    if (!section) return;
-    var fired = false;
-    var obs = new IntersectionObserver(function(entries) {
-      if (fired || !entries[0].isIntersecting) return;
-      fired = true;
-      document.querySelectorAll('.star-row').forEach(function(row) {
-        row.querySelectorAll('.star').forEach(function(star, i) {
-          setTimeout(function() { star.style.color = '#f59e0b'; }, i * 160);
-        });
-      });
-      obs.disconnect();
-    }, { threshold: 0.3 });
-    obs.observe(section);
-  })();
 
   // Fade logo videos in only after they can play — hides the native play-button flash on mobile
   document.querySelectorAll('.logo-vid').forEach(function(v) {
