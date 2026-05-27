@@ -922,7 +922,6 @@
   let wasHidden       = false;
   let teaserShown     = false;
   let progressChunks  = [];
-  let audioCtx        = null;
 
   const PROGRESS_BASE = 13;
 
@@ -958,21 +957,7 @@
   }
 
   function playDing() {
-    try {
-      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      const o = audioCtx.createOscillator();
-      const g = audioCtx.createGain();
-      o.type = 'sine';
-      o.frequency.setValueAtTime(660, audioCtx.currentTime);
-      o.frequency.exponentialRampToValueAtTime(980, audioCtx.currentTime + 0.08);
-      g.gain.setValueAtTime(0.0001, audioCtx.currentTime);
-      g.gain.exponentialRampToValueAtTime(0.16, audioCtx.currentTime + 0.01);
-      g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.20);
-      o.connect(g); g.connect(audioCtx.destination);
-      o.start();
-      o.stop(audioCtx.currentTime + 0.22);
-    } catch(e) {}
-    if (navigator.vibrate) navigator.vibrate(12);
+    if (navigator.vibrate) navigator.vibrate(30);
   }
 
   function showRewardBadge(pct) {
@@ -1312,7 +1297,7 @@
       score:      score
     };
 
-    // Variable reward — randomised % gain, animate progress, ding + haptic
+    // Variable reward — randomised % gain, animate progress, haptic pulse
     const reward = progressChunks[currentQ] || 0;
     const rewardPct = Math.max(1, Math.round(reward));
     const newProgress = Math.min(100, currentProgress() + reward);
