@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Raleway:wght@700;800;900&family=Tangerine:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Raleway:wght@700;800;900&family=Tangerine:wght@700&family=Cormorant+Garamond:ital,wght@1,400;1,600&family=Lora:wght@600;700&display=swap" rel="stylesheet" />
   <style>
     * { font-family: 'Inter', sans-serif; }
     .hero-bg { background: linear-gradient(135deg, #1a2d3e 0%, #284860 50%, #1a2d3e 100%); }
@@ -94,7 +94,7 @@
 <body class="bg-white text-gray-900 overflow-x-hidden">
 
 <!-- ===================== NAV ===================== -->
-<nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100">
+<nav class="fixed top-0 left-0 right-0 z-50" style="background:#284860;">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-0 grid grid-cols-3 items-stretch">
     <!-- Left: empty -->
     <div></div>
@@ -136,15 +136,17 @@
       <span class="hero-word text-sky-300" style="animation-delay:0.86s;text-shadow:0 0 8px rgba(125,211,252,0.6),0 0 18px rgba(125,211,252,0.35),0 0 35px rgba(125,211,252,0.18)">Wealth</span><span class="hero-word" style="animation-delay:0.92s">.</span>
     </h1>
 
-    <p class="text-xs sm:text-xl max-w-2xl mx-auto mb-6 leading-relaxed px-2" style="font-family: 'Raleway', sans-serif; font-weight: 900; color: white; text-shadow: 0 1px 4px rgba(0,0,0,0.5);">
+    <p class="text-sm sm:text-2xl max-w-2xl mx-auto mb-6 leading-relaxed px-2" style="font-family: 'Lora', Georgia, serif; font-weight: 600; color: white; text-shadow: 0 1px 4px rgba(0,0,0,0.5);">
       While you were paying rent, your landlord got rich. Don't you think it's time to flip the script.
     </p>
-    <p class="text-xs sm:text-xl max-w-2xl mx-auto mb-2 leading-relaxed px-2" style="font-family: 'Raleway', sans-serif; font-weight: 900; color: white; text-shadow: 0 1px 4px rgba(0,0,0,0.5);">
-      "The sky's the limit."
-    </p>
-    <p class="text-xs sm:text-sm max-w-2xl mx-auto mb-16 px-2" style="font-family: 'Raleway', sans-serif; font-weight: 600; color: rgba(255,255,255,0.55); text-shadow: 0 1px 4px rgba(0,0,0,0.5);">
-      — Anonymous
-    </p>
+    <div class="max-w-2xl mx-auto mb-16 px-2">
+      <p class="text-lg sm:text-3xl leading-relaxed text-center" style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 400; color: white; text-shadow: 0 1px 6px rgba(0,0,0,0.6);">
+        "The sky's the limit."
+      </p>
+      <p class="text-xs sm:text-sm text-right pr-2 mt-1" style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 600; color: rgba(255,255,255,0.5); text-shadow: 0 1px 4px rgba(0,0,0,0.5);">
+        — Anonymous
+      </p>
+    </div>
 
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <button onclick="startQuiz()"
