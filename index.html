@@ -170,7 +170,7 @@
 
 <!-- ===================== RENT vs OWN ===================== -->
 <section class="py-12 sm:py-20 px-4 relative overflow-hidden" style="background:#1a2d3e;">
-  <div id="rvoSlideshow" class="absolute inset-0 z-0"></div>
+  <div class="absolute inset-0 z-0" style="background-image:url('./1000000406.jpg');background-size:cover;background-position:center;"></div>
   <div class="absolute inset-0 z-[1] bg-black/70"></div>
   <div class="max-w-3xl mx-auto relative z-[2]">
     <div class="text-center mb-8">
@@ -1711,24 +1711,6 @@
     document.getElementById('galleryIdx').textContent = galIdx + 1;
   }
 
-  // Rent vs Own background slideshow
-  (function() {
-    const imgs = ['./bk-living-room.jpg','./bk-kitchen.jpg','./bk-bedroom.jpg','./bk-house.jpg','./1000000406.jpg','./1000002126.jpg'];
-    const container = document.getElementById('rvoSlideshow');
-    if (container) imgs.forEach((src, i) => {
-      const div = document.createElement('div');
-      div.className = 'rvo-slide' + (i === 0 ? ' active' : '');
-      div.style.backgroundImage = `url('${src}')`;
-      container.appendChild(div);
-    });
-    let ri = 0;
-    setInterval(() => {
-      const slides = document.querySelectorAll('.rvo-slide');
-      slides[ri].classList.remove('active');
-      ri = (ri + 1) % slides.length;
-      slides[ri].classList.add('active');
-    }, 6500);
-  })();
 
 
   // Gallery section background slideshow
