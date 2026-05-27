@@ -10,18 +10,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Raleway:wght@700;800;900&family=Tangerine:wght@700&display=swap" rel="stylesheet" />
   <style>
     * { font-family: 'Inter', sans-serif; }
-    .hero-bg { background: linear-gradient(135deg, #0f172a 0%, #1a3558 50%, #0f172a 100%); }
+    .hero-bg { background: linear-gradient(135deg, #1a2d3e 0%, #284860 50%, #1a2d3e 100%); }
     .progress-bar { transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
     .quiz-option { transition: all 0.15s ease; }
     .quiz-option:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-    .quiz-option.selected { border-color: rgba(255,255,255,0.9) !important; background: rgba(30,58,95,1) !important; }
+    .quiz-option.selected { border-color: rgba(255,255,255,0.9) !important; background: rgba(40,72,96,1) !important; }
     .fade-in { animation: fadeIn 0.35s ease forwards; }
     @keyframes fadeIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
     .gallery-item img { transition: transform 0.4s ease; }
     .gallery-item:hover img { transform: scale(1.06); }
     .modal-backdrop { backdrop-filter: blur(6px); }
     .pulse-cta { animation: pulse 2.5s ease-in-out infinite; }
-    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(30,58,95,0.5); } 50% { box-shadow: 0 0 0 18px rgba(30,58,95,0); } }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(40,72,96,0.5); } 50% { box-shadow: 0 0 0 18px rgba(40,72,96,0); } }
     .quiz-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.8s ease; }
     .quiz-slide.active { opacity: 1; }
     .gallery-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease; overflow: hidden; }
@@ -92,7 +92,7 @@
 
   <div class="relative z-[2] max-w-4xl mx-auto px-4 text-center py-12 sm:py-20">
     <div class="flex justify-center mb-8">
-      <div class="inline-flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide" style="background: rgba(30,58,95,0.55); color: white; border: 1px solid rgba(30,58,95,0.55); line-height: 1.4;">
+      <div class="inline-flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide" style="background: rgba(40,72,96,0.55); color: white; border: 1px solid rgba(40,72,96,0.55); line-height: 1.4;">
         52 units · Pacaltsdorp, George · From R1,095,000
       </div>
     </div>
@@ -119,17 +119,17 @@
         Check If I Qualify →
       </button>
       <a href="#gallery"
-        class="w-full sm:w-auto text-white hover:text-white font-medium text-base px-8 py-4 rounded-xl border border-[#1e3a5f] bg-[#1e3a5f] hover:bg-[#264a73] transition-all text-center">
+        class="w-full sm:w-auto text-white hover:text-white font-medium text-base px-8 py-4 rounded-xl border border-[#284860] bg-[#284860] hover:bg-[#264a73] transition-all text-center">
         View the Development
       </a>
     </div>
 
     <div class="mt-14 flex flex-wrap justify-center gap-4 sm:gap-6">
-      <div class="flex items-center gap-2.5 bg-[#1e3a5f] border border-[#1e3a5f] shadow-lg rounded-full px-5 py-2.5">
+      <div class="flex items-center gap-2.5 bg-[#284860] border border-[#284860] shadow-lg rounded-full px-5 py-2.5">
         <span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></span>
         <span class="text-white font-semibold text-sm tracking-wide">0% Transfer Duty</span>
       </div>
-      <div class="flex items-center gap-2.5 bg-[#1e3a5f] border border-[#1e3a5f] shadow-lg rounded-full px-5 py-2.5">
+      <div class="flex items-center gap-2.5 bg-[#284860] border border-[#284860] shadow-lg rounded-full px-5 py-2.5">
         <span class="w-2 h-2 rounded-full bg-sky-400 flex-shrink-0"></span>
         <span class="text-white font-semibold text-sm tracking-wide">From <span class="text-white font-black">R1,095,000</span></span>
       </div>
@@ -144,7 +144,7 @@
 </section>
 
 <!-- ===================== RENT vs OWN ===================== -->
-<section class="py-12 sm:py-20 px-4 relative overflow-hidden" style="background:#0f2340;">
+<section class="py-12 sm:py-20 px-4 relative overflow-hidden" style="background:#1a2d3e;">
   <div id="rvoSlideshow" class="absolute inset-0 z-0"></div>
   <div class="absolute inset-0 z-[1] bg-black/70"></div>
   <div class="max-w-3xl mx-auto relative z-[2]">
@@ -155,7 +155,7 @@
       <p class="text-white/70 text-sm max-w-xl mx-auto">Set your current monthly rent below, then watch where the money ends up.</p>
     </div>
 
-    <div class="border rounded-2xl p-5 mb-6" style="background:#0f2340; border-color:#1e4a8f;">
+    <div class="border rounded-2xl p-5 mb-6" style="background:#1a2d3e; border-color:#1e4a8f;">
       <div class="flex items-center justify-between mb-3">
         <span class="text-white/70 text-xs font-bold uppercase tracking-wide">Your current rent</span>
         <span class="text-[#ff6a00] font-black text-xl">R<span id="rvoRent">12,000</span>/mo</span>
@@ -165,10 +165,10 @@
     </div>
 
     <div class="grid grid-cols-2 gap-3 sm:gap-6">
-      <div class="rounded-2xl p-4 sm:p-6 text-center flex flex-col" style="background:#0f2340; border:2px solid #1e4a8f;">
+      <div class="rounded-2xl p-4 sm:p-6 text-center flex flex-col" style="background:#1a2d3e; border:2px solid #1e4a8f;">
         <p class="text-red-300 text-[10px] font-bold uppercase tracking-widest mb-1">Renting</p>
         <p class="text-white text-sm sm:text-base font-bold mb-4">Money to landlord</p>
-        <div class="relative h-44 sm:h-72 rounded-xl overflow-hidden flex items-end mb-4" style="background:#0a1b33; border:1px solid #1e4a8f;">
+        <div class="relative h-44 sm:h-72 rounded-xl overflow-hidden flex items-end mb-4" style="background:#0d1c28; border:1px solid #1e4a8f;">
           <div id="rvoRentBar" class="w-full bg-gradient-to-t from-red-700 to-red-400 transition-all" style="height:0%;transition-duration:200ms"></div>
         </div>
         <p class="text-white/60 text-[10px] uppercase tracking-wide">Paid in rent</p>
@@ -176,10 +176,10 @@
         <p class="text-white/60 text-[10px] uppercase tracking-wide mt-2">In your name</p>
         <p class="text-xl sm:text-2xl font-black text-red-500 leading-tight">R0</p>
       </div>
-      <div class="rounded-2xl p-4 sm:p-6 text-center flex flex-col" style="background:#0f2340; border:2px solid #1e4a8f;">
+      <div class="rounded-2xl p-4 sm:p-6 text-center flex flex-col" style="background:#1a2d3e; border:2px solid #1e4a8f;">
         <p class="text-green-300 text-[10px] font-bold uppercase tracking-widest mb-1">Owning</p>
         <p class="text-white text-sm sm:text-base font-bold mb-4">Bloukloof value</p>
-        <div class="relative h-44 sm:h-72 rounded-xl overflow-hidden flex items-end mb-4" style="background:#0a1b33; border:1px solid #1e4a8f;">
+        <div class="relative h-44 sm:h-72 rounded-xl overflow-hidden flex items-end mb-4" style="background:#0d1c28; border:1px solid #1e4a8f;">
           <div id="rvoOwnBar" class="w-full bg-gradient-to-t from-green-700 to-green-400 transition-all" style="height:0%;transition-duration:200ms"></div>
         </div>
         <p class="text-white/60 text-[10px] uppercase tracking-wide">Bond paid</p>
@@ -205,9 +205,9 @@
 </section>
 
 <!-- ===================== GALLERY ===================== -->
-<section id="gallery" class="py-10 sm:py-20 relative overflow-hidden" style="border-top: 3px solid #1e3a5f; border-bottom: 3px solid #1e3a5f;">
+<section id="gallery" class="py-10 sm:py-20 relative overflow-hidden" style="border-top: 3px solid #284860; border-bottom: 3px solid #284860;">
   <div id="galleryBgSlideshow" class="absolute inset-0 z-0"></div>
-  <div class="absolute inset-0 z-[1]" style="background:rgba(15,35,64,0.78);"></div>
+  <div class="absolute inset-0 z-[1]" style="background:rgba(26,45,62,0.78);"></div>
   <div class="max-w-6xl mx-auto px-4 relative z-[2]">
     <div class="flex items-center justify-center gap-3 mb-6 sm:mb-12">
       <img src="./logo.png" alt="Bloukloof Properties" class="h-10 sm:h-16 w-auto" style="filter: brightness(0) invert(1);" />
@@ -258,21 +258,21 @@
       <p class="text-white/70 text-sm sm:text-lg max-w-xl mx-auto">Built for people ready to stop renting and start owning.</p>
     </div>
     <div class="grid grid-cols-3 gap-2 sm:gap-4">
-      <div class="rounded-xl p-3 sm:p-5 shadow-sm text-center" style="background: #1e3a5f;">
+      <div class="rounded-xl p-3 sm:p-5 shadow-sm text-center" style="background: #284860;">
         <div class="w-7 h-7 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center mx-auto mb-1.5 sm:mb-3" style="background: rgba(255,255,255,0.15);">
           <svg class="w-3.5 h-3.5 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
         </div>
         <h3 class="text-[10px] sm:text-base font-bold text-white mb-1 leading-tight">Become Financially Free</h3>
         <p class="hidden sm:block text-xs leading-relaxed" style="color: rgba(255,255,255,0.75);">Every bond payment builds equity in your name — not your landlord's.</p>
       </div>
-      <div class="rounded-xl p-3 sm:p-5 shadow-sm text-center" style="background: #1e3a5f;">
+      <div class="rounded-xl p-3 sm:p-5 shadow-sm text-center" style="background: #284860;">
         <div class="w-7 h-7 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center mx-auto mb-1.5 sm:mb-3" style="background: rgba(255,255,255,0.15);">
           <svg class="w-3.5 h-3.5 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
         </div>
         <h3 class="text-[10px] sm:text-base font-bold text-white mb-1 leading-tight">Stability for Your Family</h3>
         <p class="hidden sm:block text-xs leading-relaxed" style="color: rgba(255,255,255,0.75);">No more lease renewals or landlords. A home your family can truly put down roots in.</p>
       </div>
-      <div class="rounded-xl p-3 sm:p-5 shadow-sm text-center" style="background: #1e3a5f;">
+      <div class="rounded-xl p-3 sm:p-5 shadow-sm text-center" style="background: #284860;">
         <div class="w-7 h-7 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center mx-auto mb-1.5 sm:mb-3" style="background: rgba(255,255,255,0.15);">
           <svg class="w-3.5 h-3.5 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
         </div>
@@ -294,7 +294,7 @@
 </section>
 
 <!-- ===================== FOOTER ===================== -->
-<footer class="bg-[#1e3a5f] text-white/60 py-10">
+<footer class="bg-[#284860] text-white/60 py-10">
   <div class="max-w-6xl mx-auto px-4 text-center">
     <div class="flex items-center justify-center mb-5">
       <div class="bg-white rounded-xl px-5 py-2.5 inline-flex items-center gap-3">
@@ -326,7 +326,7 @@
         </a>
         <a href="https://www.google.com/maps/search/?api=1&query=Bloukloof+George+South+Africa"
            target="_blank" rel="noopener"
-           class="flex-1 flex items-center justify-center gap-1.5 text-[#1e3a5f] font-bold text-sm px-4 py-3 rounded-xl transition-all hover:scale-105"
+           class="flex-1 flex items-center justify-center gap-1.5 text-[#284860] font-bold text-sm px-4 py-3 rounded-xl transition-all hover:scale-105"
            style="background: white; border: 3px solid transparent; background-image: linear-gradient(white, white), linear-gradient(90deg, #4285F4 0%, #4285F4 25%, #EA4335 25%, #EA4335 50%, #FBBC05 50%, #FBBC05 75%, #34A853 75%, #34A853 100%); background-origin: border-box; background-clip: padding-box, border-box;">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="#EA4335"/><circle cx="12" cy="10" r="3" stroke="#4285F4"/></svg>
           Find Us
@@ -344,7 +344,7 @@
   <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl relative fade-in flex overflow-hidden">
 
     <!-- Left: Logo panel -->
-    <div class="hidden sm:flex flex-col items-center justify-center bg-[#1e3a5f] px-8 py-10 min-w-[200px] gap-6">
+    <div class="hidden sm:flex flex-col items-center justify-center bg-[#284860] px-8 py-10 min-w-[200px] gap-6">
       <div class="bg-white rounded-xl px-4 py-3 flex flex-col items-center gap-3">
         <img src="./logo.png" alt="Bloukloof Properties" class="w-32 object-contain" />
         <div class="w-12 h-px bg-gray-200"></div>
@@ -359,25 +359,25 @@
       </button>
 
       <img src="./logo.png" alt="Bloukloof Properties" class="h-10 sm:h-8 w-auto mb-4 mx-auto block" />
-      <h2 class="text-xl font-bold text-[#1e3a5f] text-center mb-6">Enter your details to begin</h2>
+      <h2 class="text-xl font-bold text-[#284860] text-center mb-6">Enter your details to begin</h2>
 
       <form onsubmit="submitLead(event)" class="space-y-4" autocomplete="on">
         <div class="grid grid-cols-2 gap-3">
           <div>
             <input id="leadFirstName" name="given-name" type="text" required autocomplete="given-name" placeholder="First name *"
-              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/30 focus:border-[#1e3a5f] transition-all" />
+              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#284860]/30 focus:border-[#284860] transition-all" />
           </div>
           <div>
             <input id="leadSurname" name="family-name" type="text" required autocomplete="family-name" placeholder="Last name *"
-              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/30 focus:border-[#1e3a5f] transition-all" />
+              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#284860]/30 focus:border-[#284860] transition-all" />
           </div>
         </div>
         <div>
           <input id="leadEmail" name="email" type="email" required autocomplete="email" inputmode="email" placeholder="Email *"
-            class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/30 focus:border-[#1e3a5f] transition-all" />
+            class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#284860]/30 focus:border-[#284860] transition-all" />
         </div>
         <div>
-          <div class="flex items-center border border-[#1e3a5f] rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-[#1e3a5f]/30 transition-all">
+          <div class="flex items-center border border-[#284860] rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-[#284860]/30 transition-all">
             <div class="flex items-center gap-1.5 px-3 py-3 border-r border-gray-200 bg-white select-none">
               <span class="text-lg leading-none">🇿🇦</span>
               <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -385,11 +385,11 @@
             <input id="leadPhone" name="tel" type="tel" required autocomplete="tel" inputmode="tel" placeholder="071 123 4567"
               class="flex-1 px-4 py-3 text-sm outline-none bg-white" />
           </div>
-          <p class="text-xs text-[#1e3a5f] font-semibold mt-1 ml-1">Phone *</p>
+          <p class="text-xs text-[#284860] font-semibold mt-1 ml-1">Phone *</p>
           <p id="leadPhoneError" class="hidden text-xs text-red-600 font-semibold mt-1 ml-1"></p>
         </div>
         <button type="submit"
-          class="w-full bg-[#1e3a5f] hover:bg-[#162d4a] text-white font-bold text-base py-4 rounded-xl transition-all mt-2">
+          class="w-full bg-[#284860] hover:bg-[#162d4a] text-white font-bold text-base py-4 rounded-xl transition-all mt-2">
           Start
         </button>
       </form>
@@ -404,7 +404,7 @@
     <div class="flex items-center gap-3 mb-5">
       <img src="./experian-logo.png" alt="Experian" class="h-7 w-auto flex-shrink-0" />
       <div>
-        <h3 class="text-lg font-black text-[#1e3a5f]">Check Your Credit Score</h3>
+        <h3 class="text-lg font-black text-[#284860]">Check Your Credit Score</h3>
         <p class="text-xs text-gray-500">Free check — no impact on your score</p>
       </div>
     </div>
@@ -412,11 +412,11 @@
       Knowing your credit score is the single most important step before applying for a bond. You can check yours for free via <strong>Experian South Africa</strong> — it takes under 2 minutes and won't affect your score.
     </p>
     <a href="https://www.mycreditcheck.co.za" target="_blank" rel="noopener"
-      class="block w-full text-center bg-[#1e3a5f] hover:bg-[#162d4a] text-white font-bold py-3.5 rounded-xl mb-3 transition-all">
+      class="block w-full text-center bg-[#284860] hover:bg-[#162d4a] text-white font-bold py-3.5 rounded-xl mb-3 transition-all">
       Check My Score on Experian →
     </a>
     <button onclick="continueAfterExperian()"
-      class="w-full text-center border-2 border-gray-200 hover:border-[#1e3a5f] text-gray-600 hover:text-[#1e3a5f] font-semibold py-3.5 rounded-xl transition-all text-sm">
+      class="w-full text-center border-2 border-gray-200 hover:border-[#284860] text-gray-600 hover:text-[#284860] font-semibold py-3.5 rounded-xl transition-all text-sm">
       I'll check later — Continue
     </button>
   </div>
@@ -429,15 +429,15 @@
       <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-orange-100 mb-3">
         <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#ff6a00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
       </div>
-      <h3 class="text-xl font-black text-[#1e3a5f]">Don't lose your score!</h3>
+      <h3 class="text-xl font-black text-[#284860]">Don't lose your score!</h3>
       <p class="text-sm text-gray-600 mt-2 leading-relaxed">
-        You're <span id="rescuePct" class="font-bold text-[#ff6a00]">62</span>% of the way there — just <span id="rescueLeft" class="font-bold text-[#1e3a5f]">a few questions</span> left to unlock your full result and matched units.
+        You're <span id="rescuePct" class="font-bold text-[#ff6a00]">62</span>% of the way there — just <span id="rescueLeft" class="font-bold text-[#284860]">a few questions</span> left to unlock your full result and matched units.
       </p>
     </div>
     <button onclick="closeRescue()" class="w-full bg-[#ff6a00] hover:bg-[#e55f00] text-white font-bold py-3.5 rounded-xl transition-all mb-3 shadow-lg">
       Continue — almost there!
     </button>
-    <button onclick="saveAndClose()" class="w-full text-gray-500 hover:text-[#1e3a5f] text-xs font-medium py-2">
+    <button onclick="saveAndClose()" class="w-full text-gray-500 hover:text-[#284860] text-xs font-medium py-2">
       Text me my partial score instead
     </button>
   </div>
@@ -458,7 +458,7 @@
 
 <!-- ===================== CALCULATING SCREEN ===================== -->
 <div id="calcScreen" class="fixed inset-0 z-[280] hidden items-center justify-center p-6">
-  <div class="absolute inset-0" style="background:linear-gradient(135deg,#1e3a5f 0%,#0f2340 100%)"></div>
+  <div class="absolute inset-0" style="background:linear-gradient(135deg,#284860 0%,#1a2d3e 100%)"></div>
   <div class="relative max-w-md w-full">
     <div class="text-center mb-8">
       <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/10 mb-4">
@@ -483,7 +483,7 @@
 
   <div class="min-h-screen flex flex-col relative z-[2]">
     <!-- Sticky header -->
-    <div class="sticky top-0 bg-[#1e3a5f]/80 backdrop-blur-md px-4 py-4 z-10">
+    <div class="sticky top-0 bg-[#284860]/80 backdrop-blur-md px-4 py-4 z-10">
       <div class="max-w-2xl mx-auto">
         <div class="flex items-center justify-between mb-3">
           <div class="bg-white rounded-lg px-3 py-1.5 inline-flex items-center gap-2">
@@ -612,7 +612,7 @@
 
     <!-- Pin your priority slot -->
     <section id="reservSection" class="mt-2 mb-6">
-      <div class="rounded-2xl p-6" style="background:linear-gradient(135deg,rgba(10,24,48,0.85) 0%,rgba(30,58,95,0.85) 100%); border:1px solid rgba(255,255,255,0.1);">
+      <div class="rounded-2xl p-6" style="background:linear-gradient(135deg,rgba(13,28,40,0.85) 0%,rgba(40,72,96,0.85) 100%); border:1px solid rgba(255,255,255,0.1);">
         <div class="text-center">
           <p class="text-[10px] font-bold uppercase tracking-widest text-[#ff6a00] mb-2">No cost · No commitment</p>
           <h3 class="text-xl sm:text-2xl font-black text-white mb-2 leading-tight">Hold your priority slot for 24 hours if you think you qualify.</h3>
@@ -623,9 +623,9 @@
           </div>
 
           <div id="reservPhoneForm" class="bg-white rounded-xl p-5 hidden text-left">
-            <p class="text-[#1e3a5f] text-sm font-bold mb-3">Drop your number — we'll lock your slot.</p>
-            <input id="reservPhone" type="tel" placeholder="Mobile number" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#1e3a5f] mb-3" />
-            <button id="reservConfirm" type="button" class="w-full bg-[#1e3a5f] hover:bg-[#162d4a] text-white font-bold py-3 rounded-xl transition-all">Lock my slot →</button>
+            <p class="text-[#284860] text-sm font-bold mb-3">Drop your number — we'll lock your slot.</p>
+            <input id="reservPhone" type="tel" placeholder="Mobile number" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#284860] mb-3" />
+            <button id="reservConfirm" type="button" class="w-full bg-[#284860] hover:bg-[#162d4a] text-white font-bold py-3 rounded-xl transition-all">Lock my slot →</button>
           </div>
 
           <div id="reservActive" class="bg-gradient-to-br from-green-500/30 to-green-700/20 border-2 border-green-400 rounded-xl p-5 hidden">
@@ -666,7 +666,7 @@
       </a>
       <a href="https://www.google.com/maps/search/?api=1&query=Bloukloof+George+South+Africa"
          target="_blank" rel="noopener"
-         class="flex items-center justify-center gap-2 text-[#1e3a5f] font-bold text-sm px-5 py-3 rounded-xl transition-all hover:scale-105"
+         class="flex items-center justify-center gap-2 text-[#284860] font-bold text-sm px-5 py-3 rounded-xl transition-all hover:scale-105"
          style="background: white; border: 3px solid transparent; background-image: linear-gradient(white, white), linear-gradient(90deg, #4285F4 0%, #4285F4 25%, #EA4335 25%, #EA4335 50%, #FBBC05 50%, #FBBC05 75%, #34A853 75%, #34A853 100%); background-origin: border-box; background-clip: padding-box, border-box;">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="#EA4335"/><circle cx="12" cy="10" r="3" stroke="#4285F4"/></svg>
         <span>Find Us</span>
@@ -745,7 +745,7 @@
   //   sheet.setFrozenRows(1);
   //   sheet.setFrozenColumns(2);                   // freeze Submitted + Status
   //   var hdr = sheet.getRange(1,1,1,COLS.length);
-  //   hdr.setBackground('#1e3a5f')
+  //   hdr.setBackground('#284860')
   //      .setFontColor('#ffffff')
   //      .setFontWeight('bold')
   //      .setFontSize(10)
@@ -1099,7 +1099,7 @@
     var wrap = document.getElementById('leadPhone').parentElement;
     err.textContent = msg;
     err.classList.remove('hidden');
-    wrap.classList.remove('border-[#1e3a5f]');
+    wrap.classList.remove('border-[#284860]');
     wrap.classList.add('border-red-500', 'ring-2', 'ring-red-200');
   }
 
@@ -1108,7 +1108,7 @@
     var wrap = document.getElementById('leadPhone').parentElement;
     err.classList.add('hidden');
     wrap.classList.remove('border-red-500', 'ring-2', 'ring-red-200');
-    wrap.classList.add('border-[#1e3a5f]');
+    wrap.classList.add('border-[#284860]');
   }
 
   document.getElementById('leadPhone').addEventListener('input', clearPhoneError);
@@ -1171,7 +1171,7 @@
     const optionsHTML = q.options.map((opt, i) => `
       <button
         onclick="selectOption(${i}, ${opt.score})"
-        class="quiz-option w-full text-left bg-[#1e3a5f]/80 backdrop-blur-sm border border-white/40 rounded-xl px-4 py-3 group hover:bg-[#1e3a5f] hover:border-white/80"
+        class="quiz-option w-full text-left bg-[#284860]/80 backdrop-blur-sm border border-white/40 rounded-xl px-4 py-3 group hover:bg-[#284860] hover:border-white/80"
         data-idx="${i}">
         <div class="flex items-center gap-4">
           <div class="w-7 h-7 rounded-full border border-white/50 group-hover:border-white flex items-center justify-center text-xs font-bold text-white/70 group-hover:text-white flex-shrink-0 transition-colors">
@@ -1184,10 +1184,10 @@
     document.getElementById('questionContainer').innerHTML = `
       <div class="fade-in">
         <div class="mb-8">
-          <span class="inline-block text-white text-xs font-bold px-3 py-1 rounded-full mb-5 uppercase tracking-wide" style="background:rgba(15,35,64,0.88);">
+          <span class="inline-block text-white text-xs font-bold px-3 py-1 rounded-full mb-5 uppercase tracking-wide" style="background:rgba(26,45,62,0.88);">
             ${currentQ >= QUESTIONS.length - 1 ? 'Last question — your score awaits!' : currentQ >= QUESTIONS.length - 2 ? 'Almost there!' : `Question ${currentQ + 1} of ${QUESTIONS.length}`}
           </span>
-          <h2 class="text-2xl sm:text-3xl font-black text-white leading-snug rounded-xl px-4 py-3" style="background:rgba(15,35,64,0.88);">${q.text}</h2>
+          <h2 class="text-2xl sm:text-3xl font-black text-white leading-snug rounded-xl px-4 py-3" style="background:rgba(26,45,62,0.88);">${q.text}</h2>
         </div>
         <div class="space-y-3">${optionsHTML}</div>
         ${currentQ > 0
@@ -1399,7 +1399,7 @@
         <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-green-100 mb-3">
           <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <h3 class="text-xl font-black text-[#1e3a5f] mb-2">Saved!</h3>
+        <h3 class="text-xl font-black text-[#284860] mb-2">Saved!</h3>
         <p class="text-sm text-gray-600">We'll text your partial score shortly — feel free to keep going to unlock the full result.</p>
       </div>`;
     setTimeout(closeRescue, 1800);
@@ -1471,7 +1471,7 @@
 
     if (pct >= 75) {
       setFace('happy');
-      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#1e3a5f] border border-green-400/30 shadow-xl';
+      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#284860] border border-green-400/30 shadow-xl';
       badge.className = 'relative w-40 h-40 mx-auto mb-5 shadow-xl shadow-green-500/40 ring-4 ring-green-400/30 rounded-full';
       document.getElementById('scoreBgCircle').setAttribute('fill', '#22c55e');
       title.className = 'text-2xl font-black mb-2 text-green-400';
@@ -1484,7 +1484,7 @@
         <div class="flex gap-3 p-3 bg-white/5 border border-green-400/20 rounded-xl"><span class="text-green-400 mt-0.5">✓</span><p class="text-sm text-white/90">Expect a call within 24 hours — WhatsApp or grab the brochure below in the meantime.</p></div>`;
     } else if (pct >= 50) {
       setFace('sun');
-      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#1e3a5f] border border-yellow-400/30 shadow-xl';
+      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#284860] border border-yellow-400/30 shadow-xl';
       badge.className = 'relative w-40 h-40 mx-auto mb-5 shadow-xl shadow-yellow-500/40 ring-4 ring-yellow-400/30 rounded-full';
       document.getElementById('scoreBgCircle').setAttribute('fill', '#eab308');
       title.className = 'text-2xl font-black mb-2 text-yellow-400';
@@ -1497,7 +1497,7 @@
         <div class="flex gap-3 p-3 bg-white/5 border border-yellow-400/20 rounded-xl"><span class="text-yellow-400 mt-0.5">◉</span><p class="text-sm text-white/90">Reach out and we'll walk you through exactly what to adjust.</p></div>`;
     } else {
       setFace('sad');
-      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#1e3a5f] border border-red-400/30 shadow-xl';
+      card.className  = 'rounded-3xl p-8 text-center mb-5 bg-[#284860] border border-red-400/30 shadow-xl';
       badge.className = 'relative w-40 h-40 mx-auto mb-5 shadow-xl shadow-red-500/40 ring-4 ring-red-400/30 rounded-full';
       document.getElementById('scoreBgCircle').setAttribute('fill', '#ef4444');
       title.className = 'text-2xl font-black mb-2 text-red-400';
