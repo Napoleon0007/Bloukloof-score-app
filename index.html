@@ -96,9 +96,13 @@
       40%            { transform:translate(-8px,10px) rotate(-14deg) scale(1.5); opacity:1; filter:none; }
       44%            { transform:translate(-130px,68px) rotate(-95deg) scale(0.9); opacity:1; filter:none; }
       45.5%          { transform:translate(-128px,66px) rotate(-100deg) scale(1.6); opacity:1; filter:brightness(5); }
-      47%            { transform:translate(-60px,18px) rotate(-140deg) scale(1.1); opacity:1; filter:none; }
-      57%            { transform:translate(420px,-860px) rotate(-560deg) scale(0); opacity:0; filter:none; }
-      70%            { transform:translate(420px,-860px) rotate(-560deg) scale(0); opacity:0; filter:none; }
+      /* elastic rebound — bounces right, barely upward; gravity already pulling */
+      48%            { transform:translate(-52px,54px) rotate(-128deg) scale(1.05); opacity:1; filter:none; }
+      /* gravity dominant — arcing down-right */
+      53%            { transform:translate(80px,210px) rotate(-255deg) scale(0.75); opacity:0.85; filter:none; }
+      60%            { transform:translate(240px,520px) rotate(-395deg) scale(0.2); opacity:0.25; filter:none; }
+      65%            { transform:translate(295px,760px) rotate(-455deg) scale(0); opacity:0; filter:none; }
+      70%            { transform:translate(295px,760px) rotate(-455deg) scale(0); opacity:0; filter:none; }
     }
     @keyframes wealthBounce {
       0%,44%,49%,100%{ transform:none; filter:none; }
