@@ -238,8 +238,8 @@
     <div class="text-center mb-8">
       <img src="./logo.png" alt="Bloukloof Properties" class="h-16 sm:h-20 mx-auto mb-4 w-auto" style="filter:brightness(0) invert(1);" />
       <p class="text-sm font-bold uppercase tracking-widest text-[#ff6a00] mb-3" id="rvoTruthLabel">The 30-year truth</p>
-      <h2 class="text-2xl sm:text-4xl font-black text-white mb-4 leading-tight" id="rvoHeading">Where will your rent money end up in 30 years?</h2>
-      <p class="text-white/70 text-sm max-w-xl mx-auto">Set your current monthly rent below, then watch where the money ends up.</p>
+      <h2 class="text-2xl sm:text-4xl font-black text-white mb-4 leading-tight" id="rvoHeading">This is where your rent money ends up in 30 years.</h2>
+      <p class="text-white/70 text-sm max-w-xl mx-auto">Play this rental game below, just the slider to your doom.</p>
     </div>
 
     <div class="border rounded-2xl p-5 mb-6 relative overflow-hidden" style="border-color:#1e4a8f;">
@@ -1891,7 +1891,7 @@
       pickerLabel.textContent  = yrs + ' years';
       playBtn.textContent      = 'Generate ' + yrs + ' years';
       truthLabel.textContent   = 'The ' + yrs + '-year truth';
-      heading.textContent      = 'Where will your rent money end up in ' + yrs + ' years?';
+      heading.textContent      = 'This is where your rent money ends up in ' + yrs + ' years.';
       document.querySelectorAll('.rvo-yr-opt').forEach(b => {
         const active = parseInt(b.dataset.yrs) === yrs;
         b.classList.toggle('bg-[#ff6a00]/20', active);
