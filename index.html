@@ -678,14 +678,8 @@
 </div>
 
 <!-- ===================== RESULTS PAGE ===================== -->
-<div id="resultsPage" class="fixed inset-0 z-[300] hidden overflow-y-auto">
-  <!-- Video background -->
-  <video autoplay muted loop playsinline poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="fixed inset-0 w-full h-full object-cover z-0">
-    <source src="./bloukloof-view.mp4" type="video/mp4">
-  </video>
-  <!-- Dark overlay -->
-  <div class="fixed inset-0 z-[1] bg-black/60"></div>
-  <div class="max-w-2xl mx-auto px-4 pt-12 pb-4 relative z-[2]">
+<div id="resultsPage" class="fixed inset-0 z-[300] hidden overflow-y-auto" style="background:#0d1c28;">
+  <div class="max-w-2xl mx-auto px-4 pt-12 pb-4 relative">
 
     <div class="text-center mb-6">
       <div class="flex items-center justify-center mb-4">
@@ -1638,10 +1632,7 @@
       var frame = document.getElementById('bondCalcFrame');
       if (frame && frame.contentWindow) { frame.contentWindow.postMessage({ type: 'bk_measure' }, '*'); }
     }, 50);
-    const bgVideo = document.querySelector('#resultsPage video');
-    if (bgVideo) { bgVideo.load(); bgVideo.play().catch(() => {}); }
-
-    document.getElementById('resultName').textContent =
+document.getElementById('resultName').textContent =
       `${leadData.firstName} ${leadData.surname} — here's your personalised result`;
 
     document.getElementById('thankYouSub').textContent =
