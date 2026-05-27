@@ -1607,7 +1607,6 @@
     slides[galIdx].classList.add('active');
     document.getElementById('galleryIdx').textContent = galIdx + 1;
   }
-  setInterval(() => moveGallery(1), 6500);
 
   // Rent vs Own background slideshow
   (function() {
@@ -1641,12 +1640,6 @@
       container.appendChild(div);
     });
     let gi = 0;
-    setInterval(() => {
-      const slides = container.querySelectorAll('.gallery-bg-slide');
-      slides[gi].classList.remove('active');
-      gi = (gi + 1) % slides.length;
-      slides[gi].classList.add('active');
-    }, 7000);
   })();
 
   window.addEventListener('message', function(e) {
