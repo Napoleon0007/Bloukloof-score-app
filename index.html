@@ -112,21 +112,6 @@
       52%            { transform:translate(1000px,130px) rotate(1440deg) scale(0); opacity:0; }
       70%            { transform:translate(1000px,130px) rotate(1440deg) scale(0); opacity:0; }
     }
-    /* Shockwave ring */
-    @keyframes shockwaveExpand {
-      0%,39%,62%,100%{ width:0; height:0; opacity:0; }
-      41%{ width:22px; height:22px; opacity:1; border-width:5px; }
-      60%{ width:900px; height:440px; opacity:0; border-width:1px; }
-    }
-    .shockwave-ring{ position:absolute; top:50%; left:50%; border:5px solid rgba(255,160,60,0.9); border-radius:50%; transform:translate(-50%,-50%); pointer-events:none; opacity:0; animation:shockwaveExpand 10s linear 1.8s infinite; }
-    /* Debris — explosive shrapnel flying outward */
-    @keyframes debris1{ 0%,39.5%,100%{transform:translate(-50%,-50%);opacity:0;} 40.5%{opacity:1;transform:translate(-50%,-50%);} 55%{transform:translate(calc(-50% - 580px),calc(-50% - 220px));opacity:0;} }
-    @keyframes debris2{ 0%,39.5%,100%{transform:translate(-50%,-50%);opacity:0;} 40.5%{opacity:1;transform:translate(-50%,-50%);} 55%{transform:translate(calc(-50% + 620px),calc(-50% - 140px));opacity:0;} }
-    @keyframes debris3{ 0%,39.5%,100%{transform:translate(-50%,-50%);opacity:0;} 40.8%{opacity:0.9;transform:translate(-50%,-50%);} 57%{transform:translate(calc(-50% + 220px),calc(-50% - 580px));opacity:0;} }
-    @keyframes debris4{ 0%,39.5%,100%{transform:translate(-50%,-50%);opacity:0;} 40.8%{opacity:0.9;transform:translate(-50%,-50%);} 57%{transform:translate(calc(-50% - 380px),calc(-50% - 500px));opacity:0;} }
-    @keyframes debris5{ 0%,39.5%,100%{transform:translate(-50%,-50%);opacity:0;} 41%{opacity:0.8;transform:translate(-50%,-50%);} 58%{transform:translate(calc(-50% + 460px),calc(-50% + 380px));opacity:0;} }
-    @keyframes debris6{ 0%,39.5%,100%{transform:translate(-50%,-50%);opacity:0;} 41%{opacity:0.8;transform:translate(-50%,-50%);} 58%{transform:translate(calc(-50% - 320px),calc(-50% + 440px));opacity:0;} }
-    .debris-p{ position:absolute; top:50%; left:50%; pointer-events:none; opacity:0; border-radius:50%; filter:blur(2px); }
     @keyframes nowReveal { 0%,41%{opacity:0;} 44%{opacity:1;} 68%{opacity:1;} 71%{opacity:0;} 100%{opacity:0;} }
     .rent-now{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); white-space:nowrap; color:white; pointer-events:none; opacity:0; animation:nowReveal 10s linear 1.8s infinite; }
     /* Wealth steam */
@@ -214,7 +199,7 @@
   <!-- 20% dark overlay so text stays readable -->
   <div class="absolute inset-0 bg-black/20 z-[1]"></div>
 
-  <div class="relative z-[2] max-w-4xl mx-auto px-4 text-center pt-12 pb-12 sm:pt-20 sm:pb-20">
+  <div class="relative z-[2] max-w-4xl mx-auto px-4 text-center pt-7 pb-12 sm:pt-14 sm:pb-20">
     <div class="flex justify-center mb-8">
       <div class="inline-flex flex-col items-center text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest" style="background: rgba(40,72,96,0.55); color: white; border: 1px solid rgba(40,72,96,0.55); gap: 2px;">
         <span>52 units · Pacaltsdorp, George</span>
@@ -225,7 +210,7 @@
     <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.05] mb-6">
       <span class="hero-word" style="animation-delay:0.2s">Stop</span>
       <span class="hero-word" style="animation-delay:0.32s">Paying</span>
-      <span class="hero-word" style="position:relative; animation: wordDrop 0.5s ease 0.44s both, rentLife 10s ease-in-out 1.8s infinite; display:inline-block;"><span style="display:inline-block;animation:blastR 10s linear 1.8s infinite">R</span><span style="display:inline-block;animation:blastE 10s linear 1.8s infinite">e</span><span style="display:inline-block;animation:blastN 10s linear 1.8s infinite">n</span><span style="display:inline-block;animation:blastT 10s linear 1.8s infinite">t</span><span style="display:inline-block;animation:blastDot 10s linear 1.8s infinite">.</span><span class="shockwave-ring"></span><span class="debris-p" style="width:10px;height:10px;background:#ff9920;animation:debris1 10s linear 1.8s infinite;"></span><span class="debris-p" style="width:8px;height:8px;background:#ff4400;animation:debris2 10s linear 1.8s infinite;"></span><span class="debris-p" style="width:12px;height:12px;background:#ffcc40;animation:debris3 10s linear 1.8s infinite;"></span><span class="debris-p" style="width:7px;height:7px;background:#ff6600;animation:debris4 10s linear 1.8s infinite;"></span><span class="debris-p" style="width:9px;height:9px;background:#ff3300;animation:debris5 10s linear 1.8s infinite;"></span><span class="debris-p" style="width:11px;height:11px;background:#ffaa00;animation:debris6 10s linear 1.8s infinite;"></span><span class="rent-now">now</span></span><br>
+      <span class="hero-word" style="position:relative; animation: wordDrop 0.5s ease 0.44s both, rentLife 10s ease-in-out 1.8s infinite; display:inline-block;"><span style="display:inline-block;animation:blastR 10s linear 1.8s infinite">R</span><span style="display:inline-block;animation:blastE 10s linear 1.8s infinite">e</span><span style="display:inline-block;animation:blastN 10s linear 1.8s infinite">n</span><span style="display:inline-block;animation:blastT 10s linear 1.8s infinite">t</span><span style="display:inline-block;animation:blastDot 10s linear 1.8s infinite">.</span><span class="rent-now">now</span></span><br>
       <span class="hero-word" style="animation-delay:0.62s">Start</span>
       <span class="hero-word" style="animation-delay:0.74s">Building</span>
       <span class="hero-word text-sky-300" style="position:relative;animation-delay:0.86s;text-shadow:0 0 8px rgba(125,211,252,0.6),0 0 18px rgba(125,211,252,0.35),0 0 35px rgba(125,211,252,0.18)">Wealth<span class="steam-p" style="left:8%;animation-delay:0s;"></span><span class="steam-p" style="left:24%;animation-delay:0.5s;"></span><span class="steam-p" style="left:44%;animation-delay:1s;"></span><span class="steam-p" style="left:64%;animation-delay:0.3s;"></span><span class="steam-p" style="left:82%;animation-delay:0.75s;"></span></span><span class="hero-word" style="animation-delay:0.92s">.</span>
@@ -235,7 +220,7 @@
       While you were paying rent, your landlord got rich. Don't you think it's time to flip the script.
     </p>
     <div class="max-w-2xl mx-auto mb-16 px-2">
-      <p class="text-xl sm:text-4xl leading-relaxed text-center" style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 400; color: #ffffff; text-shadow: 0 1px 6px rgba(0,0,0,0.6);">
+      <p class="text-xl sm:text-4xl leading-relaxed text-center" style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 600; color: #ffffff; text-shadow: 0 1px 6px rgba(0,0,0,0.6);">
         "The sky's the limit."
       </p>
       <p class="text-xs sm:text-sm text-right pr-2 -mt-1" style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 600; color: rgba(255,255,255,0.5); text-shadow: 0 1px 4px rgba(0,0,0,0.5);">
