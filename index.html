@@ -31,6 +31,8 @@
     @keyframes polaroidRevealAlt { from { opacity:0; transform:scale(1.04) rotate(1deg); } to { opacity:1; transform:scale(1) rotate(0deg); } }
     .rvo-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease; }
     .rvo-slide.active { opacity: 1; }
+    .gallery-bg-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease; }
+    .gallery-bg-slide.active { opacity: 1; }
     #quizOverlay, #resultsPage { -webkit-overflow-scrolling: touch; }
     /* Hero word drop */
     .hero-word { opacity:0; display:inline-block; animation: wordDrop 0.5s ease forwards; }
@@ -200,8 +202,10 @@
 </section>
 
 <!-- ===================== GALLERY ===================== -->
-<section id="gallery" class="py-10 sm:py-20" style="background: #1e3a5f; border-top: 3px solid #1e3a5f; border-bottom: 3px solid #1e3a5f;">
-  <div class="max-w-6xl mx-auto px-4">
+<section id="gallery" class="py-10 sm:py-20 relative overflow-hidden" style="border-top: 3px solid #1e3a5f; border-bottom: 3px solid #1e3a5f;">
+  <div id="galleryBgSlideshow" class="absolute inset-0 z-0"></div>
+  <div class="absolute inset-0 z-[1]" style="background:rgba(15,35,64,0.78);"></div>
+  <div class="max-w-6xl mx-auto px-4 relative z-[2]">
     <div class="flex items-center justify-center gap-3 mb-6 sm:mb-12">
       <img src="./logo.png" alt="Bloukloof Properties" class="h-10 sm:h-16 w-auto" style="filter: brightness(0) invert(1);" />
       <h2 class="text-5xl sm:text-7xl text-white" style="font-family: 'Tangerine', cursive; font-weight: 700; line-height: 1;">Gallery</h2>
@@ -229,7 +233,7 @@
       <div class="absolute bottom-3 right-4 z-10 bg-black/45 text-white text-sm px-3 py-1 rounded-full"><span id="galleryIdx">1</span> / 20</div>
     </div>
 
-  </div>
+  </div><!-- /max-w-6xl -->
 </section>
 
 
@@ -1626,6 +1630,26 @@
     }, 6500);
   })();
 
+
+  // Gallery section background slideshow
+  (function() {
+    const imgs = ['./bk-home.jpg','./bk-living-room.jpg','./bk-sitting-room.jpg','./bk-kitchen.jpg','./bk-bedroom.jpg','./bk-spare-bedroom.jpg','./bk-house.jpg','./bk-unit-45.jpg','./IMG-20250922-WA0006.jpg','./1000000382.jpg','./1000000406.jpg','./1000002126.jpg','./1000002144.jpg','./1000002150.jpg'];
+    const container = document.getElementById('galleryBgSlideshow');
+    if (!container) return;
+    imgs.forEach((src, i) => {
+      const div = document.createElement('div');
+      div.className = 'gallery-bg-slide' + (i === 0 ? ' active' : '');
+      div.style.backgroundImage = `url('${src}')`;
+      container.appendChild(div);
+    });
+    let gi = 0;
+    setInterval(() => {
+      const slides = container.querySelectorAll('.gallery-bg-slide');
+      slides[gi].classList.remove('active');
+      gi = (gi + 1) % slides.length;
+      slides[gi].classList.add('active');
+    }, 7000);
+  })();
 
   window.addEventListener('message', function(e) {
     if (e.data && e.data.type === 'bk_resize') {
