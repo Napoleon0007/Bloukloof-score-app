@@ -1178,7 +1178,7 @@
     document.getElementById('questionContainer').innerHTML = `
       <div class="fade-in">
         <div class="mb-8">
-          <span class="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full mb-5 uppercase tracking-wide border border-white/30">
+          <span class="inline-block text-white text-xs font-bold px-3 py-1 rounded-full mb-5 uppercase tracking-wide" style="background:rgba(15,35,64,0.88);">
             ${currentQ >= QUESTIONS.length - 1 ? 'Last question — your score awaits!' : currentQ >= QUESTIONS.length - 2 ? 'Almost there!' : `Question ${currentQ + 1} of ${QUESTIONS.length}`}
           </span>
           <h2 class="text-2xl sm:text-3xl font-black text-white leading-snug rounded-xl px-4 py-3" style="background:rgba(15,35,64,0.88);">${q.text}</h2>
