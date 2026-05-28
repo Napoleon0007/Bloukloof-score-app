@@ -182,29 +182,6 @@
     .device-home-bar { height: 22px; display:flex; align-items:center; justify-content:center; padding-bottom: 3px; }
     .device-home-pill { width: 68px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 999px; }
     .device-btn { background: linear-gradient(to right, #1e1e1e, #363636); border-radius: 3px; position: absolute; }
-
-    /* ── Red rent lightning — tiny bolts aimed at "Rent." just before explosion ── */
-    .bk-rent-bolt { position:absolute; top:0; overflow:visible; pointer-events:none; }
-    .bk-rent-bolt path {
-      fill:none; stroke:#ff2200; stroke-width:1.8;
-      stroke-linecap:round; stroke-linejoin:round;
-      vector-effect:non-scaling-stroke;
-      stroke-dasharray:220; stroke-dashoffset:220;
-    }
-    /* synced to rentLife 10s cycle — fire builds 28-36%, explosion at 40% */
-    @keyframes bkRentStrike {
-      0%,34%    { stroke-dashoffset:220; opacity:0; filter:none; }
-      35%        { stroke-dashoffset:0;   opacity:1;
-                   filter:drop-shadow(0 0 2px #ff5500) drop-shadow(0 0 8px rgba(255,50,0,.9)); }
-      36.5%      { stroke-dashoffset:0;   opacity:0.15; filter:none; }
-      37.5%      { stroke-dashoffset:0;   opacity:0.9;
-                   filter:drop-shadow(0 0 3px #ff4400) drop-shadow(0 0 12px rgba(255,70,0,1)); }
-      39.5%      { stroke-dashoffset:0;   opacity:0;   filter:none; }
-      40%,100%  { stroke-dashoffset:220; opacity:0;   filter:none; }
-    }
-    #bk-rb-a path { animation: bkRentStrike 10s linear 1.80s infinite; }
-    #bk-rb-b path { animation: bkRentStrike 10s linear 1.87s infinite; }
-    #bk-rb-c path { animation: bkRentStrike 10s linear 1.94s infinite; }
   </style>
 </head>
 <body class="bg-white text-gray-900 overflow-x-hidden">
@@ -231,20 +208,6 @@
   <video autoplay muted loop playsinline poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="absolute inset-0 w-full h-full object-cover z-0" style="filter:brightness(0.8) saturate(0.85);"><source src="./clouds.mp4" type="video/mp4"></video>
   <!-- 20% dark overlay so text stays readable -->
   <div class="absolute inset-0 bg-black/20 z-[1]"></div>
-
-  <!-- Small red lightning bolts — positioned by JS to strike "Rent." just before explosion -->
-  <!-- Bolt A: fans from left at top, converges on Rent. -->
-  <svg id="bk-rb-a" class="bk-rent-bolt" style="width:40px;" preserveAspectRatio="none" viewBox="0 0 40 100" aria-hidden="true">
-    <path d="M 5,0 L 24,18 L 11,18 L 27,38 L 14,38 L 23,60 L 13,60 L 20,82 L 18,82 L 20,100"/>
-  </svg>
-  <!-- Bolt B: straight down center -->
-  <svg id="bk-rb-b" class="bk-rent-bolt" style="width:40px;" preserveAspectRatio="none" viewBox="0 0 40 100" aria-hidden="true">
-    <path d="M 20,0 L 12,20 L 25,20 L 15,42 L 27,42 L 17,65 L 23,65 L 19,85 L 21,85 L 20,100"/>
-  </svg>
-  <!-- Bolt C: fans from right at top, converges on Rent. -->
-  <svg id="bk-rb-c" class="bk-rent-bolt" style="width:40px;" preserveAspectRatio="none" viewBox="0 0 40 100" aria-hidden="true">
-    <path d="M 35,0 L 16,18 L 29,18 L 13,38 L 26,38 L 17,60 L 27,60 L 20,82 L 22,82 L 20,100"/>
-  </svg>
 
   <div class="relative z-[2] max-w-4xl mx-auto px-4 text-center pt-7 pb-12 sm:pt-14 sm:pb-20">
     <div class="flex justify-center mb-8">
@@ -2147,33 +2110,6 @@ document.getElementById('resultName').textContent =
     if (e.target === this) closeWalkthrough();
   });
 
-  // Position red lightning bolts so they descend from hero top and tip exactly on "Rent."
-  (function initRentLightning() {
-    var rentSpan = document.querySelector('.hero-word');
-    var heroEl   = document.querySelector('.hero-bg');
-    if (!rentSpan || !heroEl) return;
-
-    function place() {
-      var rr = rentSpan.getBoundingClientRect();
-      var hr = heroEl.getBoundingClientRect();
-      // aim at the centre-top of the "Rent." word
-      var cx = rr.left + rr.width * 0.5 - hr.left;
-      var cy = rr.top  - hr.top  + rr.height * 0.25;
-      ['bk-rb-a','bk-rb-b','bk-rb-c'].forEach(function(id) {
-        var el = document.getElementById(id);
-        if (!el) return;
-        el.style.left   = (cx - 20) + 'px'; // SVG is 40px wide; centre it on cx
-        el.style.height = cy + 'px';
-      });
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', place);
-    } else {
-      place();
-    }
-    window.addEventListener('resize', place);
-  })();
 </script>
 
 </body>
