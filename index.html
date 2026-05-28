@@ -90,24 +90,24 @@
       55%            { transform:translate(-80px,-1000px) rotate(220deg) scale(0); opacity:0; }
       70%            { transform:translate(-80px,-1000px) rotate(220deg) scale(0); opacity:0; }
     }
-    /* n — drops down onto H in "Wealth", ricochets off its top crossbar, rockets upper-right */
+    /* n — arcs down toward "Wealth", bounces off it, then rockets upper-right */
     @keyframes blastN {
       0%,39%,71%,100%{ transform:translate(0,0) rotate(0deg) scale(1); opacity:1; filter:none; }
-      40%            { transform:translate(4px,10px) rotate(12deg) scale(1.5); opacity:1; filter:none; }
-      44%            { transform:translate(22px,64px) rotate(58deg) scale(0.9); opacity:1; filter:none; }
-      45.5%          { transform:translate(32px,78px) rotate(68deg) scale(1.6); opacity:1; filter:brightness(5); }
-      /* ricochet — n bounces off top of H, reversing upward */
-      47%            { transform:translate(24px,58px) rotate(72deg) scale(1.05); opacity:1; filter:none; }
-      /* launching upper-right off the ricochet */
-      52%            { transform:translate(190px,-170px) rotate(188deg) scale(0.55); opacity:0.7; filter:none; }
-      60%            { transform:translate(510px,-550px) rotate(342deg) scale(0.12); opacity:0.15; filter:none; }
-      65%            { transform:translate(700px,-760px) rotate(415deg) scale(0); opacity:0; filter:none; }
-      70%            { transform:translate(700px,-760px) rotate(415deg) scale(0); opacity:0; filter:none; }
+      40%            { transform:translate(-8px,10px) rotate(-14deg) scale(1.5); opacity:1; filter:none; }
+      44%            { transform:translate(-130px,68px) rotate(-95deg) scale(0.9); opacity:1; filter:none; }
+      45.5%          { transform:translate(-128px,66px) rotate(-100deg) scale(1.6); opacity:1; filter:brightness(5); }
+      /* elastic rebound — bounces right, barely upward; gravity already pulling */
+      48%            { transform:translate(-52px,54px) rotate(-128deg) scale(1.05); opacity:1; filter:none; }
+      /* gravity dominant — arcing down-right */
+      53%            { transform:translate(80px,210px) rotate(-255deg) scale(0.75); opacity:0.85; filter:none; }
+      60%            { transform:translate(240px,520px) rotate(-395deg) scale(0.2); opacity:0.25; filter:none; }
+      65%            { transform:translate(295px,760px) rotate(-455deg) scale(0); opacity:0; filter:none; }
+      70%            { transform:translate(295px,760px) rotate(-455deg) scale(0); opacity:0; filter:none; }
     }
-    @keyframes wealthHBounce {
+    @keyframes wealthBounce {
       0%,44%,49%,100%{ transform:none; filter:none; }
-      45.5%          { transform:translate(3px,4px) scale(1.09); filter:brightness(2.8) drop-shadow(0 0 14px rgba(125,211,252,1)); }
-      46.5%          { transform:translate(-2px,-2px) scale(1.02); filter:brightness(1.4); }
+      45.5%          { transform:translate(5px,-6px) scale(1.07); filter:brightness(2.8) drop-shadow(0 0 14px rgba(125,211,252,1)); }
+      46.5%          { transform:translate(-3px,3px) scale(1.02); filter:brightness(1.4); }
       48%            { transform:none; filter:none; }
     }
     /* t — crashes down-right through the paragraph text, then off-screen */
@@ -260,7 +260,7 @@
       <span class="hero-word" style="position:relative; animation: wordDrop 0.5s ease 0.44s both, rentLife 10s ease-in-out 1.8s infinite; display:inline-block;"><span style="display:inline-block;animation:blastR 10s linear 1.8s infinite">R</span><span style="display:inline-block;animation:blastE 10s linear 1.8s infinite">e</span><span style="display:inline-block;animation:blastN 10s linear 1.8s infinite">n</span><span style="display:inline-block;animation:blastT 10s linear 1.8s infinite">t</span><span style="display:inline-block;animation:blastDot 10s linear 1.8s infinite">.</span></span><br>
       <span class="hero-word" style="animation-delay:0.62s">Start</span>
       <span class="hero-word" style="animation-delay:0.74s">Building</span>
-      <span class="hero-word text-sky-300" style="position:relative;animation:wordDrop 0.5s ease 0.86s both;text-shadow:0 0 8px rgba(125,211,252,0.6),0 0 18px rgba(125,211,252,0.35),0 0 35px rgba(125,211,252,0.18)">Wealt<span style="display:inline-block;animation:wealthHBounce 10s linear 1.8s infinite">h</span><span class="steam-p" style="left:8%;animation-delay:0s;"></span><span class="steam-p" style="left:24%;animation-delay:0.5s;"></span><span class="steam-p" style="left:44%;animation-delay:1s;"></span><span class="steam-p" style="left:64%;animation-delay:0.3s;"></span><span class="steam-p" style="left:82%;animation-delay:0.75s;"></span></span><span class="hero-word" style="animation-delay:0.92s">.</span>
+      <span class="hero-word text-sky-300" style="position:relative;animation:wordDrop 0.5s ease 0.86s both,wealthBounce 10s linear 1.8s infinite;text-shadow:0 0 8px rgba(125,211,252,0.6),0 0 18px rgba(125,211,252,0.35),0 0 35px rgba(125,211,252,0.18)">Wealth<span class="steam-p" style="left:8%;animation-delay:0s;"></span><span class="steam-p" style="left:24%;animation-delay:0.5s;"></span><span class="steam-p" style="left:44%;animation-delay:1s;"></span><span class="steam-p" style="left:64%;animation-delay:0.3s;"></span><span class="steam-p" style="left:82%;animation-delay:0.75s;"></span></span><span class="hero-word" style="animation-delay:0.92s">.</span>
     </h1>
 
     <p class="text-base sm:text-3xl max-w-2xl mx-auto mb-6 leading-relaxed px-2" style="font-family: 'Lora', Georgia, serif; font-weight: 600; color: white; text-shadow: 0 1px 4px rgba(0,0,0,0.5);">
